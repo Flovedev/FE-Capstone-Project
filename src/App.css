@@ -2,6 +2,8 @@ a {
   color: rgb(222, 222, 222) !important;
 }
 
+/* Navbar */
+
 .logo {
   width: 50px;
   height: 50px;
@@ -28,4 +30,33 @@ a {
 
 .dropdown-menu a:hover {
   background-color: grey;
+}
+
+/* Login */
+
+/* Main */
+
+.mainSection {
+  background-color: grey;
+}
+
+section {
+  display: flex;
+  width: 600px;
+  height: 430px;
+}
+
+section img {
+  width: 0px;
+  flex-grow: 1;
+  object-fit: cover;
+  opacity: 0.8;
+  transition: 0.5s ease;
+}
+
+section img:hover {
+  cursor: pointer;
+  width: 300px;
+  opacity: 1;
+  filter: contrast(120%);
 }

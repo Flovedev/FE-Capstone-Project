@@ -1,12 +1,6 @@
 import gamesOverLogo from "../../assets/GamesOverLogo.png";
-import {
-  Navbar,
-  Nav,
-  NavDropdown,
-  Form,
-  FormControl,
-  Button,
-} from "react-bootstrap";
+import moco from "../../assets/moco.jpg";
+import { Navbar, Nav, NavDropdown, Form, FormControl } from "react-bootstrap";
 
 const NavBar = () => {
   return (
@@ -20,9 +14,7 @@ const NavBar = () => {
         </Form>
       </Nav>
       <NavDropdown
-        title={
-          <img className="userAvatar" src={gamesOverLogo} alt="User Avatar" />
-        }
+        title={<img className="userAvatar" src={moco} alt="User Avatar" />}
         id="nav-dropdown"
       >
         <NavDropdown.Item href="#action/3.1">Action</NavDropdown.Item>
