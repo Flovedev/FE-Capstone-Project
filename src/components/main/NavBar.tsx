@@ -1,16 +1,77 @@
 import gamesOverLogo from "../../assets/GamesOverLogo.png";
 import moco from "../../assets/moco.jpg";
-import { Navbar, Nav, NavDropdown, Form, FormControl } from "react-bootstrap";
+import {
+  Navbar,
+  Nav,
+  NavDropdown,
+  Form,
+  FormControl,
+  Dropdown,
+  DropdownButton,
+} from "react-bootstrap";
+import { useState } from "react";
+import { useAppDispatch } from "../../redux/hooks";
+import { searchApi } from "../../redux/actions";
+import { Link, useNavigate } from "react-router-dom";
 
 const NavBar = () => {
+  const dispatch = useAppDispatch();
+  const navigate = useNavigate();
+  const [category, setCategory] = useState("/games");
+  const [searchBar, setSearchBar] = useState("");
+
+  const handleSearch = (e: any) => {
+    e.preventDefault();
+    dispatch(searchApi(category, searchBar));
+    navigate("/search");
+  };
+
   return (
     <Navbar className="navbar" expand="lg">
-      <Navbar.Brand href="#home">
-        <img src={gamesOverLogo} alt="Games Over Logo" className="logo" />
+      <Navbar.Brand>
+        <Link to="/">
+          <img src={gamesOverLogo} alt="Games Over Logo" className="logo" />
+        </Link>
       </Navbar.Brand>
       <Nav className="mr-auto">
-        <Form className="searchBar">
-          <FormControl type="text" placeholder="Next game?..." />
+        <Form
+          className="searchBar d-flex"
+          onSubmit={(e) => {
+            handleSearch(e);
+          }}
+        >
+          <FormControl
+            placeholder="Looking for something?..."
+            value={searchBar}
+            onChange={(e) => setSearchBar(e.target.value)}
+          />
+          <DropdownButton
+            id="dropdown-basic-button"
+            title={category}
+            variant="secondary"
+          >
+            <Dropdown.Item onClick={() => setCategory("/games")}>
+              /games
+            </Dropdown.Item>
+            <Dropdown.Item onClick={() => setCategory("/platforms")}>
+              /platforms
+            </Dropdown.Item>
+            <Dropdown.Item onClick={() => setCategory("/people")}>
+              /people
+            </Dropdown.Item>
+            <Dropdown.Item onClick={() => setCategory("/characters")}>
+              /characters
+            </Dropdown.Item>
+            <Dropdown.Item onClick={() => setCategory("/collections")}>
+              /collections
+            </Dropdown.Item>
+            <Dropdown.Item onClick={() => setCategory("/themes")}>
+              /themes
+            </Dropdown.Item>
+            <Dropdown.Item onClick={() => setCategory("/users")}>
+              /users
+            </Dropdown.Item>
+          </DropdownButton>
         </Form>
       </Nav>
       <NavDropdown

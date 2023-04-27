@@ -4,6 +4,7 @@ import { persistStore, persistReducer } from "redux-persist";
 import userReducer from "../reducers/userReducer";
 import genresReducer from "../reducers/genresReducer";
 import platformsReducer from "../reducers/platformsReducer";
+import searchReducer from "../reducers/searchReducer";
 
 const persistConfig = {
   storage: Storage,
@@ -14,6 +15,7 @@ const combinedReducer = combineReducers({
   users: userReducer,
   genres: genresReducer,
   platforms: platformsReducer,
+  search: searchReducer,
 });
 
 const persistedReducer = persistReducer(persistConfig, combinedReducer);

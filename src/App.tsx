@@ -7,17 +7,23 @@ import Login from "./components/login/Login";
 import Game from "./components/game/Game";
 import User from "./components/user/User";
 import Profile from "./components/profile/Profile";
+import NavBar from "./components/main/NavBar";
+import Footer from "./components/main/Footer";
+import SearchList from "./components/searchList/SearchList";
 
 function App() {
   return (
     <BrowserRouter>
+      <NavBar />
       <Routes>
-        <Route path="/" element={<Login />} />
-        <Route path="/main" element={<Main />} />
+        <Route path="/" element={<Main />} />
+        <Route path="/search" element={<SearchList />} />
+        <Route path="/login" element={<Login />} />
         <Route path="/game" element={<Game />} />
         <Route path="/user" element={<User />} />
         <Route path="/profile" element={<Profile />} />
       </Routes>
+      <Footer />
     </BrowserRouter>
   );
 }

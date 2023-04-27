@@ -1,6 +1,7 @@
 export const SET_USER_INFO = "SET_USER_INFO";
 export const GET_GENRES = "GET_GENRES";
 export const GET_PLATFORMS = "GET_PLATFORMS";
+export const SET_SEARCH_LIST = "SET_SEARCH_LIST";
 
 export const getGenres = () => {
   return async (dispatch: any) => {
@@ -25,9 +26,32 @@ export const getPlatforms = () => {
       const res = await fetch(process.env.REACT_APP_BE_URL + "/igdb/platforms");
       if (res.ok) {
         const data = await res.json();
+        // console.log(data);
         dispatch({ type: GET_PLATFORMS, payload: data });
       } else {
         console.log("Error getting platforms!");
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+};
+
+export const searchApi = (where: string, what: string) => {
+  return async (dispatch: any) => {
+    try {
+      const res = await fetch(
+        process.env.REACT_APP_BE_URL + "/igdb/" + where + "/search/" + what
+      );
+      if (res.ok) {
+        const data = await res.json();
+        const sortedSearch = data?.sort(
+          (a: any, b: any) => b.rating || 0 - a.rating || 0
+        );
+        dispatch({ type: SET_SEARCH_LIST, payload: sortedSearch });
+        // console.log(data);
+      } else {
+        console.log("Error searching!");
       }
     } catch (error) {
       console.log(error);

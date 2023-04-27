@@ -3,18 +3,22 @@ import Genres from "./Genres";
 import NavBar from "./NavBar";
 import { Container, Row } from "react-bootstrap";
 import { useEffect } from "react";
-import { getGenres } from "../../redux/actions";
+import { getGenres, getPlatforms } from "../../redux/actions";
 import { useAppDispatch } from "../../redux/hooks";
+import Platforms from "./Platforms";
+import Footer from "./Footer";
 
 const Main = () => {
   const dispatch = useAppDispatch();
 
   useEffect(() => {
     dispatch(getGenres());
+    dispatch(getPlatforms());
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+
   return (
     <>
-      <NavBar />
       <Container fluid className="mainSection py-3">
         <h1>Discover:</h1>
 
@@ -26,6 +30,7 @@ const Main = () => {
           <Genres />
         </Row>
         <h1>Platforms:</h1>
+        <Platforms />
       </Container>
     </>
   );
