@@ -60,3 +60,8 @@ section img:hover {
   opacity: 1;
   filter: contrast(120%);
 }
+
+.singleGenre {
+  background-color: aquamarine;
+  border-radius: 5px;
+}

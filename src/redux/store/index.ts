@@ -2,6 +2,8 @@ import Storage from "redux-persist/lib/storage";
 import { combineReducers, configureStore } from "@reduxjs/toolkit";
 import { persistStore, persistReducer } from "redux-persist";
 import userReducer from "../reducers/userReducer";
+import genresReducer from "../reducers/genresReducer";
+import platformsReducer from "../reducers/platformsReducer";
 
 const persistConfig = {
   storage: Storage,
@@ -10,6 +12,8 @@ const persistConfig = {
 
 const combinedReducer = combineReducers({
   users: userReducer,
+  genres: genresReducer,
+  platforms: platformsReducer,
 });
 
 const persistedReducer = persistReducer(persistConfig, combinedReducer);
