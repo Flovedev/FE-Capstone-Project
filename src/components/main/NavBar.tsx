@@ -11,7 +11,7 @@ import {
 } from "react-bootstrap";
 import { useState } from "react";
 import { useAppDispatch } from "../../redux/hooks";
-import { searchApi } from "../../redux/actions";
+import { SET_SEARCH_LIST, searchApi } from "../../redux/actions";
 import { Link, useNavigate } from "react-router-dom";
 
 const NavBar = () => {
@@ -22,6 +22,7 @@ const NavBar = () => {
 
   const handleSearch = (e: any) => {
     e.preventDefault();
+    dispatch({ type: SET_SEARCH_LIST, payload: "" });
     dispatch(searchApi(category, searchBar));
     navigate("/search");
   };

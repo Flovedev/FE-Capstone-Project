@@ -2,6 +2,7 @@ export const SET_USER_INFO = "SET_USER_INFO";
 export const GET_GENRES = "GET_GENRES";
 export const GET_PLATFORMS = "GET_PLATFORMS";
 export const SET_SEARCH_LIST = "SET_SEARCH_LIST";
+export const GET_SINGLE_GAME = "GET_SINGLE_GAME";
 
 export const getGenres = () => {
   return async (dispatch: any) => {
@@ -52,6 +53,25 @@ export const searchApi = (where: string, what: string) => {
         // console.log(data);
       } else {
         console.log("Error searching!");
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+};
+
+export const getGame = (gameId: string) => {
+  return async (dispatch: any) => {
+    try {
+      const res = await fetch(
+        process.env.REACT_APP_BE_URL + "/igdb/game/" + gameId
+      );
+      if (res.ok) {
+        const data = await res.json();
+        dispatch({ type: GET_SINGLE_GAME, payload: data });
+        // console.log(data);
+      } else {
+        console.log("Error getting single game!");
       }
     } catch (error) {
       console.log(error);

@@ -4,13 +4,14 @@ import SingleSearch from "./SingleSearch";
 
 const SearchList = () => {
   const dispatch = useAppDispatch();
-  let allSearch = useAppSelector((state) => state.search.allSearch);
+  const allSearch = useAppSelector((state) => state.search.allSearch);
 
   return (
     <Container>
-      {allSearch?.map((item: any, index: number) => (
-        <SingleSearch data={item} key={index} />
-      ))}
+      {allSearch &&
+        allSearch?.map((item: any, index: number) => (
+          <SingleSearch data={item} key={index} />
+        ))}
     </Container>
   );
 };

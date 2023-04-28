@@ -5,6 +5,7 @@ import userReducer from "../reducers/userReducer";
 import genresReducer from "../reducers/genresReducer";
 import platformsReducer from "../reducers/platformsReducer";
 import searchReducer from "../reducers/searchReducer";
+import gameReducer from "../reducers/gameReducer";
 
 const persistConfig = {
   storage: Storage,
@@ -16,6 +17,7 @@ const combinedReducer = combineReducers({
   genres: genresReducer,
   platforms: platformsReducer,
   search: searchReducer,
+  game: gameReducer,
 });
 
 const persistedReducer = persistReducer(persistConfig, combinedReducer);

@@ -71,3 +71,13 @@ section img:hover {
   width: 50px;
   height: 50px;
 }
+
+/* Search */
+
+.singleSearch {
+  background-color: rgb(167, 230, 80);
+}
+
+.singleSearch:hover {
+  cursor: pointer;
+}
