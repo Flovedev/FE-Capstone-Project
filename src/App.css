@@ -1,3 +1,7 @@
+body {
+  background-color: #202634;
+}
+
 a {
   color: rgb(222, 222, 222) !important;
 }
@@ -10,7 +14,8 @@ a {
 }
 
 .navbar {
-  background-color: rgb(56, 56, 56);
+  background-color: #283044;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
 }
 
 .searchBar {
@@ -36,10 +41,6 @@ a {
 /* Login */
 
 /* Main */
-
-.mainSection {
-  background-color: grey;
-}
 
 section {
   display: flex;
@@ -80,4 +81,35 @@ section img:hover {
 
 .singleSearch:hover {
   cursor: pointer;
+}
+
+/* Game */
+
+.gameInfo > div {
+  background-color: #283044;
+  border-radius: 20px;
+  color: white;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}
+
+.gameImage {
+  width: 200px;
+  border-radius: 10px;
+}
+
+.screenshots {
+  width: 150px;
+  border-radius: 10px;
+}
+
+.genres {
+  background-color: #59626f;
+  border: 2px solid #59626f;
+  border-radius: 10px;
+}
+
+.genres:hover {
+  cursor: pointer;
+  border: 2px solid #59626f;
+  background-color: #283044;
 }

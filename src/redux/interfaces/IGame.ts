@@ -4,9 +4,15 @@ export interface IGame {
   cover: {
     url: string;
   };
-  genre: {
+  genres: {
     name: string;
-  };
+  }[];
+  summary: string;
+  language_supports: {
+    language: {
+      name: string;
+    };
+  }[];
   involved_companies: {
     company: {
       id: number;
@@ -16,7 +22,7 @@ export interface IGame {
     publisher: boolean;
     porting: boolean;
     supporting: boolean;
-  };
+  }[];
   platform: {
     id: number;
     name: string;
@@ -24,11 +30,11 @@ export interface IGame {
     platform_logo: {
       url: string;
     };
-  };
-  rating: number;
+  }[];
+  rating: string;
   screenshots: {
     url: string;
-  };
+  }[];
   similar_games: {
     id: number;
     name: string;
@@ -36,9 +42,9 @@ export interface IGame {
       url: string;
     };
     rating: number;
-  };
+  }[];
   videos: {
     name: string;
     video_id: string;
-  };
+  }[];
 }
