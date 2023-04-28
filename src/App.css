@@ -113,3 +113,15 @@ section img:hover {
   border: 2px solid #59626f;
   background-color: #283044;
 }
+
+.singleSimilar {
+  border-radius: 10px;
+  background-color: #59626f;
+  border: 2px solid #59626f;
+}
+
+.singleSimilar:hover {
+  cursor: pointer;
+  border: 2px solid #59626f;
+  background-color: #283044;
+}
