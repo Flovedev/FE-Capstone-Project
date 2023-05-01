@@ -5,6 +5,7 @@ export const SET_SEARCH_LIST = "SET_SEARCH_LIST";
 export const GET_SINGLE_GAME = "GET_SINGLE_GAME";
 export const GET_GENRE_GAMES = "GET_GENRE_GAMES";
 export const GET_GENRE_NAME = "GET_GENRE_NAME";
+export const GET_DISCOVER = "GET_DISCOVER";
 
 export const getGenres = () => {
   return async (dispatch: any) => {
@@ -93,6 +94,23 @@ export const getGenreGames = (genreId: string) => {
         // console.log(data);
       } else {
         console.log("Error getting genre games!");
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+};
+
+export const getDiscover = () => {
+  return async (dispatch: any) => {
+    try {
+      const res = await fetch(process.env.REACT_APP_BE_URL + "/igdb/discover");
+      if (res.ok) {
+        const data = await res.json();
+        // console.log(data);
+        dispatch({ type: GET_DISCOVER, payload: data });
+      } else {
+        console.log("Error getting discover!");
       }
     } catch (error) {
       console.log(error);

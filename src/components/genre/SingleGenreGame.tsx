@@ -29,7 +29,7 @@ const SingleGenreGame = (props: IProps) => {
     >
       <Col className="d-flex">
         <img
-          src={props.data.cover.url}
+          src={props.data?.cover?.url}
           alt="Game cover"
           className="genreGameImage m-2"
         />

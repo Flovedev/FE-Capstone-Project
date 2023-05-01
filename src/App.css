@@ -43,6 +43,10 @@ a {
 
 /* Main */
 
+.discoverDescription {
+  position: absolute;
+}
+
 /* .mainSection {
   color: white;
   background-color: #283044;

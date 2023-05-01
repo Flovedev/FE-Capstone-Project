@@ -1,3 +1,4 @@
+import { Container, Row } from "react-bootstrap";
 import { useAppSelector } from "../../redux/hooks";
 import { IGenres } from "../../redux/interfaces/IGenres";
 import SingleGenre from "./SingleGenre";
