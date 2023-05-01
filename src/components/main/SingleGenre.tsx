@@ -5,7 +5,7 @@ interface IProps {
 }
 
 const SingleGenre = (props: IProps) => {
-  return <div className="singleGenre m-1 p-1">{props.data.name}</div>;
+  return <div className="genres m-1 p-1">{props.data.name}</div>;
 };
 
 export default SingleGenre;

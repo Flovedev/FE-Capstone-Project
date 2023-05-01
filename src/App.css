@@ -1,5 +1,6 @@
 body {
   background-color: #202634;
+  color: white;
 }
 
 a {
@@ -42,6 +43,11 @@ a {
 
 /* Main */
 
+/* .mainSection {
+  color: white;
+  background-color: #283044;
+} */
+
 section {
   display: flex;
   width: 600px;
@@ -63,11 +69,6 @@ section img:hover {
   /* filter: contrast(105%); */
 }
 
-.singleGenre {
-  background-color: aquamarine;
-  border-radius: 5px;
-}
-
 .platformImage {
   width: 50px;
   height: 50px;
@@ -76,7 +77,7 @@ section img:hover {
 /* Search */
 
 .singleSearch {
-  background-color: rgb(167, 230, 80);
+  background-color: #59626f;
 }
 
 .singleSearch:hover {
@@ -124,4 +125,10 @@ section img:hover {
   cursor: pointer;
   border: 2px solid #59626f;
   background-color: #283044;
+}
+
+/* Footer */
+
+.footer {
+  border-top: 1px solid #59626f;
 }
