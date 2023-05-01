@@ -1,5 +1,5 @@
 export interface IGame {
-  id: number;
+  id: string;
   name: string;
   cover: {
     url: string;

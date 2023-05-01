@@ -1,9 +1,8 @@
 import { Container } from "react-bootstrap";
-import { useAppDispatch, useAppSelector } from "../../redux/hooks";
+import { useAppSelector } from "../../redux/hooks";
 import SingleSearch from "./SingleSearch";
 
 const SearchList = () => {
-  const dispatch = useAppDispatch();
   const allSearch = useAppSelector((state) => state.search.allSearch);
 
   return (

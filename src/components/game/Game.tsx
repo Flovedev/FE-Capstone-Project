@@ -5,6 +5,8 @@ import Screenshot from "./Screenshots";
 import { IUrls } from "../../redux/interfaces/IUrls";
 import Companies from "./Companies";
 import SingleSimilar from "./SingleSimilar";
+import SingleGenre from "../main/SingleGenre";
+import { IGenres } from "../../redux/interfaces/IGenres";
 
 const Game = () => {
   const currentGame = useAppSelector(
@@ -26,10 +28,8 @@ const Game = () => {
               <h6>{parseInt(currentGame.rating)}/100</h6>
             </div>
             <div className="d-flex">
-              {currentGame.genres.map((e, index) => (
-                <span className="m-1 p-1 genres" key={index}>
-                  {e.name}
-                </span>
+              {currentGame.genres.map((e: any) => (
+                <SingleGenre data={e} key={e.id} />
               ))}
             </div>
             <Companies data={currentGame.involved_companies} />

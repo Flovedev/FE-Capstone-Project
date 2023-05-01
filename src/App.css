@@ -129,6 +129,24 @@ section img:hover {
   background-color: #283044;
 }
 
+/* GENRE*/
+
+.genreGameSummary {
+  overflow: hidden;
+}
+
+.genreGameSummary > p {
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  white-space: pre-wrap;
+}
+
+.genreGameImage {
+  border-radius: 10px;
+}
+
 /* Footer */
 
 .footer {

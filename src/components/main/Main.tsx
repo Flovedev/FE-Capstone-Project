@@ -1,12 +1,10 @@
 import Discover from "./Discover";
 import Genres from "./Genres";
-import NavBar from "./NavBar";
 import { Container, Row } from "react-bootstrap";
 import { useEffect } from "react";
 import { getGenres, getPlatforms } from "../../redux/actions";
 import { useAppDispatch } from "../../redux/hooks";
 import Platforms from "./Platforms";
-import Footer from "./Footer";
 
 const Main = () => {
   const dispatch = useAppDispatch();
