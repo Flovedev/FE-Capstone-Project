@@ -23,7 +23,7 @@ export interface IGame {
     porting: boolean;
     supporting: boolean;
   }[];
-  platform: {
+  platforms: {
     id: number;
     name: string;
     abbreviation: string;

@@ -1,15 +1,16 @@
 import { Container } from "react-bootstrap";
 import { useAppSelector } from "../../redux/hooks";
 import SingleSearch from "./SingleSearch";
+import { IGame } from "../../redux/interfaces/IGame";
 
 const SearchList = () => {
   const allSearch = useAppSelector((state) => state.search.allSearch);
 
   return (
-    <Container>
+    <Container className="mt-3">
       {allSearch &&
-        allSearch?.map((item: any, index: number) => (
-          <SingleSearch data={item} key={index} />
+        allSearch?.map((item: IGame) => (
+          <SingleSearch data={item} key={item.id} />
         ))}
     </Container>
   );
