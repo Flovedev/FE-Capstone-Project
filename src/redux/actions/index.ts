@@ -3,6 +3,8 @@ export const GET_GENRES = "GET_GENRES";
 export const GET_PLATFORMS = "GET_PLATFORMS";
 export const SET_SEARCH_LIST = "SET_SEARCH_LIST";
 export const GET_SINGLE_GAME = "GET_SINGLE_GAME";
+export const GET_GENRE_GAMES = "GET_GENRE_GAMES";
+export const GET_GENRE_NAME = "GET_GENRE_NAME";
 
 export const getGenres = () => {
   return async (dispatch: any) => {
@@ -72,6 +74,25 @@ export const getGame = (gameId: string) => {
         // console.log(data);
       } else {
         console.log("Error getting single game!");
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+};
+
+export const getGenreGames = (genreId: string) => {
+  return async (dispatch: any) => {
+    try {
+      const res = await fetch(
+        process.env.REACT_APP_BE_URL + "/igdb/genre/" + genreId
+      );
+      if (res.ok) {
+        const data = await res.json();
+        dispatch({ type: GET_GENRE_GAMES, payload: data });
+        // console.log(data);
+      } else {
+        console.log("Error getting genre games!");
       }
     } catch (error) {
       console.log(error);

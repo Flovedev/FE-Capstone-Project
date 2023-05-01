@@ -1,5 +1,6 @@
 import { IPlatforms } from "../../redux/interfaces/IPlatforms";
 import noImage from "../../assets/No_Image_Available.jpg";
+import { Col } from "react-bootstrap";
 
 interface IProps {
   data: IPlatforms;
@@ -9,7 +10,7 @@ const SinglePlatform = (props: IProps) => {
   const logoUrl = props.data.platform_logo?.url;
   const updatedUrl = logoUrl?.replace("/t_thumb", "/t_logo_med");
   return (
-    <div className="singleGenre m-1 p-1 d-flex align-items-center">
+    <Col sm={2} className="singleGenre m-1 p-1 d-flex align-items-center">
       {props.data.platform_logo === undefined ? (
         <img src={noImage} alt="Missing logo" className="platformImage" />
       ) : (
@@ -17,7 +18,7 @@ const SinglePlatform = (props: IProps) => {
       )}
 
       <p className="mb-0 ml-2">{props.data.name}</p>
-    </div>
+    </Col>
   );
 };
 

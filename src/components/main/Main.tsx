@@ -26,11 +26,13 @@ const Main = () => {
           <Discover />
         </Row>
         <h1>Genres:</h1>
-        <Row>
+        <Row className="justify-content-center">
           <Genres />
         </Row>
         <h1>Platforms:</h1>
-        <Platforms />
+        <Row className="justify-content-center">
+          <Platforms />
+        </Row>
       </Container>
     </>
   );
