@@ -1,4 +1,3 @@
-import testinCarousel from "../../assets/testingCarousel.jpg";
 import { useAppSelector } from "../../redux/hooks";
 import { IGame } from "../../redux/interfaces/IGame";
 import SingleDiscover from "./SingleDiscover";

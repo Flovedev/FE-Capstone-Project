@@ -9,6 +9,34 @@ export const GET_PLATFORM_GAMES = "GET_PLATFORM_GAMES";
 export const GET_PLATFORM_NAME = "GET_PLATFORM_NAME";
 export const GET_DISCOVER = "GET_DISCOVER";
 
+export const userLogin = (email: string, password: string) => {
+  const userCredentials = {
+    email: email,
+    password: password,
+  };
+
+  return async (dispatch: any) => {
+    try {
+      const res = await fetch(
+        process.env.REACT_APP_BE_URL + "/users/seassion",
+        {
+          method: "POST",
+          body: JSON.stringify(userCredentials),
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
+      if (res.ok) {
+        const currentUser = await res.json();
+        console.log(currentUser);
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+};
+
 export const getGenres = () => {
   return async (dispatch: any) => {
     try {
