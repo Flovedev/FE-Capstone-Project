@@ -5,7 +5,7 @@ import SingleDiscover from "./SingleDiscover";
 
 const Discover = () => {
   const discover = useAppSelector((state) => state.discover.games);
-  console.log(discover);
+  // console.log(discover);
 
   return (
     <section>

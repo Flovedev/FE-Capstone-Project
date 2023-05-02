@@ -3,7 +3,6 @@ import { GET_SINGLE_GAME, getGame } from "../../redux/actions";
 import { useAppDispatch } from "../../redux/hooks";
 import { IGame } from "../../redux/interfaces/IGame";
 import SmallPlatforms from "../main/SmallPlatforms";
-import SingleGenre from "../main/SingleGenre";
 import noImage from "../../assets/No_Image_Available.jpg";
 import SmallGenre from "../main/SmallGenre";
 
@@ -42,7 +41,7 @@ const SingleSearch = (props: IProps) => {
           <span className="mr-2">{parseInt(props.data.rating)}/100</span>
         </div>
         <div className="d-flex">
-          {props.data.platforms?.map((e: any) => (
+          {props.data.genres?.map((e: any) => (
             <SmallGenre data={e} key={e.id} />
           ))}
         </div>
