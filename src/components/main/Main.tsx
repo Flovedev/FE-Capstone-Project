@@ -2,7 +2,12 @@ import Discover from "./Discover";
 import Genres from "./Genres";
 import { Container, Row } from "react-bootstrap";
 import { useEffect } from "react";
-import { getDiscover, getGenres, getPlatforms } from "../../redux/actions";
+import {
+  getDiscover,
+  getGenres,
+  getPlatforms,
+  userLogin,
+} from "../../redux/actions";
 import { useAppDispatch } from "../../redux/hooks";
 import Platforms from "./Platforms";
 
@@ -13,6 +18,7 @@ const Main = () => {
     dispatch(getGenres());
     dispatch(getPlatforms());
     dispatch(getDiscover());
+    dispatch(userLogin("flo@email.com", "1234"));
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 

@@ -1,7 +1,7 @@
 import { SET_USER_INFO } from "../actions";
 
 const initialState = {
-  userInfo: "",
+  userInfo: [],
 };
 
 const userReducer = (state = initialState, action: any) => {

@@ -27,6 +27,7 @@ function Video(props: IProps) {
       videoId={firstTrailer?.video_id}
       opts={opts}
       onReady={onPlayerReady}
+      className="py-1 pl-2"
     />
   );
 }

@@ -12,27 +12,24 @@ export const GET_PLATFORM_GAMES = "GET_PLATFORM_GAMES";
 export const GET_PLATFORM_NAME = "GET_PLATFORM_NAME";
 export const GET_DISCOVER = "GET_DISCOVER";
 
-export const userLogin = (email: string, password: string) => {
+export const userLogin = (emailValue: string, passwordValue: string) => {
   const userCredentials = {
-    email: email,
-    password: password,
+    email: emailValue,
+    password: passwordValue,
   };
 
   return async (dispatch: ThunkDispatch<{}, {}, AnyAction>) => {
     try {
-      const res = await fetch(
-        process.env.REACT_APP_BE_URL + "/users/seassion",
-        {
-          method: "POST",
-          body: JSON.stringify(userCredentials),
-          headers: {
-            "Content-Type": "application/json",
-          },
-        }
-      );
+      const res = await fetch(process.env.REACT_APP_BE_URL + "/users/session", {
+        method: "POST",
+        body: JSON.stringify(userCredentials),
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
       if (res.ok) {
-        const currentUser = await res.json();
-        console.log(currentUser);
+        const data = await res.json();
+        dispatch({ type: SET_USER_INFO, payload: data });
       }
     } catch (error) {
       console.log(error);

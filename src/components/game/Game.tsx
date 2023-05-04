@@ -14,6 +14,7 @@ import Video from "./Video";
 import ImageModal from "./ImageModal";
 import UAVideo from "../../assets/video-unavailable.jpg";
 import SmallPlatforms from "../main/SmallPlatforms";
+import Over from "../main/Over";
 
 const Game = () => {
   const currentGame = useAppSelector(
@@ -58,6 +59,7 @@ const Game = () => {
               <h6 className="rating px-2 py-1 mb-5">
                 {parseInt(currentGame.rating)}/100
               </h6>
+              <Over data={currentGame.id} />
             </div>
             <div className="d-flex">
               {currentGame.genres.map((e: IGenre) => (
@@ -94,7 +96,6 @@ const Game = () => {
             </Col>
           </Row>
         )}
-
         <Row className="gameDescription mt-5 p-3">
           <p>{currentGame.summary}</p>
         </Row>

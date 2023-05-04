@@ -90,6 +90,11 @@ section img:hover {
   box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
 }
 
+.overButtons div {
+  border-radius: 50%;
+  overflow: hidden;
+}
+
 /* Search */
 
 .singleSearch {

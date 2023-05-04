@@ -6,7 +6,6 @@ import SmallPlatforms from "../main/SmallPlatforms";
 import noImage from "../../assets/No_Image_Available.jpg";
 import SmallGenre from "../main/SmallGenre";
 import { Col, Row } from "react-bootstrap";
-import { MouseEventHandler } from "react";
 
 interface IProps {
   data: IGame;
