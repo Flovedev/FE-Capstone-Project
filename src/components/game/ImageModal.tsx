@@ -1,8 +1,9 @@
 import { useState } from "react";
 import { Modal } from "react-bootstrap";
+import { IScreenshot } from "../../redux/interfaces/IGame";
 
 interface IProps {
-  data: any;
+  data: IScreenshot;
 }
 
 function ImageModal(props: IProps) {

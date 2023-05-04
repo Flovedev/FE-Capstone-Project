@@ -1,6 +1,12 @@
 import { Container, Row, Col } from "react-bootstrap";
 import { useAppSelector } from "../../redux/hooks";
-import { IGame } from "../../redux/interfaces/IGame";
+import {
+  IGame,
+  IGenre,
+  IPlatform,
+  IScreenshot,
+  ISimilar,
+} from "../../redux/interfaces/IGame";
 import Companies from "./Companies";
 import SingleSimilar from "./SingleSimilar";
 import SingleGenre from "../main/SingleGenre";
@@ -54,7 +60,7 @@ const Game = () => {
               </h6>
             </div>
             <div className="d-flex">
-              {currentGame.genres.map((e: any) => (
+              {currentGame.genres.map((e: IGenre) => (
                 <SingleGenre data={e} key={e.id} />
               ))}
             </div>
@@ -62,7 +68,7 @@ const Game = () => {
               <Col className="mt-2">
                 <p className="mb-0">Platforms:</p>
                 <div className="d-flex">
-                  {currentGame?.platforms.map((e: any) => (
+                  {currentGame?.platforms.map((e: IPlatform) => (
                     <SmallPlatforms data={e} key={e.id} />
                   ))}
                 </div>
@@ -82,7 +88,7 @@ const Game = () => {
             )}
 
             <Col className="p-0 pl-4">
-              {maxFirst6?.map((e: any) => (
+              {maxFirst6?.map((e: IScreenshot) => (
                 <ImageModal data={e} key={e.id} />
               ))}
             </Col>
@@ -95,7 +101,7 @@ const Game = () => {
         <Row className="mt-5 p-2 flex-column">
           <h5 className="m-1">Similar games:</h5>
           <div className="d-flex flex-wrap mt-2 justify-content-center">
-            {currentGame.similar_games.map((e: any) => (
+            {currentGame.similar_games.map((e: ISimilar) => (
               <SingleSimilar data={e} key={e.id} />
             ))}
           </div>

@@ -1,5 +1,6 @@
 import { useAppSelector } from "../../redux/hooks";
-import { IPlatforms } from "../../redux/interfaces/IPlatforms";
+import { IPlatform } from "../../redux/interfaces/IGame";
+
 import SinglePlatform from "./SinglePlatform";
 
 const Platforms = () => {
@@ -7,7 +8,7 @@ const Platforms = () => {
   //   console.log(allPlatforms);
   return (
     <>
-      {allPlatforms.map((platform: IPlatforms, index: number) => (
+      {allPlatforms.map((platform: IPlatform, index: number) => (
         <SinglePlatform data={platform} key={index} />
       ))}
     </>

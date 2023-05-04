@@ -1,14 +1,14 @@
 import { useNavigate } from "react-router-dom";
 import { useAppDispatch } from "../../redux/hooks";
-import { IGenres } from "../../redux/interfaces/IGenres";
 import {
   GET_GENRE_GAMES,
   GET_GENRE_NAME,
   getGenreGames,
 } from "../../redux/actions";
+import { IGenre } from "../../redux/interfaces/IGame";
 
 interface IProps {
-  data: IGenres;
+  data: IGenre;
 }
 
 const SingleGenre = (props: IProps) => {

@@ -6,7 +6,7 @@ import SingleSearch from "../searchList/SingleSearch";
 const Platform = () => {
   const platformName = useAppSelector((state) => state.platformGames.platform);
   const platformGames = useAppSelector((state) => state.platformGames.game);
-  console.log(platformGames);
+  // console.log(platformGames);
 
   return (
     <Container>

@@ -5,9 +5,10 @@ import {
   GET_PLATFORM_NAME,
   getPlatformGames,
 } from "../../redux/actions";
+import { IPlatform } from "../../redux/interfaces/IGame";
 
 interface IProps {
-  data: any;
+  data: IPlatform;
 }
 
 const SmallPlatforms = (props: IProps) => {

@@ -1,4 +1,3 @@
-import { IPlatforms } from "../../redux/interfaces/IPlatforms";
 import noImage from "../../assets/No_Image_Available.jpg";
 import { Col } from "react-bootstrap";
 import { useAppDispatch } from "../../redux/hooks";
@@ -8,9 +7,10 @@ import {
   GET_PLATFORM_NAME,
   getPlatformGames,
 } from "../../redux/actions";
+import { IPlatform } from "../../redux/interfaces/IGame";
 
 interface IProps {
-  data: IPlatforms;
+  data: IPlatform;
 }
 
 const SinglePlatform = (props: IProps) => {

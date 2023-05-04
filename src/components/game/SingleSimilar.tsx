@@ -2,10 +2,10 @@ import { Col } from "react-bootstrap";
 import { useAppDispatch } from "../../redux/hooks";
 import { GET_SINGLE_GAME, getGame } from "../../redux/actions";
 import { useNavigate } from "react-router-dom";
-import { IGame } from "../../redux/interfaces/IGame";
+import { ISimilar } from "../../redux/interfaces/IGame";
 
 interface IProps {
-  data: IGame;
+  data: ISimilar;
 }
 
 const SingleSimilar = (props: IProps) => {

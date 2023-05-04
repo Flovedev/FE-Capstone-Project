@@ -1,11 +1,12 @@
 import { useNavigate } from "react-router-dom";
 import { GET_SINGLE_GAME, getGame } from "../../redux/actions";
 import { useAppDispatch } from "../../redux/hooks";
-import { IGame } from "../../redux/interfaces/IGame";
+import { IGame, IGenre, IPlatform } from "../../redux/interfaces/IGame";
 import SmallPlatforms from "../main/SmallPlatforms";
 import noImage from "../../assets/No_Image_Available.jpg";
 import SmallGenre from "../main/SmallGenre";
 import { Col, Row } from "react-bootstrap";
+import { MouseEventHandler } from "react";
 
 interface IProps {
   data: IGame;
@@ -28,7 +29,7 @@ const SingleSearch = (props: IProps) => {
   return (
     <Row
       className="singleSearch  my-2"
-      onClick={(e: any) => {
+      onClick={(e: React.MouseEvent<HTMLDivElement>) => {
         e.preventDefault();
         handleClick();
       }}
@@ -37,7 +38,7 @@ const SingleSearch = (props: IProps) => {
         {props.data.cover ? (
           <img src={updatedUrl} alt="Game cover" className="searchImg m-2" />
         ) : (
-          <img src={noImage} alt="No cover" className="mx-2 my-3" />
+          <img src={noImage} alt="No cover" className="searchImg mx-2 my-3" />
         )}
       </Col>
       <Col className="py-2">
@@ -48,12 +49,12 @@ const SingleSearch = (props: IProps) => {
           </span>
         </div>
         <div className="d-flex">
-          {props.data.genres?.map((e: any) => (
+          {props.data.genres?.map((e: IGenre) => (
             <SmallGenre data={e} key={e.id} />
           ))}
         </div>
         <div className="d-flex">
-          {props.data.platforms?.map((e: any) => (
+          {props.data.platforms?.map((e: IPlatform) => (
             <SmallPlatforms data={e} key={e.id} />
           ))}
         </div>

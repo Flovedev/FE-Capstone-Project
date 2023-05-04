@@ -1,51 +1,70 @@
 export interface IGame {
-  id: string;
+  id: number;
   name: string;
   cover: {
+    id: number;
     url: string;
   };
-  genres: {
-    name: string;
-  }[];
+  genres: IGenre[];
+  platforms: IPlatform[];
   summary: string;
-  language_supports: {
-    language: {
-      name: string;
-    };
-  }[];
-  involved_companies: {
-    company: {
-      id: number;
-      name: string;
-    };
-    developer: boolean;
-    publisher: boolean;
-    porting: boolean;
-    supporting: boolean;
-  }[];
-  platforms: {
-    id: number;
-    name: string;
-    abbreviation: string;
-    platform_logo: {
-      url: string;
-    };
-  }[];
+  language_supports: ILanguage[];
+  involved_companies: ICompany[];
   rating: string;
-  screenshots: {
-    id: string;
+  screenshots: IScreenshot[];
+  similar_games: ISimilar[];
+  videos: IVideo[];
+}
+
+export interface IGenre {
+  id: number;
+  name: string;
+}
+
+export interface IPlatform {
+  id: number;
+  name: string;
+  abbreviation?: string;
+  platform_logo: {
+    id: number;
     url: string;
-  }[];
-  similar_games: {
+  };
+}
+
+export interface ICompany {
+  company: {
     id: number;
     name: string;
-    cover: {
-      url: string;
-    };
-    rating: number;
-  }[];
-  videos: {
+  };
+  developer: boolean;
+  publisher: boolean;
+  porting: boolean;
+  supporting: boolean;
+}
+
+export interface ILanguage {
+  language: {
+    id: number;
     name: string;
-    video_id: string;
-  }[];
+  };
+}
+
+export interface IScreenshot {
+  id: string;
+  url: string;
+}
+
+export interface ISimilar {
+  id: number;
+  name: string;
+  cover: {
+    id: number;
+    url: string;
+  };
+  rating: string;
+}
+
+export interface IVideo {
+  name: string;
+  video_id: string;
 }

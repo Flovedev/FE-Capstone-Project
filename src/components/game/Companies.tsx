@@ -1,5 +1,7 @@
+import { ICompany, IGame } from "../../redux/interfaces/IGame";
+
 interface IProps {
-  data: any;
+  data: IGame["involved_companies"];
 }
 
 const Companies = (props: IProps) => {
@@ -7,17 +9,17 @@ const Companies = (props: IProps) => {
     return <div className="m-2"></div>;
   }
 
-  const developer = props.data.filter((e: any) => e.developer === true);
-  const publisher = props.data.filter((e: any) => e.developer === true);
-  const porting = props.data.filter((e: any) => e.porting === true);
-  const supporting = props.data.filter((e: any) => e.supporting === true);
+  const developer = props.data.filter((e: ICompany) => e.developer === true);
+  const publisher = props.data.filter((e: ICompany) => e.developer === true);
+  const porting = props.data.filter((e: ICompany) => e.porting === true);
+  const supporting = props.data.filter((e: ICompany) => e.supporting === true);
 
   return (
     <div>
       {developer.length > 0 && (
         <div>
           <p className="mb-0 mt-2">Developer:</p>
-          {publisher.map((e: any) => (
+          {publisher.map((e: ICompany) => (
             <span className="ml-2" key={e.company.name}>
               {e.company.name}
             </span>
@@ -27,7 +29,7 @@ const Companies = (props: IProps) => {
       {publisher.length > 0 && (
         <div>
           <p className="mb-0 mt-2">Publisher:</p>
-          {publisher.map((e: any) => (
+          {publisher.map((e: ICompany) => (
             <span className="ml-2" key={e.company.name}>
               {e.company.name}
             </span>
@@ -37,7 +39,7 @@ const Companies = (props: IProps) => {
       {porting.length > 0 && (
         <div>
           <p className="mb-0 mt-2">Porting:</p>
-          {publisher.map((e: any) => (
+          {publisher.map((e: ICompany) => (
             <span className="ml-2" key={e.company.name}>
               {e.company.name}
             </span>
@@ -47,7 +49,7 @@ const Companies = (props: IProps) => {
       {supporting.length > 0 && (
         <div>
           <p className="mb-0 mt-2">Supporting:</p>
-          {publisher.map((e: any) => (
+          {publisher.map((e: ICompany) => (
             <span className="ml-2" key={e.company.name}>
               {e.company.name}
             </span>

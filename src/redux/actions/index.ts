@@ -1,3 +1,6 @@
+import { ThunkDispatch } from "@reduxjs/toolkit";
+import { AnyAction } from "@reduxjs/toolkit";
+
 export const SET_USER_INFO = "SET_USER_INFO";
 export const GET_GENRES = "GET_GENRES";
 export const GET_PLATFORMS = "GET_PLATFORMS";
@@ -15,7 +18,7 @@ export const userLogin = (email: string, password: string) => {
     password: password,
   };
 
-  return async (dispatch: any) => {
+  return async (dispatch: ThunkDispatch<{}, {}, AnyAction>) => {
     try {
       const res = await fetch(
         process.env.REACT_APP_BE_URL + "/users/seassion",
@@ -38,7 +41,7 @@ export const userLogin = (email: string, password: string) => {
 };
 
 export const getGenres = () => {
-  return async (dispatch: any) => {
+  return async (dispatch: ThunkDispatch<{}, {}, AnyAction>) => {
     try {
       const res = await fetch(process.env.REACT_APP_BE_URL + "/igdb/genres");
       if (res.ok) {
@@ -55,7 +58,7 @@ export const getGenres = () => {
 };
 
 export const getPlatforms = () => {
-  return async (dispatch: any) => {
+  return async (dispatch: ThunkDispatch<{}, {}, AnyAction>) => {
     try {
       const res = await fetch(process.env.REACT_APP_BE_URL + "/igdb/platforms");
       if (res.ok) {
@@ -72,7 +75,7 @@ export const getPlatforms = () => {
 };
 
 export const searchApi = (where: string, what: string) => {
-  return async (dispatch: any) => {
+  return async (dispatch: ThunkDispatch<{}, {}, AnyAction>) => {
     try {
       const res = await fetch(
         process.env.REACT_APP_BE_URL + "/igdb/" + where + "/search/" + what
@@ -93,8 +96,8 @@ export const searchApi = (where: string, what: string) => {
   };
 };
 
-export const getGame = (gameId: string) => {
-  return async (dispatch: any) => {
+export const getGame = (gameId: number) => {
+  return async (dispatch: ThunkDispatch<{}, {}, AnyAction>) => {
     try {
       const res = await fetch(
         process.env.REACT_APP_BE_URL + "/igdb/game/" + gameId
@@ -112,8 +115,8 @@ export const getGame = (gameId: string) => {
   };
 };
 
-export const getGenreGames = (genreId: string) => {
-  return async (dispatch: any) => {
+export const getGenreGames = (genreId: number) => {
+  return async (dispatch: ThunkDispatch<{}, {}, AnyAction>) => {
     try {
       const res = await fetch(
         process.env.REACT_APP_BE_URL + "/igdb/genre/" + genreId
@@ -131,8 +134,8 @@ export const getGenreGames = (genreId: string) => {
   };
 };
 
-export const getPlatformGames = (platformId: string) => {
-  return async (dispatch: any) => {
+export const getPlatformGames = (platformId: number) => {
+  return async (dispatch: ThunkDispatch<{}, {}, AnyAction>) => {
     try {
       const res = await fetch(
         process.env.REACT_APP_BE_URL + "/igdb/platform/" + platformId
@@ -151,7 +154,7 @@ export const getPlatformGames = (platformId: string) => {
 };
 
 export const getDiscover = () => {
-  return async (dispatch: any) => {
+  return async (dispatch: ThunkDispatch<{}, {}, AnyAction>) => {
     try {
       const res = await fetch(process.env.REACT_APP_BE_URL + "/igdb/discover");
       if (res.ok) {

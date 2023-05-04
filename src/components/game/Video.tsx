@@ -6,10 +6,11 @@ interface IProps {
 }
 
 function Video(props: IProps) {
-  const firstTrailer = props.data?.find((e) => e.name.includes("Trailer"));
+  const firstTrailer = props.data?.find(
+    (e) => e.name.includes("Trailer") || e.name.includes("Teaser")
+  );
 
   const onPlayerReady: YouTubeProps["onReady"] = (event) => {
-    // access to player in all event handlers via event.target
     event.target.pauseVideo();
   };
 
@@ -17,7 +18,6 @@ function Video(props: IProps) {
     height: "390",
     width: "640",
     playerVars: {
-      // https://developers.google.com/youtube/player_parameters
       autoplay: 0,
     },
   };

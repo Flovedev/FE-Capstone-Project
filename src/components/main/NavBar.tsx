@@ -20,8 +20,7 @@ const NavBar = () => {
   const [category, setCategory] = useState("/games");
   const [searchBar, setSearchBar] = useState("");
 
-  const handleSearch = (e: any) => {
-    e.preventDefault();
+  const handleSearch = () => {
     dispatch({ type: SET_SEARCH_LIST, payload: "" });
     dispatch(searchApi(category, searchBar));
     navigate("/search");
@@ -38,7 +37,8 @@ const NavBar = () => {
         <Form
           className="searchBar d-flex"
           onSubmit={(e) => {
-            handleSearch(e);
+            e.preventDefault();
+            handleSearch();
           }}
         >
           <FormControl

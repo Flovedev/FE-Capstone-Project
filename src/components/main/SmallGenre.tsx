@@ -1,7 +1,7 @@
-import { IGenres } from "../../redux/interfaces/IGenres";
+import { IGenre } from "../../redux/interfaces/IGame";
 
 interface IProps {
-  data: IGenres;
+  data: IGenre;
 }
 
 const SmallGenre = (props: IProps) => {
