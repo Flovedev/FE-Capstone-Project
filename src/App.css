@@ -7,6 +7,10 @@ a {
   color: rgb(222, 222, 222) !important;
 }
 
+.pointer {
+  cursor: pointer;
+}
+
 /* Navbar */
 
 .logo {
@@ -118,14 +122,29 @@ section img:hover {
   box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
 }
 
+.UAVideo {
+  height: 390px;
+  width: 640px;
+}
+
 .gameImage {
   width: 200px;
   border-radius: 10px;
 }
 
 .screenshots {
-  width: 150px;
+  width: 210px;
   border-radius: 10px;
+}
+
+.screenshotsModal {
+  width: 100vh;
+  padding: 0;
+}
+
+.modalImage {
+  width: 100vh;
+  box-shadow: rgba(192, 192, 192, 0.35) 0px 5px 15px;
 }
 
 .genres {

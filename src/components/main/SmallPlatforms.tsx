@@ -5,14 +5,12 @@ interface IProps {
 }
 
 const SmallPlatforms = (props: IProps) => {
-  const logoUrl = props.data.platform_logo?.url;
-  const updatedUrl = logoUrl?.replace("/t_thumb", "/t_screenshot_med_2x");
   return (
     <div className="singleGenre m-1 p-1 d-flex align-items-center">
-      {props.data.platform_logo === undefined ? (
-        <img src={noImage} alt="Missing logo" className="smallImage" />
+      {props.data.abbreviation ? (
+        <p>{props.data.abbreviation}</p>
       ) : (
-        <img src={updatedUrl} alt="Platform logo" className="smallImage" />
+        <p>{props.data.name}</p>
       )}
     </div>
   );

@@ -1,12 +1,12 @@
 import { Container, Row, Col } from "react-bootstrap";
 import { useAppSelector } from "../../redux/hooks";
 import { IGame } from "../../redux/interfaces/IGame";
-import Screenshot from "./Screenshots";
-import { IUrls } from "../../redux/interfaces/IUrls";
 import Companies from "./Companies";
 import SingleSimilar from "./SingleSimilar";
 import SingleGenre from "../main/SingleGenre";
-import { IGenres } from "../../redux/interfaces/IGenres";
+import Video from "./Video";
+import ImageModal from "./ImageModal";
+import UAVideo from "../../assets/video-unavailable.jpg";
 
 const Game = () => {
   const currentGame = useAppSelector(
@@ -15,6 +15,29 @@ const Game = () => {
   console.log(currentGame);
   const coverUrl = currentGame?.cover?.url;
   const updatedUrl = coverUrl?.replace("/t_thumb", "/t_1080p");
+
+  let maxFirst6;
+
+  if (currentGame?.screenshots.length < 6) {
+    maxFirst6 = currentGame?.screenshots;
+  } else {
+    maxFirst6 = currentGame?.screenshots.slice(0, 6);
+  }
+
+  if (!currentGame) {
+    return <div>Loading</div>;
+  }
+
+  const uniqueMap = new Map();
+  if (currentGame?.language_supports) {
+    for (const obj of currentGame.language_supports) {
+      if (!uniqueMap.has(obj.language.name)) {
+        uniqueMap.set(obj.language.name, obj);
+      }
+    }
+  }
+  const uniqueArr = Array.from(uniqueMap.values());
+
   return (
     currentGame && (
       <Container className="gameInfo">
@@ -36,9 +59,18 @@ const Game = () => {
           </Col>
         </Row>
         <Row className="imagesDisplayer mt-5 p-2">
-          {currentGame.screenshots.map((e: any) => (
-            <Screenshot data={e} key={e.id} />
-          ))}
+          {currentGame.videos ? (
+            <Video data={currentGame.videos[0]} />
+          ) : (
+            <img src={UAVideo} alt="Video unavailable" className="UAVideo" />
+          )}
+
+          <Col className="p-0 pl-4">
+            {maxFirst6.map((e: any) => (
+              <ImageModal data={e} key={e.id} />
+            ))}
+          </Col>
+          {/* <Screenshot data={e} key={e.id} /> */}
         </Row>
         <Row className="gameDescription mt-5 p-3">
           <p>{currentGame.summary}</p>
@@ -53,17 +85,17 @@ const Game = () => {
         </Row>
         <Row className="mt-5 p-3 d-flex flex-column">
           <h6>Languages:</h6>
-          <div className="d-flex">
-            {currentGame.language_supports ? (
-              currentGame.language_supports?.map((e, index) => (
-                <p className="m-1 p-1" key={index}>
+          <Col className="d-flex flex-wrap justify-content-center align-items-center">
+            {uniqueArr.length > 0 ? (
+              uniqueArr.map((e, index) => (
+                <p className="m-1 p-1 border border-secondary" key={index}>
                   {e.language.name}
                 </p>
               ))
             ) : (
-              <p className="ml-2 mb-0">Unknowns</p>
+              <p className="ml-2 mb-0">Not provided</p>
             )}
-          </div>
+          </Col>
         </Row>
       </Container>
     )

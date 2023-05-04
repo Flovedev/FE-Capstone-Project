@@ -33,6 +33,7 @@ export interface IGame {
   }[];
   rating: string;
   screenshots: {
+    id: string;
     url: string;
   }[];
   similar_games: {
