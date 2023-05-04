@@ -1,10 +1,13 @@
 import YouTube, { YouTubeProps } from "react-youtube";
+import { IGame } from "../../redux/interfaces/IGame";
 
 interface IProps {
-  data: any;
+  data: IGame["videos"];
 }
 
 function Video(props: IProps) {
+  const firstTrailer = props.data?.find((e) => e.name.includes("Trailer"));
+
   const onPlayerReady: YouTubeProps["onReady"] = (event) => {
     // access to player in all event handlers via event.target
     event.target.pauseVideo();
@@ -21,7 +24,7 @@ function Video(props: IProps) {
 
   return (
     <YouTube
-      videoId={props.data.video_id}
+      videoId={firstTrailer?.video_id}
       opts={opts}
       onReady={onPlayerReady}
     />

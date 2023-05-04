@@ -4,7 +4,7 @@ interface IProps {
 
 const Companies = (props: IProps) => {
   if (!props.data) {
-    return <div>Loading</div>;
+    return <div className="m-2"></div>;
   }
 
   const developer = props.data.filter((e: any) => e.developer === true);
@@ -18,7 +18,9 @@ const Companies = (props: IProps) => {
         <div>
           <p className="mb-0 mt-2">Developer:</p>
           {publisher.map((e: any) => (
-            <span key={e.company.name}>{e.company.name}</span>
+            <span className="ml-2" key={e.company.name}>
+              {e.company.name}
+            </span>
           ))}
         </div>
       )}
@@ -26,7 +28,9 @@ const Companies = (props: IProps) => {
         <div>
           <p className="mb-0 mt-2">Publisher:</p>
           {publisher.map((e: any) => (
-            <span key={e.company.name}>{e.company.name}</span>
+            <span className="ml-2" key={e.company.name}>
+              {e.company.name}
+            </span>
           ))}
         </div>
       )}
@@ -34,7 +38,9 @@ const Companies = (props: IProps) => {
         <div>
           <p className="mb-0 mt-2">Porting:</p>
           {publisher.map((e: any) => (
-            <span key={e.company.name}>{e.company.name}</span>
+            <span className="ml-2" key={e.company.name}>
+              {e.company.name}
+            </span>
           ))}
         </div>
       )}
@@ -42,7 +48,9 @@ const Companies = (props: IProps) => {
         <div>
           <p className="mb-0 mt-2">Supporting:</p>
           {publisher.map((e: any) => (
-            <span key={e.company.name}>{e.company.name}</span>
+            <span className="ml-2" key={e.company.name}>
+              {e.company.name}
+            </span>
           ))}
         </div>
       )}

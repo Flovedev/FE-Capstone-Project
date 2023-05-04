@@ -30,7 +30,7 @@ const SinglePlatform = (props: IProps) => {
   return (
     <Col
       sm={2}
-      className="singleGenre m-1 p-1 d-flex align-items-center"
+      className="singleGenre m-1 p-1 d-flex align-items-center pointer"
       onClick={() => {
         handleGenreClick();
       }}

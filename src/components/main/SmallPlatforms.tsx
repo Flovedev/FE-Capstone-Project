@@ -1,12 +1,33 @@
-import noImage from "../../assets/No_Image_Available.jpg";
+import { useNavigate } from "react-router-dom";
+import { useAppDispatch } from "../../redux/hooks";
+import {
+  GET_PLATFORM_GAMES,
+  GET_PLATFORM_NAME,
+  getPlatformGames,
+} from "../../redux/actions";
 
 interface IProps {
   data: any;
 }
 
 const SmallPlatforms = (props: IProps) => {
+  const dispatch = useAppDispatch();
+  const navigate = useNavigate();
+
+  const handleGenreClick = () => {
+    dispatch({ type: GET_PLATFORM_NAME, payload: props.data.name });
+    dispatch({ type: GET_PLATFORM_GAMES, payload: "" });
+    dispatch(getPlatformGames(props.data.id));
+    navigate("/platform");
+  };
+
   return (
-    <div className="singleGenre m-1 p-1 d-flex align-items-center">
+    <div
+      className="singleGenre m-1 p-1 d-flex align-items-center pointer"
+      onClick={() => {
+        handleGenreClick();
+      }}
+    >
       {props.data.abbreviation ? (
         <p>{props.data.abbreviation}</p>
       ) : (

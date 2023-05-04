@@ -5,6 +5,7 @@ import { IGame } from "../../redux/interfaces/IGame";
 import SmallPlatforms from "../main/SmallPlatforms";
 import noImage from "../../assets/No_Image_Available.jpg";
 import SmallGenre from "../main/SmallGenre";
+import { Col, Row } from "react-bootstrap";
 
 interface IProps {
   data: IGame;
@@ -21,24 +22,30 @@ const SingleSearch = (props: IProps) => {
     navigate("/game");
   };
 
+  const coverUrl = props.data.cover?.url;
+  const updatedUrl = coverUrl?.replace("/t_thumb", "/t_logo_med");
+
   return (
-    <div
-      className="singleSearch d-flex align-items-center my-2"
-      onClick={(e) => {
+    <Row
+      className="singleSearch  my-2"
+      onClick={(e: any) => {
         e.preventDefault();
         handleClick();
       }}
     >
-      {props.data.cover ? (
-        <img src={props.data.cover?.url} alt="Game cover" className="mx-2" />
-      ) : (
-        <img src={noImage} alt="No cover" className="mx-2 my-3" />
-      )}
-
-      <div className="flex-grow-1 p-1">
+      <Col sm={2} className=" d-flex align-items-center justify-content-center">
+        {props.data.cover ? (
+          <img src={updatedUrl} alt="Game cover" className="searchImg m-2" />
+        ) : (
+          <img src={noImage} alt="No cover" className="mx-2 my-3" />
+        )}
+      </Col>
+      <Col className="py-2">
         <div className="d-flex">
-          <h4 className="flex-grow-1 ml-1">{props.data.name}</h4>
-          <span className="mr-2">{parseInt(props.data.rating)}/100</span>
+          <h4 className="flex-grow-1 ml-1 mb-0">{props.data.name}</h4>
+          <span className="rating px-2 mb-0">
+            {parseInt(props.data.rating)}/100
+          </span>
         </div>
         <div className="d-flex">
           {props.data.genres?.map((e: any) => (
@@ -50,8 +57,8 @@ const SingleSearch = (props: IProps) => {
             <SmallPlatforms data={e} key={e.id} />
           ))}
         </div>
-      </div>
-    </div>
+      </Col>
+    </Row>
   );
 };
 

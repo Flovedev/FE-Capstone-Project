@@ -83,6 +83,13 @@ section img:hover {
   border-radius: 10px;
 }
 
+.rating {
+  border-radius: 10px;
+  background-color: #596f5b;
+  border: 2px solid #596f5d;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}
+
 /* Search */
 
 .singleSearch {
@@ -96,8 +103,8 @@ section img:hover {
   cursor: pointer;
 }
 
-.singleSearch > img {
-  height: 100%;
+.searchImg {
+  /* height: 100px; */
   width: 100px;
   border-radius: 10px;
 }
@@ -170,6 +177,10 @@ section img:hover {
   cursor: pointer;
   border: 2px solid #59626f;
   background-color: #283044;
+}
+
+.similarImages {
+  width: 12vh;
 }
 
 /* GENRE*/

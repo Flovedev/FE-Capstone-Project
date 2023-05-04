@@ -7,6 +7,7 @@ import SingleGenre from "../main/SingleGenre";
 import Video from "./Video";
 import ImageModal from "./ImageModal";
 import UAVideo from "../../assets/video-unavailable.jpg";
+import SmallPlatforms from "../main/SmallPlatforms";
 
 const Game = () => {
   const currentGame = useAppSelector(
@@ -18,10 +19,10 @@ const Game = () => {
 
   let maxFirst6;
 
-  if (currentGame?.screenshots.length < 6) {
+  if (currentGame?.screenshots?.length < 6) {
     maxFirst6 = currentGame?.screenshots;
   } else {
-    maxFirst6 = currentGame?.screenshots.slice(0, 6);
+    maxFirst6 = currentGame?.screenshots?.slice(0, 6);
   }
 
   if (!currentGame) {
@@ -48,30 +49,46 @@ const Game = () => {
           <Col sm={9}>
             <div className="d-flex align-items-center">
               <h2 className="flex-grow-1">{currentGame.name}</h2>
-              <h6>{parseInt(currentGame.rating)}/100</h6>
+              <h6 className="rating px-2 py-1 mb-5">
+                {parseInt(currentGame.rating)}/100
+              </h6>
             </div>
             <div className="d-flex">
               {currentGame.genres.map((e: any) => (
                 <SingleGenre data={e} key={e.id} />
               ))}
             </div>
-            <Companies data={currentGame.involved_companies} />
+            <Row className="d-flex">
+              <Col className="mt-2">
+                <p className="mb-0">Platforms:</p>
+                <div className="d-flex">
+                  {currentGame?.platforms.map((e: any) => (
+                    <SmallPlatforms data={e} key={e.id} />
+                  ))}
+                </div>
+              </Col>
+              <Col>
+                <Companies data={currentGame.involved_companies} />
+              </Col>
+            </Row>
           </Col>
         </Row>
-        <Row className="imagesDisplayer mt-5 p-2">
-          {currentGame.videos ? (
-            <Video data={currentGame.videos[0]} />
-          ) : (
-            <img src={UAVideo} alt="Video unavailable" className="UAVideo" />
-          )}
+        {currentGame.screenshots && (
+          <Row className="imagesDisplayer mt-5 p-2">
+            {currentGame.videos ? (
+              <Video data={currentGame.videos} />
+            ) : (
+              <img src={UAVideo} alt="Video unavailable" className="UAVideo" />
+            )}
 
-          <Col className="p-0 pl-4">
-            {maxFirst6.map((e: any) => (
-              <ImageModal data={e} key={e.id} />
-            ))}
-          </Col>
-          {/* <Screenshot data={e} key={e.id} /> */}
-        </Row>
+            <Col className="p-0 pl-4">
+              {maxFirst6?.map((e: any) => (
+                <ImageModal data={e} key={e.id} />
+              ))}
+            </Col>
+          </Row>
+        )}
+
         <Row className="gameDescription mt-5 p-3">
           <p>{currentGame.summary}</p>
         </Row>
