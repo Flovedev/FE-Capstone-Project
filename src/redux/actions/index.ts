@@ -1,6 +1,7 @@
 import { ThunkDispatch } from "@reduxjs/toolkit";
 import { AnyAction } from "@reduxjs/toolkit";
 
+export const SET_TOKEN = "SET_TOKEN";
 export const SET_USER_INFO = "SET_USER_INFO";
 export const GET_GENRES = "GET_GENRES";
 export const GET_PLATFORMS = "GET_PLATFORMS";
@@ -29,7 +30,28 @@ export const userLogin = (emailValue: string, passwordValue: string) => {
       });
       if (res.ok) {
         const data = await res.json();
+        dispatch({ type: SET_USER_INFO, payload: data.user });
+        dispatch({ type: SET_TOKEN, payload: data.accessToken });
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+};
+
+export const getMe = (token: string) => {
+  return async (dispatch: ThunkDispatch<{}, {}, AnyAction>) => {
+    try {
+      const res = await fetch(process.env.REACT_APP_BE_URL + "/users/me", {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+      if (res.ok) {
+        const data = await res.json();
         dispatch({ type: SET_USER_INFO, payload: data });
+      } else {
+        console.log("Error getting me!");
       }
     } catch (error) {
       console.log(error);
@@ -160,6 +182,31 @@ export const getDiscover = () => {
         dispatch({ type: GET_DISCOVER, payload: data });
       } else {
         console.log("Error getting discover!");
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+};
+
+export const favouritesRequest = (token: string, gameId: number) => {
+  return async (dispatch: ThunkDispatch<{}, {}, AnyAction>) => {
+    try {
+      const res = await fetch(
+        process.env.REACT_APP_BE_URL + "/games/favourites/" + gameId,
+        {
+          method: "POST",
+          headers: {
+            Authorization: `Bearer ${token}`,
+            "Content-Type": "application/json",
+          },
+        }
+      );
+      if (res.ok) {
+        // const data = await res.json();
+        dispatch(getMe(token));
+      } else {
+        console.log("Error with favourites!");
       }
     } catch (error) {
       console.log(error);
