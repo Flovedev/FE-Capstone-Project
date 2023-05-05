@@ -25,7 +25,7 @@ const Over = (props: IProps) => {
           dispatch(overRequest(currentUserToken, "favourites", props.data));
         }}
       >
-        {currentUser?.games.favourites.includes(props.data.toString()) ? (
+        {currentUser?.games?.favourites?.includes(props.data.toString()) ? (
           <AiFillStar size={40} color="yellow" />
         ) : (
           <AiOutlineStar size={40} color="grey" />
@@ -38,8 +38,8 @@ const Over = (props: IProps) => {
             dispatch(overRequest(currentUserToken, "pending", props.data));
           }}
         >
-          {currentUser?.games.pending.includes(props.data.toString()) ? (
-            <Button variant="warning" className="py-0">
+          {currentUser?.games?.pending?.includes(props.data.toString()) ? (
+            <Button variant="warning" className="py-0 pr-1 pl-4 pb-1">
               toPlay
             </Button>
           ) : (
@@ -55,9 +55,9 @@ const Over = (props: IProps) => {
             dispatch(overRequest(currentUserToken, "over", props.data));
           }}
         >
-          {currentUser?.games.over.includes(props.data.toString()) ? (
-            <Button variant="success" className="py-0 pr-3">
-              Over
+          {currentUser?.games?.over?.includes(props.data.toString()) ? (
+            <Button variant="success" className="py-0 pl-1 pb-1 pr-4">
+              Over!!
             </Button>
           ) : (
             <Button variant="secondary" className="py-0 pl-1 pb-1 pr-4">
