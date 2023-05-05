@@ -1,5 +1,4 @@
 import gamesOverLogo from "../../assets/GamesOverLogo.png";
-import moco from "../../assets/moco.jpg";
 import {
   Navbar,
   Nav,
@@ -20,11 +19,12 @@ import {
   userLogin,
 } from "../../redux/actions";
 import { Link, useNavigate } from "react-router-dom";
+import { IUser } from "../../redux/interfaces/IUser";
 
 const NavBar = () => {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
-  const currentUser = useAppSelector((state) => state.users.userInfo);
+  const currentUser: IUser = useAppSelector((state) => state.users.userInfo);
   const [category, setCategory] = useState("/games");
   const [searchBar, setSearchBar] = useState("");
   const [email, setEmail] = useState("");
@@ -95,9 +95,25 @@ const NavBar = () => {
         </Form>
       </Nav>
       {currentUser ? (
-        <NavDropdown title={""} id="basic-nav-dropdown" alignRight>
+        <NavDropdown
+          title={
+            <img
+              src={currentUser.avatar}
+              alt="User's avatar"
+              className="userAvatar"
+            />
+          }
+          id="basic-nav-dropdown"
+          alignRight
+        >
           <NavDropdown.Item>Your Space</NavDropdown.Item>
-          <NavDropdown.Item>Edit Profile</NavDropdown.Item>
+          <NavDropdown.Item
+            onClick={() => {
+              navigate("/profile");
+            }}
+          >
+            Edit Profile
+          </NavDropdown.Item>
           <NavDropdown.Divider />
           <NavDropdown.Item
             onClick={() => {
