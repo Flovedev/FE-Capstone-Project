@@ -8,17 +8,27 @@ import {
   FormControl,
   Dropdown,
   DropdownButton,
+  Button,
 } from "react-bootstrap";
 import { useState } from "react";
-import { useAppDispatch } from "../../redux/hooks";
-import { SET_SEARCH_LIST, searchApi } from "../../redux/actions";
+import { useAppDispatch, useAppSelector } from "../../redux/hooks";
+import {
+  SET_SEARCH_LIST,
+  SET_TOKEN,
+  SET_USER_INFO,
+  searchApi,
+  userLogin,
+} from "../../redux/actions";
 import { Link, useNavigate } from "react-router-dom";
 
 const NavBar = () => {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
+  const currentUser = useAppSelector((state) => state.users.userInfo);
   const [category, setCategory] = useState("/games");
   const [searchBar, setSearchBar] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
 
   const handleSearch = () => {
     dispatch({ type: SET_SEARCH_LIST, payload: "" });
@@ -26,8 +36,17 @@ const NavBar = () => {
     navigate("/search");
   };
 
+  const handleSummit = () => {
+    dispatch(userLogin(email, password));
+  };
+
+  const handleLogout = () => {
+    dispatch({ type: SET_TOKEN, payload: "" });
+    dispatch({ type: SET_USER_INFO, payload: "" });
+  };
+
   return (
-    <Navbar className="navbar" expand="lg">
+    <Navbar className="navbar" expand="lg" sticky="top">
       <Navbar.Brand>
         <Link to="/">
           <img src={gamesOverLogo} alt="Games Over Logo" className="logo" />
@@ -75,16 +94,64 @@ const NavBar = () => {
           </DropdownButton>
         </Form>
       </Nav>
-      <NavDropdown
-        title={<img className="userAvatar" src={moco} alt="User Avatar" />}
-        id="nav-dropdown"
-      >
-        <NavDropdown.Item href="#action/3.1">Action</NavDropdown.Item>
-        <NavDropdown.Item href="#action/3.2">Another action</NavDropdown.Item>
-        <NavDropdown.Item href="#action/3.3">Something</NavDropdown.Item>
-        <NavDropdown.Divider />
-        <NavDropdown.Item href="#action/3.4">Separated link</NavDropdown.Item>
-      </NavDropdown>
+      {currentUser ? (
+        <NavDropdown title={""} id="basic-nav-dropdown" alignRight>
+          <NavDropdown.Item>Your Space</NavDropdown.Item>
+          <NavDropdown.Item>Edit Profile</NavDropdown.Item>
+          <NavDropdown.Divider />
+          <NavDropdown.Item
+            onClick={() => {
+              handleLogout();
+            }}
+          >
+            Log out
+          </NavDropdown.Item>
+        </NavDropdown>
+      ) : (
+        <NavDropdown title="Login" id="nav-dropdown" alignRight>
+          <NavDropdown.ItemText>
+            <Form
+              onSubmit={(e) => {
+                e.preventDefault();
+                handleSummit();
+              }}
+            >
+              <Form.Group controlId="formBasicEmail">
+                <Form.Label>Email address</Form.Label>
+                <Form.Control
+                  className="loginNavbar"
+                  type="email"
+                  placeholder="Enter email"
+                  value={email}
+                  onChange={(e) => {
+                    setEmail(e.target.value);
+                  }}
+                />
+                <Form.Text className="text-muted">
+                  We'll never share your email with anyone else.
+                </Form.Text>
+              </Form.Group>
+
+              <Form.Group controlId="formBasicPassword">
+                <Form.Label>Password</Form.Label>
+                <Form.Control
+                  type="password"
+                  placeholder="Password"
+                  value={password}
+                  onChange={(e) => {
+                    setPassword(e.target.value);
+                  }}
+                />
+              </Form.Group>
+              <Button variant="secondary" type="submit">
+                Login
+              </Button>
+            </Form>
+          </NavDropdown.ItemText>
+          <NavDropdown.Divider />
+          <NavDropdown.Item>Register here</NavDropdown.Item>
+        </NavDropdown>
+      )}
     </Navbar>
   );
 };

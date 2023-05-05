@@ -14,6 +14,7 @@ export interface IGame {
   screenshots: IScreenshot[];
   similar_games: ISimilar[];
   videos: IVideo[];
+  artworks: IArwork[];
 }
 
 export interface IGenre {
@@ -67,4 +68,9 @@ export interface ISimilar {
 export interface IVideo {
   name: string;
   video_id: string;
+}
+
+export interface IArwork {
+  id: number;
+  url: string;
 }

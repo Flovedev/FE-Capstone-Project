@@ -19,7 +19,7 @@ const Over = (props: IProps) => {
   return (
     <div className="d-flex flex-column align-items-center overButtons">
       <div
-        className="pointer mb-1"
+        className="pointer mb-1 mt-2"
         onClick={(e) => {
           e.preventDefault();
           dispatch(overRequest(currentUserToken, "favourites", props.data));

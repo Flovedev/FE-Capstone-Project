@@ -1,4 +1,4 @@
-import { Container, Row, Col } from "react-bootstrap";
+import { Container, Row, Col, Spinner } from "react-bootstrap";
 import { useAppSelector } from "../../redux/hooks";
 import {
   IGame,
@@ -22,7 +22,10 @@ const Game = () => {
   );
   console.log(currentGame);
   const coverUrl = currentGame?.cover?.url;
-  const updatedUrl = coverUrl?.replace("/t_thumb", "/t_1080p");
+  const updatedUrl = coverUrl?.replace("/t_thumb", "/t_720p");
+
+  const artworkUrl = currentGame?.artworks?.[0]?.url;
+  const updatedArtworkUrl = artworkUrl?.replace("/t_thumb", "/t_1080p");
 
   let maxFirst6;
 
@@ -33,7 +36,14 @@ const Game = () => {
   }
 
   if (!currentGame) {
-    return <div>Loading</div>;
+    return (
+      <Container
+        style={{ height: "100vh" }}
+        className="d-flex justify-content-center align-items-center"
+      >
+        <Spinner animation="grow" variant="success" />
+      </Container>
+    );
   }
 
   const uniqueMap = new Map();
@@ -48,80 +58,90 @@ const Game = () => {
 
   return (
     currentGame && (
-      <Container className="gameInfo">
-        <Row className="mt-5 p-4">
-          <Col sm={3}>
-            <img src={updatedUrl} alt="Game cover" className="gameImage" />
-          </Col>
-          <Col sm={9}>
-            <div className="d-flex align-items-center">
-              <h2 className="flex-grow-1">{currentGame.name}</h2>
-              <h6 className="rating px-2 py-1 mb-5">
+      <>
+        {currentGame.artworks && (
+          <img className="bg-image" src={updatedArtworkUrl} alt="Background" />
+        )}
+
+        <Container className="gameInfo">
+          <Row className="mt-5 p-4">
+            <Col sm={3}>
+              <h6 className="rating px-2 py-1 mr-2">
                 {parseInt(currentGame.rating)}/100
               </h6>
-              <Over data={currentGame.id} />
-            </div>
-            <div className="d-flex">
-              {currentGame.genres.map((e: IGenre) => (
-                <SingleGenre data={e} key={e.id} />
-              ))}
-            </div>
-            <Row className="d-flex">
-              <Col className="mt-2">
-                <p className="mb-0">Platforms:</p>
-                <div className="d-flex">
-                  {currentGame?.platforms.map((e: IPlatform) => (
-                    <SmallPlatforms data={e} key={e.id} />
-                  ))}
-                </div>
-              </Col>
-              <Col>
-                <Companies data={currentGame.involved_companies} />
-              </Col>
-            </Row>
-          </Col>
-        </Row>
-        {currentGame.screenshots && (
-          <Row className="imagesDisplayer mt-5 p-2">
-            {currentGame.videos ? (
-              <Video data={currentGame.videos} />
-            ) : (
-              <img src={UAVideo} alt="Video unavailable" className="UAVideo" />
-            )}
-
-            <Col className="p-0 pl-4">
-              {maxFirst6?.map((e: IScreenshot) => (
-                <ImageModal data={e} key={e.id} />
-              ))}
+              <img src={updatedUrl} alt="Game cover" className="gameImage" />
+            </Col>
+            <Col sm={9}>
+              <div className="d-flex">
+                <h2 className="flex-grow-1">{currentGame.name}</h2>
+                <Over data={currentGame.id} />
+              </div>
+              <div className="d-flex">
+                {currentGame.genres?.map((e: IGenre) => (
+                  <SingleGenre data={e} key={e.id} />
+                ))}
+              </div>
+              <Row className="d-flex">
+                <Col className="mt-2">
+                  <p className="mb-0">Platforms:</p>
+                  <div className="d-flex">
+                    {currentGame?.platforms.map((e: IPlatform) => (
+                      <SmallPlatforms data={e} key={e.id} />
+                    ))}
+                  </div>
+                </Col>
+                <Col>
+                  <Companies data={currentGame.involved_companies} />
+                </Col>
+              </Row>
             </Col>
           </Row>
-        )}
-        <Row className="gameDescription mt-5 p-3">
-          <p>{currentGame.summary}</p>
-        </Row>
-        <Row className="mt-5 p-2 flex-column">
-          <h5 className="m-1">Similar games:</h5>
-          <div className="d-flex flex-wrap mt-2 justify-content-center">
-            {currentGame.similar_games.map((e: ISimilar) => (
-              <SingleSimilar data={e} key={e.id} />
-            ))}
-          </div>
-        </Row>
-        <Row className="mt-5 p-3 d-flex flex-column">
-          <h6>Languages:</h6>
-          <Col className="d-flex flex-wrap justify-content-center align-items-center">
-            {uniqueArr.length > 0 ? (
-              uniqueArr.map((e, index) => (
-                <p className="m-1 p-1 border border-secondary" key={index}>
-                  {e.language.name}
-                </p>
-              ))
-            ) : (
-              <p className="ml-2 mb-0">Not provided</p>
-            )}
-          </Col>
-        </Row>
-      </Container>
+          {currentGame.screenshots && (
+            <Row className="imagesDisplayer mt-5 p-2">
+              {currentGame.videos ? (
+                <Video data={currentGame.videos} />
+              ) : (
+                <img
+                  src={UAVideo}
+                  alt="Video unavailable"
+                  className="UAVideo"
+                />
+              )}
+
+              <Col className="p-0 pl-4">
+                {maxFirst6?.map((e: IScreenshot) => (
+                  <ImageModal data={e} key={e.id} />
+                ))}
+              </Col>
+            </Row>
+          )}
+          <Row className="gameDescription mt-5 p-3">
+            <p>{currentGame.summary}</p>
+          </Row>
+          <Row className="mt-5 p-2 flex-column">
+            <h5 className="m-1">Similar games:</h5>
+            <div className="d-flex flex-wrap mt-2 justify-content-center">
+              {currentGame.similar_games.map((e: ISimilar) => (
+                <SingleSimilar data={e} key={e.id} />
+              ))}
+            </div>
+          </Row>
+          <Row className="mt-5 p-3 d-flex flex-column">
+            <h6>Languages:</h6>
+            <Col className="d-flex flex-wrap justify-content-center align-items-center">
+              {uniqueArr.length > 0 ? (
+                uniqueArr.map((e, index) => (
+                  <p className="m-1 p-1 border border-secondary" key={index}>
+                    {e.language.name}
+                  </p>
+                ))
+              ) : (
+                <p className="ml-2 mb-0">Not provided</p>
+              )}
+            </Col>
+          </Row>
+        </Container>
+      </>
     )
   );
 };

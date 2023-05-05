@@ -1,8 +1,14 @@
 import { SET_TOKEN, SET_USER_INFO } from "../actions";
+import { IUser } from "../interfaces/IUser";
 
-const initialState = {
+interface IState {
+  token: string;
+  userInfo: IUser | null;
+}
+
+const initialState: IState = {
   token: "",
-  userInfo: [],
+  userInfo: null,
 };
 
 const userReducer = (state = initialState, action: any) => {
