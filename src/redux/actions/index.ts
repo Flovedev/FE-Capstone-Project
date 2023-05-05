@@ -189,11 +189,15 @@ export const getDiscover = () => {
   };
 };
 
-export const favouritesRequest = (token: string, gameId: number) => {
+export const overRequest = (
+  token: string,
+  category: "favourites" | "pending" | "over",
+  gameId: number
+) => {
   return async (dispatch: ThunkDispatch<{}, {}, AnyAction>) => {
     try {
       const res = await fetch(
-        process.env.REACT_APP_BE_URL + "/games/favourites/" + gameId,
+        process.env.REACT_APP_BE_URL + "/games/" + category + "/" + gameId,
         {
           method: "POST",
           headers: {
@@ -203,10 +207,9 @@ export const favouritesRequest = (token: string, gameId: number) => {
         }
       );
       if (res.ok) {
-        // const data = await res.json();
         dispatch(getMe(token));
       } else {
-        console.log("Error with favourites!");
+        console.log("Error with over!");
       }
     } catch (error) {
       console.log(error);
