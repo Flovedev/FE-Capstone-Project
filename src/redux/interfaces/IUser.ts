@@ -1,13 +1,13 @@
 export interface IUser {
-  _id: string;
+  _id: number;
   username: string;
   password: string;
   email: string;
   avatar: string;
   games: {
     favourites: IOver[];
+    pending: IOver[];
     over: IOver[];
-    sent: IOver[];
   };
   social: {
     friends: string[];

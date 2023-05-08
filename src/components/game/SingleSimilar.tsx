@@ -12,7 +12,7 @@ const SingleSimilar = (props: IProps) => {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
 
-  const coverUrl = props.data.cover.url;
+  const coverUrl = props.data?.cover?.url;
   const updatedUrl = coverUrl?.replace("/t_thumb", "/t_logo_med");
 
   const handleClick = () => {
