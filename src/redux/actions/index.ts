@@ -1,6 +1,6 @@
 import { ThunkDispatch } from "@reduxjs/toolkit";
 import { AnyAction } from "@reduxjs/toolkit";
-import { IUser } from "../interfaces/IUser";
+import { IOver, IUser } from "../interfaces/IUser";
 
 export const SET_TOKEN = "SET_TOKEN";
 export const SET_USER_INFO = "SET_USER_INFO";
@@ -213,17 +213,18 @@ export const getDiscover = () => {
 export const overRequest = (
   token: string,
   category: "favourites" | "pending" | "over",
-  gameId: number
+  game: IOver
 ) => {
   return async (dispatch: ThunkDispatch<{}, {}, AnyAction>) => {
     try {
       const res = await fetch(
-        process.env.REACT_APP_BE_URL + "/games/" + category + "/" + gameId,
+        process.env.REACT_APP_BE_URL + "/games/" + category,
         {
           method: "POST",
+          body: JSON.stringify(game),
           headers: {
-            Authorization: `Bearer ${token}`,
             "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
           },
         }
       );

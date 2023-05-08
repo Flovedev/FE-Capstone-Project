@@ -1,11 +1,11 @@
 import { Button } from "react-bootstrap";
 import { AiFillStar, AiOutlineStar } from "react-icons/ai";
 import { useAppDispatch, useAppSelector } from "../../redux/hooks";
-import { IGame } from "../../redux/interfaces/IGame";
 import { overRequest } from "../../redux/actions";
+import { IOver } from "../../redux/interfaces/IUser";
 
 interface IProps {
-  data: IGame["id"];
+  data: IOver;
 }
 
 const Over = (props: IProps) => {
@@ -25,7 +25,9 @@ const Over = (props: IProps) => {
           dispatch(overRequest(currentUserToken, "favourites", props.data));
         }}
       >
-        {currentUser?.games?.favourites?.includes(props.data.toString()) ? (
+        {currentUser?.games?.favourites?.some(
+          (e: IOver) => e._id === props.data._id
+        ) ? (
           <AiFillStar size={40} color="yellow" />
         ) : (
           <AiOutlineStar size={40} color="grey" />
@@ -38,7 +40,9 @@ const Over = (props: IProps) => {
             dispatch(overRequest(currentUserToken, "pending", props.data));
           }}
         >
-          {currentUser?.games?.pending?.includes(props.data.toString()) ? (
+          {currentUser?.games?.pending?.some(
+            (e: IOver) => e._id === props.data._id
+          ) ? (
             <Button variant="warning" className="py-0 pr-1 pl-4 pb-1">
               toPlay
             </Button>
@@ -55,7 +59,9 @@ const Over = (props: IProps) => {
             dispatch(overRequest(currentUserToken, "over", props.data));
           }}
         >
-          {currentUser?.games?.over?.includes(props.data.toString()) ? (
+          {currentUser?.games?.over?.some(
+            (e: IOver) => e._id === props.data._id
+          ) ? (
             <Button variant="success" className="py-0 pl-1 pb-1 pr-4">
               Over!!
             </Button>

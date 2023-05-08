@@ -17,8 +17,8 @@ export interface IUser {
 }
 
 export interface IOver {
-  id: number;
+  _id: number;
   name: string;
   cover: string;
-  rating: string;
+  rating: number;
 }

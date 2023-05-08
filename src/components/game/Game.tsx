@@ -56,6 +56,16 @@ const Game = () => {
   }
   const uniqueArr = Array.from(uniqueMap.values());
 
+  const fixedRating = parseInt(currentGame.rating);
+
+  const propToSend = {
+    _id: currentGame.id,
+    name: currentGame.name,
+    cover: updatedUrl,
+    rating: fixedRating,
+  };
+  console.log(propToSend);
+
   return (
     currentGame && (
       <>
@@ -66,15 +76,13 @@ const Game = () => {
         <Container className="gameInfo">
           <Row className="mt-5 p-4">
             <Col sm={3}>
-              <h6 className="rating px-2 py-1 mr-2">
-                {parseInt(currentGame.rating)}/100
-              </h6>
+              <h6 className="rating px-2 py-1 mr-2">{fixedRating}/100</h6>
               <img src={updatedUrl} alt="Game cover" className="gameImage" />
             </Col>
             <Col sm={9}>
               <div className="d-flex">
                 <h2 className="flex-grow-1">{currentGame.name}</h2>
-                <Over data={currentGame.id} />
+                <Over data={propToSend} />
               </div>
               <div className="d-flex">
                 {currentGame.genres?.map((e: IGenre) => (
