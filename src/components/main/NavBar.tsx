@@ -106,7 +106,13 @@ const NavBar = () => {
           id="basic-nav-dropdown"
           alignRight
         >
-          <NavDropdown.Item>Your Space</NavDropdown.Item>
+          <NavDropdown.Item
+            onClick={() => {
+              navigate("/user");
+            }}
+          >
+            Your Space
+          </NavDropdown.Item>
           <NavDropdown.Item
             onClick={() => {
               navigate("/profile");

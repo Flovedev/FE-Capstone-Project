@@ -1,5 +1,6 @@
 import { ThunkDispatch } from "@reduxjs/toolkit";
 import { AnyAction } from "@reduxjs/toolkit";
+import { IUser } from "../interfaces/IUser";
 
 export const SET_TOKEN = "SET_TOKEN";
 export const SET_USER_INFO = "SET_USER_INFO";
@@ -58,6 +59,26 @@ export const getMe = (token: string) => {
     }
   };
 };
+
+// export const putMe = (token: string, userInfo: IUser) => {
+//   return async (dispatch: ThunkDispatch<{}, {}, AnyAction>) => {
+//     try {
+//       const res = await fetch(process.env.REACT_APP_BE_URL + "/users/me", {
+//         headers: {
+//           Authorization: `Bearer ${token}`,
+//         },
+//       });
+//       if (res.ok) {
+//         const data = await res.json();
+//         dispatch({ type: SET_USER_INFO, payload: data });
+//       } else {
+//         console.log("Error getting me!");
+//       }
+//     } catch (error) {
+//       console.log(error);
+//     }
+//   };
+// };
 
 export const getGenres = () => {
   return async (dispatch: ThunkDispatch<{}, {}, AnyAction>) => {

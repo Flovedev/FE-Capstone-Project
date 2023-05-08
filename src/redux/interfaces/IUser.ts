@@ -5,13 +5,20 @@ export interface IUser {
   email: string;
   avatar: string;
   games: {
-    favourites: string[];
-    over: string[];
-    sent: string[];
+    favourites: IOver[];
+    over: IOver[];
+    sent: IOver[];
   };
   social: {
     friends: string[];
     pending: string[];
     sent: string[];
   };
+}
+
+export interface IOver {
+  id: number;
+  name: string;
+  cover: string;
+  rating: string;
 }
