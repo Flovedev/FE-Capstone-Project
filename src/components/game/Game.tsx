@@ -15,6 +15,7 @@ import ImageModal from "./ImageModal";
 import UAVideo from "../../assets/video-unavailable.jpg";
 import SmallPlatforms from "../main/SmallPlatforms";
 import Over from "../main/Over";
+import noImage from "../../assets/No_Image_Available.jpg";
 
 const Game = () => {
   const currentGame = useAppSelector(
@@ -59,12 +60,12 @@ const Game = () => {
   const fixedRating = parseInt(currentGame.rating);
 
   const propToSend = {
-    _id: currentGame.id,
+    id: currentGame.id,
     name: currentGame.name,
     cover: updatedUrl,
     rating: fixedRating,
   };
-  console.log(propToSend);
+  // console.log(propToSend);
 
   return (
     currentGame && (
@@ -76,15 +77,24 @@ const Game = () => {
         <Container className="gameInfo">
           <Row className="mt-5 p-4">
             <Col sm={3}>
-              <h6 className="rating px-2 py-1 mr-2">{fixedRating}/100</h6>
-              <img src={updatedUrl} alt="Game cover" className="gameImage" />
+              {fixedRating ? (
+                <h6 className="rating px-2 py-1 mr-2">{fixedRating}/100</h6>
+              ) : (
+                ""
+              )}
+
+              {updatedUrl ? (
+                <img src={updatedUrl} alt="Game cover" className="gameImage" />
+              ) : (
+                <img src={noImage} alt="Game cover" className="gameImage" />
+              )}
             </Col>
             <Col sm={9}>
-              <div className="d-flex">
+              <div className="d-flex border-bottom border-secondary align-items-center">
                 <h2 className="flex-grow-1">{currentGame.name}</h2>
                 <Over data={propToSend} />
               </div>
-              <div className="d-flex">
+              <div className="d-flex border-bottom border-secondary py-1">
                 {currentGame.genres?.map((e: IGenre) => (
                   <SingleGenre data={e} key={e.id} />
                 ))}
@@ -92,7 +102,7 @@ const Game = () => {
               <Row className="d-flex">
                 <Col className="mt-2">
                   <p className="mb-0">Platforms:</p>
-                  <div className="d-flex">
+                  <div className="d-flex flex-wrap">
                     {currentGame?.platforms.map((e: IPlatform) => (
                       <SmallPlatforms data={e} key={e.id} />
                     ))}

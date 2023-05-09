@@ -29,7 +29,7 @@ const SingleSearch = (props: IProps) => {
   const updatedUrl = coverUrl?.replace("/t_thumb", "/t_logo_med");
 
   const propToSend = {
-    _id: props.data.id,
+    id: props.data.id,
     name: props.data.name,
     cover: updatedUrl,
     rating: fixedRating,
@@ -45,7 +45,12 @@ const SingleSearch = (props: IProps) => {
         }}
       >
         <Col sm={2} className=" d-flex  justify-content-center">
-          <span className="rating px-2 mt-1 mb-0">{fixedRating}/100</span>
+          {fixedRating ? (
+            <span className="rating px-2 mt-1 mb-0">{fixedRating}/100</span>
+          ) : (
+            ""
+          )}
+
           {props.data.cover ? (
             <img src={updatedUrl} alt="Game cover" className="searchImg m-2" />
           ) : (
@@ -53,15 +58,15 @@ const SingleSearch = (props: IProps) => {
           )}
         </Col>
         <Col className="py-2">
-          <div className="d-flex">
-            <h4 className="flex-grow-1 ml-1 mb-0">{props.data.name}</h4>
+          <div className="d-flex border-bottom border-secondary">
+            <h4 className="flex-grow-1 ml-1 mb-1">{props.data.name}</h4>
           </div>
-          <div className="d-flex">
+          <div className="d-flex border-bottom border-secondary py-1">
             {props.data.genres?.map((e: IGenre) => (
               <SmallGenre data={e} key={e.id} />
             ))}
           </div>
-          <div className="d-flex">
+          <div className="d-flex flex-wrap">
             {props.data.platforms?.map((e: IPlatform) => (
               <SmallPlatforms data={e} key={e.id} />
             ))}

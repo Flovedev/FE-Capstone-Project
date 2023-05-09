@@ -1,14 +1,10 @@
 import { Container, Row, Col } from "react-bootstrap";
 import { useAppSelector } from "../../redux/hooks";
-import { useState } from "react";
 import { IUser } from "../../redux/interfaces/IUser";
 import SingleSection from "./SingleSection";
 
 const User = () => {
   const currentUser: IUser = useAppSelector((state) => state.users.userInfo);
-  const [favourites, setFavourites] = useState(false);
-  const [pending, setPending] = useState(false);
-  const [over, setOver] = useState(false);
 
   return (
     <Container className="mt-4">

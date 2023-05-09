@@ -230,6 +230,11 @@ section img:hover {
   max-width: 150px;
 }
 
+.userSectionButton {
+  border: 1px solid #cacaca;
+  border-radius: 10px;
+}
+
 /* GENRE*/
 
 .genreGameSummary {

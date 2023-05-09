@@ -17,16 +17,16 @@ const Over = (props: IProps) => {
   //   console.log(currentUser);
   //   console.log(currentUserToken);
   return (
-    <div className="d-flex flex-column align-items-center overButtons">
+    <div className="d-flex flex-column align-items-center overButtons pb-2">
       <div
-        className="pointer mb-1 mt-2"
+        className="pointer mb-1"
         onClick={(e) => {
           e.preventDefault();
           dispatch(overRequest(currentUserToken, "favourites", props.data));
         }}
       >
         {currentUser?.games?.favourites?.some(
-          (e: IOver) => e._id === props.data._id
+          (e: IOver) => e.id === props.data.id
         ) ? (
           <AiFillStar size={40} color="yellow" />
         ) : (
@@ -41,7 +41,7 @@ const Over = (props: IProps) => {
           }}
         >
           {currentUser?.games?.pending?.some(
-            (e: IOver) => e._id === props.data._id
+            (e: IOver) => e.id === props.data.id
           ) ? (
             <Button variant="warning" className="py-0 pr-1 pl-4 pb-1">
               toPlay
@@ -60,7 +60,7 @@ const Over = (props: IProps) => {
           }}
         >
           {currentUser?.games?.over?.some(
-            (e: IOver) => e._id === props.data._id
+            (e: IOver) => e.id === props.data.id
           ) ? (
             <Button variant="success" className="py-0 pl-1 pb-1 pr-4">
               Over!!

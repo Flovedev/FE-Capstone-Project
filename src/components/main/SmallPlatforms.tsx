@@ -30,9 +30,9 @@ const SmallPlatforms = (props: IProps) => {
       }}
     >
       {props.data.abbreviation ? (
-        <p>{props.data.abbreviation}</p>
+        <p className="mb-0">{props.data.abbreviation}</p>
       ) : (
-        <p>{props.data.name}</p>
+        <p className="mb-0">{props.data.name}</p>
       )}
     </div>
   );
