@@ -1,6 +1,7 @@
 import { ThunkDispatch } from "@reduxjs/toolkit";
 import { AnyAction } from "@reduxjs/toolkit";
 import { IOver, IUser } from "../interfaces/IUser";
+import { IGame } from "../interfaces/IGame";
 
 export const SET_TOKEN = "SET_TOKEN";
 export const SET_USER_INFO = "SET_USER_INFO";
@@ -123,7 +124,7 @@ export const searchApi = (where: string, what: string) => {
       if (res.ok) {
         const data = await res.json();
         const sortedSearch = data?.sort(
-          (a: any, b: any) => b.rating || 0 - a.rating || 0
+          (a: IGame, b: IGame) => (b.rating || 0) - (a.rating || 0)
         );
         dispatch({ type: SET_SEARCH_LIST, payload: sortedSearch });
         // console.log(data);

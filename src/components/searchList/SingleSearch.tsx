@@ -23,7 +23,7 @@ const SingleSearch = (props: IProps) => {
     navigate("/game");
   };
 
-  const fixedRating = parseInt(props.data.rating);
+  const fixedRating = Math.round(props.data.rating);
 
   const coverUrl = props.data.cover?.url;
   const updatedUrl = coverUrl?.replace("/t_thumb", "/t_logo_med");
@@ -62,14 +62,18 @@ const SingleSearch = (props: IProps) => {
             <h4 className="flex-grow-1 ml-1 mb-1">{props.data.name}</h4>
           </div>
           <div className="d-flex border-bottom border-secondary py-1">
-            {props.data.genres?.map((e: IGenre) => (
-              <SmallGenre data={e} key={e.id} />
-            ))}
+            {props.data.genres
+              ? props.data.genres?.map((e: IGenre) => (
+                  <SmallGenre data={e} key={e.id} />
+                ))
+              : "No genres provided"}
           </div>
           <div className="d-flex flex-wrap">
-            {props.data.platforms?.map((e: IPlatform) => (
-              <SmallPlatforms data={e} key={e.id} />
-            ))}
+            {props.data.platforms
+              ? props.data.platforms?.map((e: IPlatform) => (
+                  <SmallPlatforms data={e} key={e.id} />
+                ))
+              : "No platform provided"}
           </div>
         </Col>
       </Col>

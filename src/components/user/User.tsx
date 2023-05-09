@@ -21,9 +21,21 @@ const User = () => {
           <h6>{currentUser.email}</h6>
         </Col>
       </Row>
-      <SingleSection data={currentUser.games.favourites} name={"Favourites"} />
-      <SingleSection data={currentUser.games.pending} name={"toPlay"} />
-      <SingleSection data={currentUser.games.over} name={"Over!!"} />
+      <SingleSection
+        data={currentUser.games.favourites}
+        name={"Favourites"}
+        state={true}
+      />
+      <SingleSection
+        data={currentUser.games.pending}
+        name={"toPlay"}
+        state={false}
+      />
+      <SingleSection
+        data={currentUser.games.over}
+        name={"Over!!"}
+        state={false}
+      />
     </Container>
   );
 };

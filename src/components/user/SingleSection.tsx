@@ -1,17 +1,18 @@
-import { Col, Form, FormControl, Row } from "react-bootstrap";
+import { Button, Col, Form, FormControl, Row } from "react-bootstrap";
 import SingleUserGame from "./SingleUserGame";
 import { IOver } from "../../redux/interfaces/IUser";
-import { useState } from "react";
+import { useState, useRef } from "react";
 import { AiFillCaretDown, AiFillCaretUp } from "react-icons/ai";
 
 interface IProps {
   data: IOver[];
   name: string;
+  state: boolean;
 }
 
 const SingleSection = (props: IProps) => {
   const [currentPage, setCurrentPage] = useState(1);
-  const [over, setOver] = useState(false);
+  const [over, setOver] = useState(props.state);
   const avoidMutation = [...props.data];
   const ratingOrdered = avoidMutation.sort((a, b) => b.rating - a.rating);
   const pageSize = 10;
@@ -19,12 +20,17 @@ const SingleSection = (props: IProps) => {
   const endIndex = startIndex + pageSize;
   const totalPages = Math.ceil(ratingOrdered.length / pageSize);
 
+  const topRef = useRef<HTMLDivElement>(null);
+
   const handlePageClick = (page: any) => {
     setCurrentPage(page);
+    if (topRef.current) {
+      topRef.current.scrollIntoView({ behavior: "smooth" });
+    }
   };
 
   return (
-    <div className="userSectionButton mt-5">
+    <div className={"userSectionButton mt-5"} ref={topRef}>
       <div
         className="d-flex align-items-center"
         onClick={() => {
@@ -38,11 +44,12 @@ const SingleSection = (props: IProps) => {
           <AiFillCaretUp className="mr-3" />
         )}
       </div>
-      {over && (
-        <Row className="mt-5">
+
+      <Row className={`smoothDisplay ${over ? "" : "hidden"}`}>
+        {over ? (
           <Col>
             <div className="d-flex">
-              <Form>
+              <Form className="ml-2">
                 <FormControl placeholder="Filter..." />
               </Form>
             </div>
@@ -54,15 +61,22 @@ const SingleSection = (props: IProps) => {
             <div>
               {Array.from({ length: totalPages }, (_, i) => i + 1).map(
                 (page) => (
-                  <button key={page} onClick={() => handlePageClick(page)}>
+                  <Button
+                    variant={"secondary"}
+                    className="m-1"
+                    key={page}
+                    onClick={() => handlePageClick(page)}
+                  >
                     {page}
-                  </button>
+                  </Button>
                 )
               )}
             </div>
           </Col>
-        </Row>
-      )}
+        ) : (
+          ""
+        )}
+      </Row>
     </div>
   );
 };

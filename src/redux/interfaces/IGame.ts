@@ -10,7 +10,7 @@ export interface IGame {
   summary: string;
   language_supports: ILanguage[];
   involved_companies: ICompany[];
-  rating: string;
+  rating: number;
   screenshots: IScreenshot[];
   similar_games: ISimilar[];
   videos: IVideo[];

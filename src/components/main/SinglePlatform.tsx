@@ -24,23 +24,14 @@ const SinglePlatform = (props: IProps) => {
     navigate("/platform");
   };
 
-  const logoUrl = props.data.platform_logo?.url;
-  const updatedUrl = logoUrl?.replace("/t_thumb", "/t_logo_med");
-
   return (
     <Col
       sm={2}
-      className="singleGenre m-1 p-1 d-flex align-items-center pointer"
+      className="platforms m-1 p-1 d-flex align-items-center pointer"
       onClick={() => {
         handleGenreClick();
       }}
     >
-      {props.data.platform_logo === undefined ? (
-        <img src={noImage} alt="Missing logo" className="platformImage" />
-      ) : (
-        <img src={updatedUrl} alt="Platform logo" className="platformImage" />
-      )}
-
       <p className="mb-0 ml-2">{props.data.name}</p>
     </Col>
   );

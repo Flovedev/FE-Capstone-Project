@@ -41,6 +41,7 @@ const NavBar = () => {
   };
 
   const handleLogout = () => {
+    navigate("/");
     dispatch({ type: SET_TOKEN, payload: "" });
     dispatch({ type: SET_USER_INFO, payload: "" });
   };

@@ -57,7 +57,7 @@ const Game = () => {
   }
   const uniqueArr = Array.from(uniqueMap.values());
 
-  const fixedRating = parseInt(currentGame.rating);
+  const fixedRating = Math.round(currentGame.rating);
 
   const propToSend = {
     id: currentGame.id,
@@ -100,14 +100,16 @@ const Game = () => {
                 ))}
               </div>
               <Row className="d-flex">
-                <Col className="mt-2">
-                  <p className="mb-0">Platforms:</p>
-                  <div className="d-flex flex-wrap">
-                    {currentGame?.platforms.map((e: IPlatform) => (
-                      <SmallPlatforms data={e} key={e.id} />
-                    ))}
-                  </div>
-                </Col>
+                {currentGame.platforms && (
+                  <Col className="mt-2">
+                    <p className="mb-0">Platforms:</p>
+                    <div className="d-flex flex-wrap">
+                      {currentGame?.platforms?.map((e: IPlatform) => (
+                        <SmallPlatforms data={e} key={e.id} />
+                      ))}
+                    </div>
+                  </Col>
+                )}
                 <Col>
                   <Companies data={currentGame.involved_companies} />
                 </Col>
@@ -115,7 +117,7 @@ const Game = () => {
             </Col>
           </Row>
           {currentGame.screenshots && (
-            <Row className="imagesDisplayer mt-5 p-2">
+            <Row className="imagesDisplayer mt-5 p-2 align-items-center">
               {currentGame.videos ? (
                 <Video data={currentGame.videos} />
               ) : (
@@ -133,31 +135,38 @@ const Game = () => {
               </Col>
             </Row>
           )}
-          <Row className="gameDescription mt-5 p-3">
-            <p>{currentGame.summary}</p>
-          </Row>
-          <Row className="mt-5 p-2 flex-column">
-            <h5 className="m-1">Similar games:</h5>
-            <div className="d-flex flex-wrap mt-2 justify-content-center">
-              {currentGame.similar_games.map((e: ISimilar) => (
-                <SingleSimilar data={e} key={e.id} />
-              ))}
-            </div>
-          </Row>
-          <Row className="mt-5 p-3 d-flex flex-column">
-            <h6>Languages:</h6>
-            <Col className="d-flex flex-wrap justify-content-center align-items-center">
-              {uniqueArr.length > 0 ? (
-                uniqueArr.map((e, index) => (
-                  <p className="m-1 p-1 border border-secondary" key={index}>
-                    {e.language.name}
-                  </p>
-                ))
-              ) : (
-                <p className="ml-2 mb-0">Not provided</p>
-              )}
-            </Col>
-          </Row>
+          {currentGame.summary && (
+            <Row className="gameDescription mt-5 p-3">
+              <p>{currentGame.summary}</p>
+            </Row>
+          )}
+
+          {currentGame.similar_games && (
+            <Row className="mt-5 p-2 flex-column">
+              <h5 className="m-1">Similar games:</h5>
+              <div className="d-flex flex-wrap mt-2 justify-content-center">
+                {currentGame.similar_games?.map((e: ISimilar) => (
+                  <SingleSimilar data={e} key={e.id} />
+                ))}
+              </div>
+            </Row>
+          )}
+          {currentGame.language_supports && (
+            <Row className="mt-5 p-3 d-flex flex-column">
+              <h6>Supported languages:</h6>
+              <Col className="d-flex flex-wrap justify-content-center align-items-center">
+                {uniqueArr.length > 0 ? (
+                  uniqueArr.map((e, index) => (
+                    <p className="m-1 p-1 border border-secondary" key={index}>
+                      {e.language.name}
+                    </p>
+                  ))
+                ) : (
+                  <p className="ml-2 mb-0">Not provided</p>
+                )}
+              </Col>
+            </Row>
+          )}
         </Container>
       </>
     )

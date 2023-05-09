@@ -32,10 +32,16 @@ const SingleSimilar = (props: IProps) => {
       <div className="d-flex justify-content-center">
         <img src={updatedUrl} alt="Game screenshot" className="similarImages" />
         <div className="ml-1">
-          <span className="rating px-1">{parseInt(props.data.rating)}/100</span>
+          {props.data.rating && (
+            <span className="rating px-1">
+              {parseInt(props.data.rating)}/100
+            </span>
+          )}
         </div>
       </div>
-      <p className="mt-2 mb-0">{props.data.name}</p>
+      <div className="mt-2 d-flex justify-content-center">
+        <p className="mb-0 text-center">{props.data.name}</p>
+      </div>
     </Col>
   );
 };

@@ -22,7 +22,7 @@ const SingleDiscover = (props: IProps) => {
         <div className="discoverDescription">
           <div className="d-flex">
             <p className="flex-grow-1">{props.data.name}</p>
-            <span>{parseInt(props.data.rating)}/100</span>
+            <span>{Math.round(props.data.rating)}/100</span>
           </div>
         </div>
       )}

@@ -20,7 +20,6 @@ const Main = () => {
     <>
       <Container fluid className="mainSection py-3">
         <h1>Discover:</h1>
-
         <Row className="justify-content-center my-4">
           <Discover />
         </Row>
@@ -28,10 +27,8 @@ const Main = () => {
         <Row className="justify-content-center mx-5 px-5 my-4">
           <Genres />
         </Row>
-        <h1>Platforms:</h1>
-        <Row className="justify-content-center my-4">
-          <Platforms />
-        </Row>
+
+        <Platforms />
       </Container>
     </>
   );
