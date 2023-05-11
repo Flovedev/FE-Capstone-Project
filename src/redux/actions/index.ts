@@ -14,8 +14,6 @@ export const GET_PLATFORM_GAMES = "GET_PLATFORM_GAMES";
 export const GET_PLATFORM_NAME = "GET_PLATFORM_NAME";
 export const GET_DISCOVER = "GET_DISCOVER";
 
-const accessToken = localStorage.getItem("accessToken");
-
 export const userLogin = (emailValue: string, passwordValue: string) => {
   const userCredentials = {
     email: emailValue,
@@ -44,6 +42,7 @@ export const userLogin = (emailValue: string, passwordValue: string) => {
 
 export const getMe = () => {
   return async (dispatch: ThunkDispatch<{}, {}, AnyAction>) => {
+    const accessToken = localStorage.getItem("accessToken");
     try {
       const res = await fetch(process.env.REACT_APP_BE_URL + "/users/me", {
         headers: {
@@ -74,8 +73,8 @@ export const registerUser = (userInfo: IUser) => {
       });
       if (res.ok) {
         const data = await res.json();
-        console.log(data);
-        // dispatch({ type: SET_USER_INFO, payload: data });
+        localStorage.setItem("accessToken", data.accessToken);
+        dispatch({ type: SET_USER_INFO, payload: data.user });
       } else {
         console.log("Error getting me!");
       }
@@ -105,8 +104,31 @@ export const registerUser = (userInfo: IUser) => {
 //   };
 // };
 
+export const deleteMe = () => {
+  return async (dispatch: ThunkDispatch<{}, {}, AnyAction>) => {
+    const accessToken = localStorage.getItem("accessToken");
+    try {
+      const res = await fetch(process.env.REACT_APP_BE_URL + "/users/me", {
+        method: "DELETE",
+        headers: {
+          Authorization: `Bearer ${accessToken}`,
+        },
+      });
+      if (res.ok) {
+        dispatch({ type: SET_USER_INFO, payload: null });
+        localStorage.removeItem("accessToken");
+      } else {
+        console.log("Error getting me!");
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+};
+
 export const changeAvatar = (event: React.ChangeEvent<HTMLInputElement>) => {
   return async (dispatch: any) => {
+    const accessToken = localStorage.getItem("accessToken");
     try {
       const file = event.target.files?.[0];
       const formData = new FormData();
@@ -155,7 +177,6 @@ export const getPlatforms = () => {
       const res = await fetch(process.env.REACT_APP_BE_URL + "/igdb/platforms");
       if (res.ok) {
         const data = await res.json();
-        // console.log(data);
         dispatch({ type: GET_PLATFORMS, payload: data });
       } else {
         console.log("Error getting platforms!");
@@ -178,7 +199,6 @@ export const searchApi = (where: string, what: string) => {
           (a: IGame, b: IGame) => (b.rating || 0) - (a.rating || 0)
         );
         dispatch({ type: SET_SEARCH_LIST, payload: sortedSearch });
-        // console.log(data);
       } else {
         console.log("Error searching!");
       }
@@ -197,7 +217,6 @@ export const getGame = (gameId: number) => {
       if (res.ok) {
         const data = await res.json();
         dispatch({ type: GET_SINGLE_GAME, payload: data });
-        // console.log(data);
       } else {
         console.log("Error getting single game!");
       }
@@ -216,7 +235,6 @@ export const getGenreGames = (genreId: number) => {
       if (res.ok) {
         const data = await res.json();
         dispatch({ type: GET_GENRE_GAMES, payload: data });
-        // console.log(data);
       } else {
         console.log("Error getting genre games!");
       }
@@ -235,7 +253,6 @@ export const getPlatformGames = (platformId: number) => {
       if (res.ok) {
         const data = await res.json();
         dispatch({ type: GET_PLATFORM_GAMES, payload: data });
-        // console.log(data);
       } else {
         console.log("Error getting platform games!");
       }
@@ -251,7 +268,6 @@ export const getDiscover = () => {
       const res = await fetch(process.env.REACT_APP_BE_URL + "/igdb/discover");
       if (res.ok) {
         const data = await res.json();
-        // console.log(data);
         dispatch({ type: GET_DISCOVER, payload: data });
       } else {
         console.log("Error getting discover!");
@@ -267,6 +283,7 @@ export const overRequest = (
   game: IOver
 ) => {
   return async (dispatch: ThunkDispatch<{}, {}, AnyAction>) => {
+    const accessToken = localStorage.getItem("accessToken");
     try {
       const res = await fetch(
         process.env.REACT_APP_BE_URL + "/games/" + category,

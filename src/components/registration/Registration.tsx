@@ -16,6 +16,7 @@ const Registration = () => {
 
   const handleRegister = () => {
     dispatch(registerUser(newUser));
+    navigate("/user");
   };
 
   return (
@@ -57,7 +58,7 @@ const Registration = () => {
             <Form.Label>Password</Form.Label>
             <Form.Control
               type="password"
-              placeholder="Old password"
+              placeholder="Password"
               value={newUser.password}
               onChange={(e) =>
                 setNewUser({ ...newUser, password: e.target.value })

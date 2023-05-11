@@ -14,7 +14,6 @@ import Platform from "./components/platform/Platform";
 import Registration from "./components/registration/Registration";
 
 function App() {
-  const currentUserToken = localStorage.getItem("accessToken");
   return (
     <BrowserRouter>
       <NavBar />
@@ -24,11 +23,8 @@ function App() {
         <Route path="/game" element={<Game />} />
         <Route path="/genre" element={<Genre />} />
         <Route path="/platform" element={<Platform />} />
-        {currentUserToken ? (
-          <Route path="/user" element={<User />} />
-        ) : (
-          <Route path="/user" element={<Registration />} />
-        )}
+        <Route path="/user" element={<User />} />
+        <Route path="/register" element={<Registration />} />
         <Route path="/profile" element={<Profile />} />
       </Routes>
       <Footer />

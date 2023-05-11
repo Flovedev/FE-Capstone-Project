@@ -1,3 +1,9 @@
+#root {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
 body {
   background-color: #202634;
   color: white;
@@ -54,6 +60,10 @@ a {
 .modal-open {
   overflow-y: auto !important;
   padding-right: 0px !important;
+}
+
+.modal-content {
+  background-color: #283044;
 }
 
 /* Navbar */

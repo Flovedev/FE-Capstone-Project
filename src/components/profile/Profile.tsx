@@ -2,6 +2,7 @@ import { Button, Container, Row, Form } from "react-bootstrap";
 import { useAppSelector } from "../../redux/hooks";
 import { IUser } from "../../redux/interfaces/IUser";
 import { useState } from "react";
+import DeleteModal from "./DeleteModal";
 
 const Profile = () => {
   const currentUser: IUser = useAppSelector((state) => state.users.userInfo);
@@ -63,7 +64,8 @@ const Profile = () => {
             />
           </Form.Group>
 
-          <div className="d-flex justify-content-end">
+          <div className="d-flex justify-content-between">
+            <DeleteModal />
             <Button variant="secondary" type="submit">
               Update
             </Button>

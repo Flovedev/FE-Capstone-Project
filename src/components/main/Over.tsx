@@ -12,7 +12,6 @@ const Over = (props: IProps) => {
   const dispatch = useAppDispatch();
 
   const currentUser = useAppSelector((state) => state.users.userInfo);
-  const currentUserToken = localStorage.getItem("accessToken");
   //   console.log(props.data);
   //   console.log(currentUser);
   //   console.log(currentUserToken);

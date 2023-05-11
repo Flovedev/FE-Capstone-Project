@@ -37,12 +37,13 @@ const NavBar = () => {
 
   const handleSummit = () => {
     dispatch(userLogin(email, password));
+    navigate("/");
   };
 
   const handleLogout = () => {
     navigate("/");
     localStorage.removeItem("accessToken");
-    dispatch({ type: SET_USER_INFO, payload: "" });
+    dispatch({ type: SET_USER_INFO, payload: null });
   };
 
   return (
@@ -170,7 +171,7 @@ const NavBar = () => {
           <NavDropdown.Divider />
           <NavDropdown.Item
             onClick={() => {
-              navigate("/user");
+              navigate("/register");
             }}
           >
             Register here

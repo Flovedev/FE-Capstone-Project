@@ -1,4 +1,4 @@
-import { Button, Container } from "react-bootstrap";
+import { Button, Container, Spinner } from "react-bootstrap";
 import { useAppSelector } from "../../redux/hooks";
 import SingleSearch from "./SingleSearch";
 import { IGame } from "../../redux/interfaces/IGame";
@@ -22,8 +22,19 @@ const SearchList = () => {
     });
   };
 
+  if (!allSearch) {
+    return (
+      <Container
+        style={{ height: "100vh" }}
+        className="d-flex justify-content-center align-items-center"
+      >
+        <Spinner animation="grow" variant="success" />
+      </Container>
+    );
+  }
+
   return (
-    <Container className="mt-3">
+    <Container className="mt-3 flex-grow-1">
       {allSearch &&
         avoidMutation
           .slice(startIndex, endIndex)
