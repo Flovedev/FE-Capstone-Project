@@ -1,4 +1,3 @@
-import noImage from "../../assets/No_Image_Available.jpg";
 import { Col } from "react-bootstrap";
 import { useAppDispatch } from "../../redux/hooks";
 import { useNavigate } from "react-router-dom";
