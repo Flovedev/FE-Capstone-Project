@@ -312,8 +312,9 @@ section img:hover {
 }
 
 .profileAvatar {
-  width: 100%;
-  max-width: 150px;
+  border-radius: 50%;
+  height: 170px;
+  width: 170px;
 }
 
 .userSectionButton {

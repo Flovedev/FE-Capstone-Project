@@ -13,7 +13,6 @@ import { useState } from "react";
 import { useAppDispatch, useAppSelector } from "../../redux/hooks";
 import {
   SET_SEARCH_LIST,
-  SET_TOKEN,
   SET_USER_INFO,
   searchApi,
   userLogin,
@@ -42,7 +41,7 @@ const NavBar = () => {
 
   const handleLogout = () => {
     navigate("/");
-    dispatch({ type: SET_TOKEN, payload: "" });
+    localStorage.removeItem("accessToken");
     dispatch({ type: SET_USER_INFO, payload: "" });
   };
 
@@ -169,7 +168,13 @@ const NavBar = () => {
             </Form>
           </NavDropdown.ItemText>
           <NavDropdown.Divider />
-          <NavDropdown.Item>Register here</NavDropdown.Item>
+          <NavDropdown.Item
+            onClick={() => {
+              navigate("/user");
+            }}
+          >
+            Register here
+          </NavDropdown.Item>
         </NavDropdown>
       )}
     </Navbar>

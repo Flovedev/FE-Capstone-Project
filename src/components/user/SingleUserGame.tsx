@@ -10,6 +10,7 @@ interface IProps {
 }
 
 const SingleUserGame = (props: IProps) => {
+  const currentUserToken = localStorage.getItem("accessToken");
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
 
@@ -45,7 +46,7 @@ const SingleUserGame = (props: IProps) => {
         </div>
         <h3 className="flex-grow-1 ml-2">{props.data.name}</h3>
       </div>
-      <Over data={props.data} />
+      {currentUserToken ? <Over data={props.data} /> : ""}
     </div>
   );
 };

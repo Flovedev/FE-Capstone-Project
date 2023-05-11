@@ -11,10 +11,10 @@ import Footer from "./components/main/Footer";
 import SearchList from "./components/searchList/SearchList";
 import Genre from "./components/genre/Genre";
 import Platform from "./components/platform/Platform";
-import { useAppSelector } from "./redux/hooks";
+import Registration from "./components/registration/Registration";
 
 function App() {
-  const currentUserToken = useAppSelector((state) => state.users.token);
+  const currentUserToken = localStorage.getItem("accessToken");
   return (
     <BrowserRouter>
       <NavBar />
@@ -27,7 +27,7 @@ function App() {
         {currentUserToken ? (
           <Route path="/user" element={<User />} />
         ) : (
-          <Route path="/user" element={<Profile />} />
+          <Route path="/user" element={<Registration />} />
         )}
         <Route path="/profile" element={<Profile />} />
       </Routes>

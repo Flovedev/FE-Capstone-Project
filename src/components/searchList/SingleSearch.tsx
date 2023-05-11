@@ -13,6 +13,7 @@ interface IProps {
 }
 
 const SingleSearch = (props: IProps) => {
+  const currentUserToken = localStorage.getItem("accessToken");
   // console.log(props.data);
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
@@ -78,7 +79,7 @@ const SingleSearch = (props: IProps) => {
         </Col>
       </Col>
       <Col sm={2} className="d-flex align-items-center">
-        <Over data={propToSend} />
+        {currentUserToken ? <Over data={propToSend} /> : ""}
       </Col>
     </Row>
   );

@@ -1,10 +1,21 @@
 import { Container, Row, Col } from "react-bootstrap";
-import { useAppSelector } from "../../redux/hooks";
+import { useAppDispatch, useAppSelector } from "../../redux/hooks";
 import { IUser } from "../../redux/interfaces/IUser";
 import SingleSection from "./SingleSection";
+import { changeAvatar } from "../../redux/actions";
+import { useRef } from "react";
 
 const User = () => {
+  const dispatch = useAppDispatch();
   const currentUser: IUser = useAppSelector((state) => state.users.userInfo);
+  const currentUserToken = localStorage.getItem("accessToken");
+  const fileInputRef = useRef<HTMLInputElement>(null);
+  const handleClick = () => {
+    fileInputRef.current?.click();
+  };
+  const handleChange = async (event: React.ChangeEvent<HTMLInputElement>) => {
+    await dispatch(changeAvatar(event));
+  };
 
   return (
     <Container className="mt-4">
@@ -15,10 +26,17 @@ const User = () => {
           className="userBackground position-absolute"
         />
         <Col sm={2}>
+          <input
+            ref={fileInputRef}
+            type="file"
+            onChange={handleChange}
+            style={{ display: "none" }}
+          />
           <img
             src={currentUser.avatar}
             alt="User Avatar"
             className="profileAvatar py-3"
+            onClick={handleClick}
           />
         </Col>
         <Col sm={8} className="py-3 userName">
@@ -26,21 +44,29 @@ const User = () => {
           <h6>{currentUser.email}</h6>
         </Col>
       </Row>
-      <SingleSection
-        data={currentUser.games.favourites}
-        name={"Favourites"}
-        state={true}
-      />
-      <SingleSection
-        data={currentUser.games.pending}
-        name={"toPlay"}
-        state={false}
-      />
-      <SingleSection
-        data={currentUser.games.over}
-        name={"Over!!"}
-        state={false}
-      />
+      {currentUser?.games?.favourites && (
+        <SingleSection
+          data={currentUser.games.favourites}
+          name={"Favourites"}
+          state={true}
+        />
+      )}
+
+      {currentUser?.games?.pending && (
+        <SingleSection
+          data={currentUser.games.pending}
+          name={"toPlay"}
+          state={false}
+        />
+      )}
+
+      {currentUser?.games?.over && (
+        <SingleSection
+          data={currentUser.games.over}
+          name={"Over!!"}
+          state={false}
+        />
+      )}
     </Container>
   );
 };

@@ -3,7 +3,6 @@ import { AnyAction } from "@reduxjs/toolkit";
 import { IOver, IUser } from "../interfaces/IUser";
 import { IGame } from "../interfaces/IGame";
 
-export const SET_TOKEN = "SET_TOKEN";
 export const SET_USER_INFO = "SET_USER_INFO";
 export const GET_GENRES = "GET_GENRES";
 export const GET_PLATFORMS = "GET_PLATFORMS";
@@ -14,6 +13,8 @@ export const GET_GENRE_NAME = "GET_GENRE_NAME";
 export const GET_PLATFORM_GAMES = "GET_PLATFORM_GAMES";
 export const GET_PLATFORM_NAME = "GET_PLATFORM_NAME";
 export const GET_DISCOVER = "GET_DISCOVER";
+
+const accessToken = localStorage.getItem("accessToken");
 
 export const userLogin = (emailValue: string, passwordValue: string) => {
   const userCredentials = {
@@ -32,8 +33,8 @@ export const userLogin = (emailValue: string, passwordValue: string) => {
       });
       if (res.ok) {
         const data = await res.json();
+        localStorage.setItem("accessToken", data.accessToken);
         dispatch({ type: SET_USER_INFO, payload: data.user });
-        dispatch({ type: SET_TOKEN, payload: data.accessToken });
       }
     } catch (error) {
       console.log(error);
@@ -41,12 +42,12 @@ export const userLogin = (emailValue: string, passwordValue: string) => {
   };
 };
 
-export const getMe = (token: string) => {
+export const getMe = () => {
   return async (dispatch: ThunkDispatch<{}, {}, AnyAction>) => {
     try {
       const res = await fetch(process.env.REACT_APP_BE_URL + "/users/me", {
         headers: {
-          Authorization: `Bearer ${token}`,
+          Authorization: `Bearer ${accessToken}`,
         },
       });
       if (res.ok) {
@@ -61,12 +62,35 @@ export const getMe = (token: string) => {
   };
 };
 
-// export const putMe = (token: string, userInfo: IUser) => {
+export const registerUser = (userInfo: IUser) => {
+  return async (dispatch: ThunkDispatch<{}, {}, AnyAction>) => {
+    try {
+      const res = await fetch(process.env.REACT_APP_BE_URL + "/users/account", {
+        method: "POST",
+        body: JSON.stringify(userInfo),
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+      if (res.ok) {
+        const data = await res.json();
+        console.log(data);
+        // dispatch({ type: SET_USER_INFO, payload: data });
+      } else {
+        console.log("Error getting me!");
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+};
+
+// export const putMe = ( userInfo: IUser) => {
 //   return async (dispatch: ThunkDispatch<{}, {}, AnyAction>) => {
 //     try {
 //       const res = await fetch(process.env.REACT_APP_BE_URL + "/users/me", {
 //         headers: {
-//           Authorization: `Bearer ${token}`,
+//           Authorization: `Bearer ${accessToken}`,
 //         },
 //       });
 //       if (res.ok) {
@@ -80,6 +104,33 @@ export const getMe = (token: string) => {
 //     }
 //   };
 // };
+
+export const changeAvatar = (event: React.ChangeEvent<HTMLInputElement>) => {
+  return async (dispatch: any) => {
+    try {
+      const file = event.target.files?.[0];
+      const formData = new FormData();
+      formData.append("avatar", file!);
+      const res = await fetch(
+        process.env.REACT_APP_BE_URL + "/users/me/avatar",
+        {
+          method: "POST",
+          body: formData,
+          headers: {
+            Authorization: `Bearer ${accessToken}`,
+          },
+        }
+      );
+      if (res.ok) {
+        dispatch(getMe());
+      } else {
+        console.log("Error with the avatar!");
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+};
 
 export const getGenres = () => {
   return async (dispatch: ThunkDispatch<{}, {}, AnyAction>) => {
@@ -212,7 +263,6 @@ export const getDiscover = () => {
 };
 
 export const overRequest = (
-  token: string,
   category: "favourites" | "pending" | "over",
   game: IOver
 ) => {
@@ -225,12 +275,12 @@ export const overRequest = (
           body: JSON.stringify(game),
           headers: {
             "Content-Type": "application/json",
-            Authorization: `Bearer ${token}`,
+            Authorization: `Bearer ${accessToken}`,
           },
         }
       );
       if (res.ok) {
-        dispatch(getMe(token));
+        dispatch(getMe());
       } else {
         console.log("Error with over!");
       }

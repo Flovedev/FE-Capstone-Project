@@ -18,6 +18,7 @@ import Over from "../main/Over";
 import noImage from "../../assets/No_Image_Available.jpg";
 
 const Game = () => {
+  const currentUserToken = localStorage.getItem("accessToken");
   const currentGame = useAppSelector(
     (state): IGame => state.game.singleGame[0]
   );
@@ -92,7 +93,7 @@ const Game = () => {
             <Col sm={9}>
               <div className="d-flex border-bottom border-secondary align-items-center">
                 <h2 className="flex-grow-1">{currentGame.name}</h2>
-                <Over data={propToSend} />
+                {currentUserToken ? <Over data={propToSend} /> : ""}
               </div>
               <div className="d-flex border-bottom border-secondary py-1">
                 {currentGame.genres?.map((e: IGenre) => (
