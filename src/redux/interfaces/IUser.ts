@@ -4,6 +4,7 @@ export interface IUser {
   password: string;
   email: string;
   avatar: string;
+  background: string;
   games: {
     favourites: IOver[];
     pending: IOver[];

@@ -96,40 +96,37 @@ const NavBar = () => {
         </Form>
       </Nav>
       {currentUser ? (
-        <NavDropdown
-          title={
+        <div className="d-flex navUser">
+          <div
+            className="d-flex align-items-center pointer"
+            onClick={() => {
+              navigate("/user");
+            }}
+          >
             <img
               src={currentUser.avatar}
               alt="User's avatar"
               className="userAvatar"
             />
-          }
-          id="basic-nav-dropdown"
-          alignRight
-        >
-          <NavDropdown.Item
-            onClick={() => {
-              navigate("/user");
-            }}
-          >
-            Your Space
-          </NavDropdown.Item>
-          <NavDropdown.Item
-            onClick={() => {
-              navigate("/profile");
-            }}
-          >
-            Edit Profile
-          </NavDropdown.Item>
-          <NavDropdown.Divider />
-          <NavDropdown.Item
-            onClick={() => {
-              handleLogout();
-            }}
-          >
-            Log out
-          </NavDropdown.Item>
-        </NavDropdown>
+          </div>
+          <NavDropdown title="" id="basic-nav-dropdown" alignRight>
+            <NavDropdown.Item
+              onClick={() => {
+                navigate("/profile");
+              }}
+            >
+              Edit Profile
+            </NavDropdown.Item>
+            <NavDropdown.Divider />
+            <NavDropdown.Item
+              onClick={() => {
+                handleLogout();
+              }}
+            >
+              Log out
+            </NavDropdown.Item>
+          </NavDropdown>
+        </div>
       ) : (
         <NavDropdown title="Login" id="nav-dropdown" alignRight>
           <NavDropdown.ItemText>

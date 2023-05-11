@@ -5,6 +5,7 @@ import { useEffect } from "react";
 import { getDiscover, getGenres, getPlatforms } from "../../redux/actions";
 import { useAppDispatch } from "../../redux/hooks";
 import Platforms from "./Platforms";
+import Info from "./Info";
 
 const Main = () => {
   const dispatch = useAppDispatch();
@@ -18,6 +19,7 @@ const Main = () => {
 
   return (
     <>
+      <Info />
       <Container fluid className="mainSection py-3">
         <h1>Discover:</h1>
         <Row className="justify-content-center my-4">

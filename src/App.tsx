@@ -29,6 +29,7 @@ function App() {
         ) : (
           <Route path="/user" element={<Profile />} />
         )}
+        <Route path="/profile" element={<Profile />} />
       </Routes>
       <Footer />
     </BrowserRouter>
