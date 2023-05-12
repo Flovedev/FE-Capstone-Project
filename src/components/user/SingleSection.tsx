@@ -30,9 +30,9 @@ const SingleSection = (props: IProps) => {
   };
 
   return (
-    <div className={"userSectionButton mt-5"} ref={topRef}>
+    <div className="userSectionButton mt-5" ref={topRef}>
       <div
-        className="d-flex align-items-center"
+        className="d-flex align-items-center userSectionTItle"
         onClick={() => {
           setOver(!over);
         }}

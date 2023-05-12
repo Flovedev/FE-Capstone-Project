@@ -1,5 +1,5 @@
 import { Container, Row, Col, Spinner } from "react-bootstrap";
-import { useAppSelector } from "../../redux/hooks";
+import { useAppDispatch, useAppSelector } from "../../redux/hooks";
 import {
   IGame,
   IGenre,
@@ -16,9 +16,16 @@ import UAVideo from "../../assets/video-unavailable.jpg";
 import SmallPlatforms from "../main/SmallPlatforms";
 import Over from "../main/Over";
 import noImage from "../../assets/No_Image_Available.jpg";
+import { AiFillCloseCircle } from "react-icons/ai";
+import { BsInfoSquare } from "react-icons/bs";
+import { useState } from "react";
+import { changeBG } from "../../redux/actions";
 
 const Game = () => {
+  const dispatch = useAppDispatch();
   const currentUserToken = localStorage.getItem("accessToken");
+  const labelLocal = localStorage.getItem("bgLabel");
+  const [displayLabel, setDisplayLabel] = useState(labelLocal);
   const currentGame = useAppSelector(
     (state): IGame => state.game.singleGame[0]
   );
@@ -72,7 +79,42 @@ const Game = () => {
     currentGame && (
       <>
         {currentGame.artworks && (
-          <img className="bg-image" src={updatedArtworkUrl} alt="Background" />
+          <>
+            <img
+              className="bg-image"
+              src={updatedArtworkUrl}
+              alt="Background"
+            />
+            <div className="backgroundLabel px-1 d-flex align-items-center">
+              {displayLabel === "no" ? (
+                <BsInfoSquare
+                  className="m-1"
+                  onClick={() => {
+                    localStorage.removeItem("bgLabel");
+                    setDisplayLabel("yes");
+                  }}
+                />
+              ) : (
+                <>
+                  <span
+                    className="mb-0 mr-1"
+                    onClick={(e) => {
+                      e.preventDefault();
+                      dispatch(changeBG(updatedArtworkUrl));
+                    }}
+                  >
+                    Use this image for your profile background!
+                  </span>
+                  <AiFillCloseCircle
+                    onClick={() => {
+                      localStorage.setItem("bgLabel", "no");
+                      setDisplayLabel("no");
+                    }}
+                  />
+                </>
+              )}
+            </div>
+          </>
         )}
 
         <Container className="gameInfo">

@@ -96,7 +96,7 @@ const NavBar = () => {
         </Form>
       </Nav>
       {currentUser ? (
-        <div className="d-flex navUser">
+        <div className="d-flex navUser align-items-center">
           <div
             className="d-flex align-items-center pointer"
             onClick={() => {

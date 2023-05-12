@@ -3,11 +3,13 @@ import { useAppDispatch, useAppSelector } from "../../redux/hooks";
 import { IUser } from "../../redux/interfaces/IUser";
 import SingleSection from "./SingleSection";
 import { changeAvatar } from "../../redux/actions";
-import { useRef } from "react";
+import { useRef, useState } from "react";
+import { FiUpload } from "react-icons/fi";
 
 const User = () => {
   const dispatch = useAppDispatch();
   const currentUser: IUser = useAppSelector((state) => state.users.userInfo);
+  const [upload, setUpload] = useState(false);
   const fileInputRef = useRef<HTMLInputElement>(null);
   const handleClick = () => {
     fileInputRef.current?.click();
@@ -25,7 +27,7 @@ const User = () => {
             alt="whatever"
             className="userBackground position-absolute"
           />
-          <Col sm={2}>
+          <Col sm={2} className="position-relative">
             <input
               ref={fileInputRef}
               type="file"
@@ -35,12 +37,22 @@ const User = () => {
             <img
               src={currentUser.avatar}
               alt="User Avatar"
-              className="profileAvatar py-3"
+              className={`profileAvatar pointer my-3 ${upload && "uploadBG"}`}
               onClick={handleClick}
+              onMouseEnter={() => setUpload(true)}
+              onMouseLeave={() => setUpload(false)}
             />
+            {upload && (
+              <FiUpload
+                size={35}
+                className="position-absolute pointer uploadImage"
+                onClick={handleClick}
+                onMouseEnter={() => setUpload(true)}
+              />
+            )}
           </Col>
           <Col sm={8} className="py-3 userName">
-            <h4>{currentUser.username}</h4>
+            <h2>{currentUser.username}</h2>
             <h6>{currentUser.email}</h6>
           </Col>
         </Row>

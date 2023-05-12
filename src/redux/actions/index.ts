@@ -84,25 +84,29 @@ export const registerUser = (userInfo: IUser) => {
   };
 };
 
-// export const putMe = ( userInfo: IUser) => {
-//   return async (dispatch: ThunkDispatch<{}, {}, AnyAction>) => {
-//     try {
-//       const res = await fetch(process.env.REACT_APP_BE_URL + "/users/me", {
-//         headers: {
-//           Authorization: `Bearer ${accessToken}`,
-//         },
-//       });
-//       if (res.ok) {
-//         const data = await res.json();
-//         dispatch({ type: SET_USER_INFO, payload: data });
-//       } else {
-//         console.log("Error getting me!");
-//       }
-//     } catch (error) {
-//       console.log(error);
-//     }
-//   };
-// };
+export const putMe = (userInfo: IUser) => {
+  const accessToken = localStorage.getItem("accessToken");
+  return async (dispatch: ThunkDispatch<{}, {}, AnyAction>) => {
+    try {
+      const res = await fetch(process.env.REACT_APP_BE_URL + "/users/me", {
+        method: "PUT",
+        body: JSON.stringify(userInfo),
+        headers: {
+          Authorization: `Bearer ${accessToken}`,
+          "Content-Type": "application/json",
+        },
+      });
+      if (res.ok) {
+        const data = await res.json();
+        dispatch({ type: SET_USER_INFO, payload: data });
+      } else {
+        console.log("Error putting me!");
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+};
 
 export const deleteMe = () => {
   return async (dispatch: ThunkDispatch<{}, {}, AnyAction>) => {
@@ -147,6 +151,37 @@ export const changeAvatar = (event: React.ChangeEvent<HTMLInputElement>) => {
         dispatch(getMe());
       } else {
         console.log("Error with the avatar!");
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+};
+
+export const changeBG = (url: string) => {
+  const toSend = {
+    bgLink: url,
+  };
+
+  return async (dispatch: ThunkDispatch<{}, {}, AnyAction>) => {
+    const accessToken = localStorage.getItem("accessToken");
+    try {
+      const res = await fetch(
+        process.env.REACT_APP_BE_URL + "/users/me/background",
+        {
+          method: "POST",
+          body: JSON.stringify(toSend),
+          headers: {
+            Authorization: `Bearer ${accessToken}`,
+            "Content-Type": "application/json",
+          },
+        }
+      );
+      if (res.ok) {
+        const data = await res.json();
+        dispatch({ type: SET_USER_INFO, payload: data });
+      } else {
+        console.log("Error change me background!");
       }
     } catch (error) {
       console.log(error);

@@ -83,9 +83,11 @@ a {
   width: 400px;
 }
 
-.navUser {
+#basic-nav-dropdown {
   border: 1px solid #cacaca;
   border-radius: 10px;
+  padding: 5px;
+  margin-left: 10px;
 }
 
 .userAvatar {
@@ -296,6 +298,20 @@ section img:hover {
   width: 12vh;
 }
 
+.backgroundLabel {
+  position: absolute;
+  right: 0;
+  top: 10vh;
+  cursor: pointer;
+  border: 2px solid #59626f;
+  border-radius: 10px;
+  background-color: #283044;
+}
+
+.backgroundLabel:hover {
+  background-color: #59626f;
+}
+
 /* User */
 
 .userInfo {
@@ -330,6 +346,29 @@ section img:hover {
 .userSectionButton {
   border: 1px solid #59626f;
   border-radius: 10px;
+  overflow: hidden;
+}
+
+.uploadImage {
+  z-index: 2;
+  color: rgb(51, 99, 141);
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  margin: auto;
+}
+
+.uploadBG {
+  opacity: 50%;
+}
+
+.userSectionTItle {
+  cursor: pointer;
+}
+
+.userSectionTItle:hover {
+  background-color: #283044;
 }
 
 /* GENRE*/
