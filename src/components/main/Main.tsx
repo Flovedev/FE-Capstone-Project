@@ -19,7 +19,7 @@ const Main = () => {
 
   return (
     <>
-      <Info />
+      {/* <Info /> */}
       <Container fluid className="mainSection py-3">
         <h1>Discover:</h1>
         <Row className="justify-content-center my-4">
