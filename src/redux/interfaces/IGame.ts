@@ -51,7 +51,7 @@ export interface ILanguage {
 }
 
 export interface IScreenshot {
-  id: string;
+  id: number;
   url: string;
 }
 

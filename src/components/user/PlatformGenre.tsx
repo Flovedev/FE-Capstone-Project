@@ -6,10 +6,6 @@ import { useEffect } from "react";
 const PlatformGenre = () => {
   const platformGenreName = useAppSelector((state) => state.search.title);
 
-  useEffect(() => {
-    window.scrollTo(0, 0);
-  }, []);
-
   return (
     <Container>
       <h4>Best of {platformGenreName}</h4>

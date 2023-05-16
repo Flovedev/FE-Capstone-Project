@@ -2,7 +2,7 @@ import { Button, Container, Spinner } from "react-bootstrap";
 import { useAppSelector } from "../../redux/hooks";
 import SingleSearch from "./SingleSearch";
 import { IGame } from "../../redux/interfaces/IGame";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 const SearchList = () => {
   const allSearch = useAppSelector((state) => state.search.allSearch);
@@ -21,6 +21,10 @@ const SearchList = () => {
       behavior: "smooth",
     });
   };
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
 
   if (!allSearch) {
     return (

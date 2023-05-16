@@ -18,7 +18,7 @@ import Over from "../main/Over";
 import noImage from "../../assets/No_Image_Available.jpg";
 import { AiFillCloseCircle } from "react-icons/ai";
 import { BsInfoSquare } from "react-icons/bs";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { changeBG } from "../../redux/actions";
 
 const Game = () => {
@@ -29,7 +29,7 @@ const Game = () => {
   const currentGame = useAppSelector(
     (state): IGame => state.game.singleGame[0]
   );
-  console.log(currentGame);
+
   const coverUrl = currentGame?.cover?.url;
   const updatedUrl = coverUrl?.replace("/t_thumb", "/t_720p");
 
@@ -37,6 +37,10 @@ const Game = () => {
   const updatedArtworkUrl = artworkUrl?.replace("/t_thumb", "/t_1080p");
 
   let maxFirst6;
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
 
   if (currentGame?.screenshots?.length < 6) {
     maxFirst6 = currentGame?.screenshots;
@@ -73,7 +77,6 @@ const Game = () => {
     cover: updatedUrl,
     rating: fixedRating,
   };
-  // console.log(propToSend);
 
   return (
     currentGame && (
@@ -127,7 +130,7 @@ const Game = () => {
               )}
 
               {updatedUrl ? (
-                <img src={updatedUrl} alt="Game cover" className="gameImage" />
+                <ImageModal data={currentGame.cover} />
               ) : (
                 <img src={noImage} alt="Game cover" className="gameImage" />
               )}
@@ -137,7 +140,7 @@ const Game = () => {
                 <h2 className="flex-grow-1">{currentGame.name}</h2>
                 {currentUserToken ? <Over data={propToSend} /> : ""}
               </div>
-              <div className="d-flex border-bottom border-secondary py-1">
+              <div className="d-flex border-bottom border-secondary py-1 flex-wrap">
                 {currentGame.genres?.map((e: IGenre) => (
                   <SingleGenre data={e} key={e.id} />
                 ))}

@@ -21,7 +21,7 @@ const SingleUserGame = (props: IProps) => {
   };
 
   return (
-    <div className="singleSearch d-flex align-items-center my-2 pr-4">
+    <div className="singleSearch d-flex align-items-center my-2 pr-4 mx-2">
       <div
         className="d-flex align-items-center flex-grow-1 pointer"
         onClick={(e: React.MouseEvent<HTMLDivElement>) => {

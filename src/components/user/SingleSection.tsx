@@ -47,32 +47,40 @@ const SingleSection = (props: IProps) => {
 
       <Row className={`smoothDisplay ${over ? "" : "hidden"}`}>
         {over ? (
-          <Col>
-            <div className="d-flex">
-              <Form className="ml-2">
-                <FormControl placeholder="Filter..." />
-              </Form>
-            </div>
-            <div>
-              {ratingOrdered.slice(startIndex, endIndex).map((e: IOver) => (
-                <SingleUserGame data={e} key={e.id} />
-              ))}
-            </div>
-            <div>
-              {Array.from({ length: totalPages }, (_, i) => i + 1).map(
-                (page) => (
-                  <Button
-                    variant={"secondary"}
-                    className="m-1"
-                    key={page}
-                    onClick={() => handlePageClick(page)}
-                  >
-                    {page}
-                  </Button>
-                )
+          avoidMutation.length === 0 ? (
+            <Col>
+              <p className="ml-3">Add some games!</p>
+            </Col>
+          ) : (
+            <Col>
+              <div className="d-flex mt-2">
+                <Form className="ml-2">
+                  <FormControl placeholder="Filter..." />
+                </Form>
+              </div>
+              <div>
+                {ratingOrdered.slice(startIndex, endIndex).map((e: IOver) => (
+                  <SingleUserGame data={e} key={e.id} />
+                ))}
+              </div>
+              {totalPages > 1 && (
+                <div>
+                  {Array.from({ length: totalPages }, (_, i) => i + 1).map(
+                    (page) => (
+                      <Button
+                        variant={"secondary"}
+                        className="m-1"
+                        key={page}
+                        onClick={() => handlePageClick(page)}
+                      >
+                        {page}
+                      </Button>
+                    )
+                  )}
+                </div>
               )}
-            </div>
-          </Col>
+            </Col>
+          )
         ) : (
           ""
         )}

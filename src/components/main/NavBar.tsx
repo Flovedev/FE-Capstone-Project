@@ -76,21 +76,6 @@ const NavBar = () => {
             <Dropdown.Item onClick={() => setCategory("/games")}>
               /games
             </Dropdown.Item>
-            <Dropdown.Item onClick={() => setCategory("/platforms")}>
-              /platforms
-            </Dropdown.Item>
-            <Dropdown.Item onClick={() => setCategory("/people")}>
-              /people
-            </Dropdown.Item>
-            <Dropdown.Item onClick={() => setCategory("/characters")}>
-              /characters
-            </Dropdown.Item>
-            <Dropdown.Item onClick={() => setCategory("/collections")}>
-              /collections
-            </Dropdown.Item>
-            <Dropdown.Item onClick={() => setCategory("/themes")}>
-              /themes
-            </Dropdown.Item>
             <Dropdown.Item onClick={() => setCategory("/users")}>
               /users
             </Dropdown.Item>
