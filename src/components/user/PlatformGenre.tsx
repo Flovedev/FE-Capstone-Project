@@ -1,7 +1,6 @@
 import { Container } from "react-bootstrap";
 import { useAppSelector } from "../../redux/hooks";
 import SearchList from "../searchList/SearchList";
-import { useEffect } from "react";
 
 const PlatformGenre = () => {
   const platformGenreName = useAppSelector((state) => state.search.title);

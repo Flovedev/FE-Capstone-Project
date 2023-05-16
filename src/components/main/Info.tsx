@@ -11,7 +11,7 @@ const Info = () => {
   return (
     <>
       {display ? (
-        <Container fluid className="info">
+        <Container fluid className="info pl-0">
           <Row>
             <Col>
               <img src={InfoImg} alt="Info background" className="infoImg" />

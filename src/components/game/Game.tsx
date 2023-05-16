@@ -98,23 +98,25 @@ const Game = () => {
                   }}
                 />
               ) : (
-                <>
-                  <span
-                    className="mb-0 mr-1"
-                    onClick={(e) => {
-                      e.preventDefault();
-                      dispatch(changeBG(updatedArtworkUrl));
-                    }}
-                  >
-                    Use this image for your profile background!
-                  </span>
-                  <AiFillCloseCircle
-                    onClick={() => {
-                      localStorage.setItem("bgLabel", "no");
-                      setDisplayLabel("no");
-                    }}
-                  />
-                </>
+                currentUserToken && (
+                  <>
+                    <span
+                      className="mb-0 mr-1"
+                      onClick={(e) => {
+                        e.preventDefault();
+                        dispatch(changeBG(updatedArtworkUrl));
+                      }}
+                    >
+                      Use this image for your profile background!
+                    </span>
+                    <AiFillCloseCircle
+                      onClick={() => {
+                        localStorage.setItem("bgLabel", "no");
+                        setDisplayLabel("no");
+                      }}
+                    />
+                  </>
+                )
               )}
             </div>
           </>
@@ -162,6 +164,22 @@ const Game = () => {
               </Row>
             </Col>
           </Row>
+          {currentGame.language_supports && (
+            <Row className="mt-5 p-3 d-flex flex-column">
+              <h6>Supported languages:</h6>
+              <Col className="d-flex flex-wrap justify-content-center align-items-center">
+                {uniqueArr.length > 0 ? (
+                  uniqueArr.map((e, index) => (
+                    <p className="m-1 p-1 border border-secondary" key={index}>
+                      {e.language.name}
+                    </p>
+                  ))
+                ) : (
+                  <p className="ml-2 mb-0">Not provided</p>
+                )}
+              </Col>
+            </Row>
+          )}
           {currentGame.screenshots && (
             <Row className="imagesDisplayer mt-5 p-2 align-items-center">
               {currentGame.videos ? (
@@ -195,22 +213,6 @@ const Game = () => {
                   <SingleSimilar data={e} key={e.id} />
                 ))}
               </div>
-            </Row>
-          )}
-          {currentGame.language_supports && (
-            <Row className="mt-5 p-3 d-flex flex-column">
-              <h6>Supported languages:</h6>
-              <Col className="d-flex flex-wrap justify-content-center align-items-center">
-                {uniqueArr.length > 0 ? (
-                  uniqueArr.map((e, index) => (
-                    <p className="m-1 p-1 border border-secondary" key={index}>
-                      {e.language.name}
-                    </p>
-                  ))
-                ) : (
-                  <p className="ml-2 mb-0">Not provided</p>
-                )}
-              </Col>
             </Row>
           )}
         </Container>
