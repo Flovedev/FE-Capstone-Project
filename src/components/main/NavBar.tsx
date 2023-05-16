@@ -19,6 +19,7 @@ import {
 } from "../../redux/actions";
 import { Link, useNavigate } from "react-router-dom";
 import { IUser } from "../../redux/interfaces/IUser";
+import Cookies from "js-cookie";
 
 const NavBar = () => {
   const dispatch = useAppDispatch();
@@ -42,6 +43,7 @@ const NavBar = () => {
 
   const handleLogout = () => {
     navigate("/");
+    Cookies.remove("accessToken", { path: process.env.REACT_APP_FE_URL });
     localStorage.removeItem("accessToken");
     dispatch({ type: SET_USER_INFO, payload: null });
   };

@@ -6,6 +6,8 @@ import { getDiscover, getGenres, getPlatforms } from "../../redux/actions";
 import { useAppDispatch } from "../../redux/hooks";
 import Platforms from "./Platforms";
 import Info from "./Info";
+import { getMe } from "../../redux/actions";
+import Cookies from "js-cookie";
 
 const Main = () => {
   const dispatch = useAppDispatch();
@@ -14,6 +16,11 @@ const Main = () => {
     dispatch(getGenres());
     dispatch(getPlatforms());
     dispatch(getDiscover());
+    const tokenCookie = Cookies.get("accessToken");
+    if (tokenCookie) {
+      localStorage.setItem("accessToken", tokenCookie);
+      dispatch(getMe());
+    }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 

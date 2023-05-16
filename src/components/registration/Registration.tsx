@@ -3,6 +3,7 @@ import { Button, Container, Form, Row } from "react-bootstrap";
 import { registerUser } from "../../redux/actions";
 import { useNavigate } from "react-router-dom";
 import { useAppDispatch } from "../../redux/hooks";
+import GoogleButton from "react-google-button";
 
 const Registration = () => {
   const navigate = useNavigate();
@@ -83,7 +84,6 @@ const Registration = () => {
               }
             />
           </Form.Group>
-
           <div className="d-flex justify-content-end">
             {passwordError ? (
               <Button variant="danger" type="submit">
@@ -96,6 +96,11 @@ const Registration = () => {
             )}
           </div>
         </Form>
+      </Row>
+      <Row className="justify-content-center">
+        <a href={`${process.env.REACT_APP_BE_URL}/users/googleLogin`}>
+          <GoogleButton />
+        </a>
       </Row>
     </Container>
   );
