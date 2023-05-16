@@ -62,7 +62,7 @@ const SingleSearch = (props: IProps) => {
           <div className="d-flex border-bottom border-secondary">
             <h4 className="flex-grow-1 ml-1 mb-1">{props.data.name}</h4>
           </div>
-          <div className="d-flex border-bottom border-secondary py-1">
+          <div className="d-flex border-bottom border-secondary py-1 flex-wrap">
             {props.data.genres
               ? props.data.genres?.map((e: IGenre) => (
                   <SmallGenre data={e} key={e.id} />
@@ -78,9 +78,11 @@ const SingleSearch = (props: IProps) => {
           </div>
         </Col>
       </Col>
-      <Col sm={2} className="d-flex align-items-center">
-        {currentUserToken ? <Over data={propToSend} /> : ""}
-      </Col>
+      {currentUserToken && (
+        <Col sm={2} className="d-flex align-items-center">
+          <Over data={propToSend} />
+        </Col>
+      )}
     </Row>
   );
 };

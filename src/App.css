@@ -130,10 +130,8 @@ a {
 }
 
 .infoText {
-  top: 125px;
+  top: 15vh;
   right: 0;
-  left: 0;
-  margin: auto;
   font-size: 30px;
   border-radius: 10px;
   background-color: #283044;
@@ -149,9 +147,26 @@ a {
 }
 
 .overInfo {
-  right: 0;
-  left: 0;
-  margin: auto;
+  top: 18vh;
+  left: 30vh;
+}
+
+.infoFav {
+  top: 8vh;
+}
+
+.infoPending {
+  top: 40vh;
+}
+
+.infoOvers {
+  top: 35vh;
+  left: 45vh;
+}
+
+.infoLogin {
+  top: 10vh;
+  right: 2vh;
 }
 
 /* Main */

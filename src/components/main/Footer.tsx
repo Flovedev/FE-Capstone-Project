@@ -4,7 +4,7 @@ import { CgMail } from "react-icons/cg";
 
 const Footer = () => {
   return (
-    <div className="footer d-flex flex-column align-items-center mt-5 mb-3">
+    <div className="footer d-flex flex-column align-items-center mt-2 mb-3">
       <h6 className="mt-3">CONTACT ME:</h6>
       <div className="d-flex">
         <a href="https://github.com/Flovedev">

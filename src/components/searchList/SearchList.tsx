@@ -35,23 +35,26 @@ const SearchList = () => {
 
   return (
     <Container className="mt-3 flex-grow-1">
+      {allSearch.length === 0 && <h3>Not found!</h3>}
       {allSearch &&
         avoidMutation
           .slice(startIndex, endIndex)
           .map((e: IGame) => <SingleSearch data={e} key={e.id} />)}
 
-      <div>
-        {Array.from({ length: totalPages }, (_, i) => i + 1).map((page) => (
-          <Button
-            variant={"secondary"}
-            className="m-1"
-            key={page}
-            onClick={() => handlePageClick(page)}
-          >
-            {page}
-          </Button>
-        ))}
-      </div>
+      {totalPages > 1 && (
+        <div>
+          {Array.from({ length: totalPages }, (_, i) => i + 1).map((page) => (
+            <Button
+              variant={"secondary"}
+              className="m-1"
+              key={page}
+              onClick={() => handlePageClick(page)}
+            >
+              {page}
+            </Button>
+          ))}
+        </div>
+      )}
     </Container>
   );
 };

@@ -13,7 +13,7 @@ const Platforms = () => {
   return (
     <div className="userSectionButton my-4">
       <div
-        className="d-flex align-items-center "
+        className="d-flex align-items-center userSectionTItle"
         onClick={() => {
           setDisplay(!display);
         }}

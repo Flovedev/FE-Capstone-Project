@@ -269,7 +269,7 @@ export const getGenreGames = (genreId: number) => {
       );
       if (res.ok) {
         const data = await res.json();
-        dispatch({ type: GET_GENRE_GAMES, payload: data });
+        dispatch({ type: SET_SEARCH_LIST, payload: data });
       } else {
         console.log("Error getting genre games!");
       }
@@ -287,7 +287,7 @@ export const getPlatformGames = (platformId: number) => {
       );
       if (res.ok) {
         const data = await res.json();
-        dispatch({ type: GET_PLATFORM_GAMES, payload: data });
+        dispatch({ type: SET_SEARCH_LIST, payload: data });
       } else {
         console.log("Error getting platform games!");
       }

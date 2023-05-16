@@ -1,18 +1,19 @@
 import { Container } from "react-bootstrap";
 import { useAppSelector } from "../../redux/hooks";
-import { IGame } from "../../redux/interfaces/IGame";
-import SingleSearch from "../searchList/SingleSearch";
+import SearchList from "../searchList/SearchList";
+import { useEffect } from "react";
 
 const Platform = () => {
   const platformName = useAppSelector((state) => state.platformGames.platform);
-  const platformGames = useAppSelector((state) => state.platformGames.game);
-  // console.log(platformGames);
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
 
   return (
     <Container>
       <h4>Best of {platformName}</h4>
-      {platformGames &&
-        platformGames?.map((e: IGame) => <SingleSearch data={e} key={e.id} />)}
+      <SearchList />
     </Container>
   );
 };
