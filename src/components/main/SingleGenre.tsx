@@ -1,7 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import { useAppDispatch } from "../../redux/hooks";
 import {
-  GET_GENRE_NAME,
+  GET_TITLE_NAME,
   SET_SEARCH_LIST,
   getGenreGames,
 } from "../../redux/actions";
@@ -16,10 +16,10 @@ const SingleGenre = (props: IProps) => {
   const navigate = useNavigate();
 
   const handleGenreClick = () => {
-    dispatch({ type: GET_GENRE_NAME, payload: props.data.name });
+    dispatch({ type: GET_TITLE_NAME, payload: props.data.name });
     dispatch({ type: SET_SEARCH_LIST, payload: "" });
     dispatch(getGenreGames(props.data.id));
-    navigate("/genre");
+    navigate("/platformGenre");
   };
 
   return (

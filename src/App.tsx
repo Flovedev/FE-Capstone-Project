@@ -10,9 +10,8 @@ import Profile from "./components/profile/Profile";
 import NavBar from "./components/main/NavBar";
 import Footer from "./components/main/Footer";
 import SearchList from "./components/searchList/SearchList";
-import Genre from "./components/genre/Genre";
-import Platform from "./components/platform/Platform";
 import Registration from "./components/registration/Registration";
+import PlatformGenre from "./components/user/PlatformGenre";
 
 function App() {
   return (
@@ -22,8 +21,7 @@ function App() {
         <Route path="/" element={<Main />} />
         <Route path="/search" element={<SearchList />} />
         <Route path="/game" element={<Game />} />
-        <Route path="/genre" element={<Genre />} />
-        <Route path="/platform" element={<Platform />} />
+        <Route path="/platformGenre" element={<PlatformGenre />} />
         <Route path="/user" element={<User />} />
         <Route path="/register" element={<Registration />} />
         <Route path="/profile" element={<Profile />} />

@@ -2,7 +2,7 @@ import { Col } from "react-bootstrap";
 import { useAppDispatch } from "../../redux/hooks";
 import { useNavigate } from "react-router-dom";
 import {
-  GET_PLATFORM_NAME,
+  GET_TITLE_NAME,
   SET_SEARCH_LIST,
   getPlatformGames,
 } from "../../redux/actions";
@@ -17,10 +17,10 @@ const SinglePlatform = (props: IProps) => {
   const navigate = useNavigate();
 
   const handleGenreClick = () => {
-    dispatch({ type: GET_PLATFORM_NAME, payload: props.data.name });
+    dispatch({ type: GET_TITLE_NAME, payload: props.data.name });
     dispatch({ type: SET_SEARCH_LIST, payload: "" });
     dispatch(getPlatformGames(props.data.id));
-    navigate("/platform");
+    navigate("/platformGenre");
   };
 
   return (

@@ -1,7 +1,8 @@
-import { SET_SEARCH_LIST } from "../actions";
+import { GET_TITLE_NAME, SET_SEARCH_LIST } from "../actions";
 
 const initialState = {
   allSearch: [],
+  title: "",
 };
 
 const searchReducer = (state = initialState, action: any) => {
@@ -10,6 +11,11 @@ const searchReducer = (state = initialState, action: any) => {
       return {
         ...state,
         allSearch: action.payload,
+      };
+    case GET_TITLE_NAME:
+      return {
+        ...state,
+        title: action.payload,
       };
     default:
       return state;

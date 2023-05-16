@@ -3,8 +3,8 @@ import { useAppSelector } from "../../redux/hooks";
 import SearchList from "../searchList/SearchList";
 import { useEffect } from "react";
 
-const Genre = () => {
-  const genreName = useAppSelector((state) => state.genreGames.genre);
+const PlatformGenre = () => {
+  const platformGenreName = useAppSelector((state) => state.search.title);
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -12,10 +12,10 @@ const Genre = () => {
 
   return (
     <Container>
-      <h2 className="mt-3">Best of {genreName}</h2>
+      <h4>Best of {platformGenreName}</h4>
       <SearchList />
     </Container>
   );
 };
 
-export default Genre;
+export default PlatformGenre;

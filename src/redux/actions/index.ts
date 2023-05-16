@@ -8,10 +8,7 @@ export const GET_GENRES = "GET_GENRES";
 export const GET_PLATFORMS = "GET_PLATFORMS";
 export const SET_SEARCH_LIST = "SET_SEARCH_LIST";
 export const GET_SINGLE_GAME = "GET_SINGLE_GAME";
-export const GET_GENRE_GAMES = "GET_GENRE_GAMES";
-export const GET_GENRE_NAME = "GET_GENRE_NAME";
-export const GET_PLATFORM_GAMES = "GET_PLATFORM_GAMES";
-export const GET_PLATFORM_NAME = "GET_PLATFORM_NAME";
+export const GET_TITLE_NAME = "GET_TITLE_NAME";
 export const GET_DISCOVER = "GET_DISCOVER";
 
 export const userLogin = (emailValue: string, passwordValue: string) => {
