@@ -5,6 +5,7 @@ export interface IGame {
     id: number;
     url: string;
   };
+  release_dates: IRelease[];
   genres: IGenre[];
   platforms: IPlatform[];
   summary: string;
@@ -73,4 +74,9 @@ export interface IVideo {
 export interface IArwork {
   id: number;
   url: string;
+}
+
+export interface IRelease {
+  id: number;
+  human: string;
 }

@@ -76,6 +76,9 @@ const Game = () => {
     name: currentGame.name,
     cover: updatedUrl,
     rating: fixedRating,
+    release_date: currentGame.release_dates[0].human,
+    platforms: currentGame.platforms,
+    genres: currentGame.genres,
   };
 
   return (
@@ -129,6 +132,11 @@ const Game = () => {
                 <h6 className="rating px-2 py-1 mr-2">{fixedRating}/100</h6>
               ) : (
                 ""
+              )}
+              {currentGame.release_dates && (
+                <h6 className="releaseDate px-2 py-1 mr-2">
+                  {currentGame.release_dates?.[0].human}
+                </h6>
               )}
 
               {updatedUrl ? (

@@ -13,6 +13,7 @@ const Main = () => {
   const dispatch = useAppDispatch();
 
   useEffect(() => {
+    window.scrollTo(0, 0);
     dispatch(getGenres());
     dispatch(getPlatforms());
     dispatch(getDiscover());

@@ -34,6 +34,9 @@ const SingleSearch = (props: IProps) => {
     name: props.data.name,
     cover: updatedUrl,
     rating: fixedRating,
+    release_date: props.data.release_dates[0].human,
+    platforms: props.data.platforms,
+    genres: props.data.genres,
   };
 
   return (
@@ -50,6 +53,11 @@ const SingleSearch = (props: IProps) => {
             <span className="rating px-2 mt-1 mb-0">{fixedRating}/100</span>
           ) : (
             ""
+          )}
+          {props.data.release_dates && (
+            <span className="releaseDate px-2 mb-0">
+              {props.data.release_dates?.[0].human}
+            </span>
           )}
 
           {props.data.cover ? (

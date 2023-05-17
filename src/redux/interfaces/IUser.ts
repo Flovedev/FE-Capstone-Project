@@ -22,4 +22,12 @@ export interface IOver {
   name: string;
   cover: string;
   rating: number;
+  release_date: string;
+  platforms: IPlatGen[];
+  genres: IPlatGen[];
+}
+
+export interface IPlatGen {
+  id: number;
+  name: string;
 }

@@ -18,6 +18,10 @@ const User = () => {
     await dispatch(changeAvatar(event));
   };
 
+  const favouritesNumber = currentUser.games?.favourites.length;
+  const pendingNumber = currentUser.games?.pending.length;
+  const overNumber = currentUser.games?.over.length;
+
   return (
     currentUser && (
       <Container className="mt-4 flex-grow-1">
@@ -51,9 +55,17 @@ const User = () => {
               />
             )}
           </Col>
-          <Col sm={8} className="py-3 userName">
+          <Col className="py-3 userName">
             <h2>{currentUser.username}</h2>
             <h6>{currentUser.email}</h6>
+          </Col>
+          <Col className="pt-3">
+            <h5>Total games:</h5>
+            <ul>
+              <li>Favourites: {favouritesNumber}</li>
+              <li>toPlay: {pendingNumber}</li>
+              <li>Over!: {overNumber}</li>
+            </ul>
           </Col>
         </Row>
         {currentUser?.games?.favourites.length === 0 &&

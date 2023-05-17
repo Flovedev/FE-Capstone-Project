@@ -1,4 +1,4 @@
-import { Button, Col, Form, FormControl, Row } from "react-bootstrap";
+import { Button, Col, Dropdown, Form, FormControl, Row } from "react-bootstrap";
 import SingleUserGame from "./SingleUserGame";
 import { IOver } from "../../redux/interfaces/IUser";
 import { useState, useRef } from "react";
@@ -13,13 +13,36 @@ interface IProps {
 const SingleSection = (props: IProps) => {
   const [currentPage, setCurrentPage] = useState(1);
   const [over, setOver] = useState(props.state);
+  const [filter, setFilter] = useState("");
+  const [sort, setSort] = useState("Rating");
+
   const avoidMutation = [...props.data];
-  const ratingOrdered = avoidMutation.sort((a, b) => b.rating - a.rating);
+  let finalList: any[] = [];
+
+  if (sort === "Rating") {
+    finalList = avoidMutation.sort((a, b) => b.rating - a.rating);
+  } else if (sort === "Name") {
+    finalList = avoidMutation.sort((a, b) => a.name.localeCompare(b.name));
+  }
+
+  if (filter.length > 1) {
+    finalList = finalList.filter((game) => {
+      const normalizedGameName = game.name
+        .normalize("NFD")
+        .replace(/[\u0300-\u036f]/g, "");
+      const normalizedSearchTerm = filter
+        .normalize("NFD")
+        .replace(/[\u0300-\u036f]/g, "");
+      return normalizedGameName
+        .toLowerCase()
+        .includes(normalizedSearchTerm.toLowerCase());
+    });
+  }
+
   const pageSize = 10;
   const startIndex = (currentPage - 1) * pageSize;
   const endIndex = startIndex + pageSize;
-  const totalPages = Math.ceil(ratingOrdered.length / pageSize);
-
+  const totalPages = Math.ceil(finalList.length / pageSize);
   const topRef = useRef<HTMLDivElement>(null);
 
   const handlePageClick = (page: any) => {
@@ -32,7 +55,7 @@ const SingleSection = (props: IProps) => {
   return (
     <div className="userSectionButton mt-5" ref={topRef}>
       <div
-        className="d-flex align-items-center userSectionTItle"
+        className="d-flex align-items-center userSectionTItle border-bottom border-dark"
         onClick={() => {
           setOver(!over);
         }}
@@ -49,17 +72,45 @@ const SingleSection = (props: IProps) => {
         {over ? (
           avoidMutation.length === 0 ? (
             <Col>
-              <p className="ml-3">Add some games!</p>
+              <p className="ml-3 mt-2">Add some games!</p>
             </Col>
           ) : (
             <Col>
               <div className="d-flex mt-2">
-                <Form className="ml-2">
-                  <FormControl placeholder="Filter..." />
-                </Form>
+                <div className="d-flex flex-grow-1">
+                  <Form className="ml-2">
+                    <FormControl
+                      placeholder="Filter by name..."
+                      value={filter}
+                      onChange={(e) => {
+                        setFilter(e.target.value);
+                      }}
+                    />
+                  </Form>
+                </div>
+                <div className="d-flex align-items-center mr-2">
+                  <p className="mb-0">Sort by:</p>
+                  <Dropdown>
+                    <Dropdown.Toggle
+                      variant="secondary"
+                      id="dropdown-basic"
+                      className="ml-1"
+                    >
+                      {sort}
+                    </Dropdown.Toggle>
+                    <Dropdown.Menu>
+                      <Dropdown.Item onClick={() => setSort("Rating")}>
+                        Rating
+                      </Dropdown.Item>
+                      <Dropdown.Item onClick={() => setSort("Name")}>
+                        Name
+                      </Dropdown.Item>
+                    </Dropdown.Menu>
+                  </Dropdown>
+                </div>
               </div>
               <div>
-                {ratingOrdered.slice(startIndex, endIndex).map((e: IOver) => (
+                {finalList?.slice(startIndex, endIndex).map((e: IOver) => (
                   <SingleUserGame data={e} key={e.id} />
                 ))}
               </div>
