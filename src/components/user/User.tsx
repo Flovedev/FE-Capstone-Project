@@ -3,8 +3,9 @@ import { useAppDispatch, useAppSelector } from "../../redux/hooks";
 import { IUser } from "../../redux/interfaces/IUser";
 import SingleSection from "./SingleSection";
 import { changeAvatar } from "../../redux/actions";
-import { useRef, useState } from "react";
+import { useRef, useState, useEffect } from "react";
 import { FiUpload } from "react-icons/fi";
+import InfoModal from "./InfoModal";
 
 const User = () => {
   const dispatch = useAppDispatch();
@@ -21,6 +22,50 @@ const User = () => {
   const favouritesNumber = currentUser.games?.favourites.length;
   const pendingNumber = currentUser.games?.pending.length;
   const overNumber = currentUser.games?.over.length;
+
+  const allGenres = currentUser.games?.favourites
+    .concat(currentUser.games?.pending, currentUser.games?.over)
+    .reduce((genres: any, game) => genres.concat(game.genres), []);
+
+  const nameCounts: { [name: string]: number } = {};
+  let highestCount = 0;
+  const mostRepeatedGenre: string[] = [];
+
+  allGenres.forEach((obj: any) => {
+    nameCounts[obj.name] = (nameCounts[obj.name] || 0) + 1;
+
+    if (nameCounts[obj.name] > highestCount) {
+      highestCount = nameCounts[obj.name];
+      mostRepeatedGenre.length = 0; // Clear the array
+      mostRepeatedGenre.push(obj.name);
+    } else if (nameCounts[obj.name] === highestCount) {
+      mostRepeatedGenre.push(obj.name);
+    }
+  });
+
+  const allPlatforms = currentUser.games?.favourites
+    .concat(currentUser.games?.pending, currentUser.games?.over)
+    .reduce((platforms: any, game) => platforms.concat(game.platforms), []);
+
+  const nameCounts2: { [abbreviation: string]: number } = {};
+  let highestCount2 = 0;
+  const mostRepeatedPlatform: string[] = [];
+
+  allPlatforms.forEach((obj: any) => {
+    nameCounts2[obj.abbreviation] = (nameCounts2[obj.abbreviation] || 0) + 1;
+
+    if (nameCounts2[obj.abbreviation] > highestCount2) {
+      highestCount2 = nameCounts2[obj.abbreviation];
+      mostRepeatedPlatform.length = 0; // Clear the array
+      mostRepeatedPlatform.push(obj.abbreviation);
+    } else if (nameCounts2[obj.abbreviation] === highestCount2) {
+      mostRepeatedPlatform.push(obj.abbreviation);
+    }
+  });
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
 
   return (
     currentUser && (
@@ -58,6 +103,9 @@ const User = () => {
           <Col className="py-3 userName">
             <h2>{currentUser.username}</h2>
             <h6>{currentUser.email}</h6>
+            <div>
+              <InfoModal data={currentUser.info} />
+            </div>
           </Col>
           <Col className="pt-3">
             <h5>Total games:</h5>
@@ -65,6 +113,23 @@ const User = () => {
               <li>Favourites: {favouritesNumber}</li>
               <li>toPlay: {pendingNumber}</li>
               <li>Over!: {overNumber}</li>
+            </ul>
+          </Col>
+          <Col className="pt-3">
+            <h5>Most played:</h5>
+            <ul>
+              <li>
+                Genre:{" "}
+                {mostRepeatedGenre.length !== 0
+                  ? mostRepeatedGenre[0]
+                  : "Empty! for now..."}
+              </li>
+              <li>
+                Platform:{" "}
+                {mostRepeatedGenre.length !== 0
+                  ? mostRepeatedPlatform[0]
+                  : "Empty! for now..."}
+              </li>
             </ul>
           </Col>
         </Row>

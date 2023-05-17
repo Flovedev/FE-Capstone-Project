@@ -6,6 +6,7 @@ import { GET_SINGLE_GAME, getGame } from "../../redux/actions";
 import noImage from "../../assets/No_Image_Available.jpg";
 import SmallGenre from "../main/SmallGenre";
 import SmallPlatforms from "../main/SmallPlatforms";
+import { IGenre } from "../../redux/interfaces/IGame";
 
 interface IProps {
   data: IOver;
@@ -57,7 +58,7 @@ const SingleUserGame = (props: IProps) => {
           </div>
           <div className="d-flex border-bottom border-secondary py-1 flex-wrap">
             {props.data.genres
-              ? props.data.genres?.map((e: any) => (
+              ? props.data.genres?.map((e: IGenre) => (
                   <SmallGenre data={e} key={e.id} />
                 ))
               : "No genres provided"}

@@ -211,7 +211,7 @@ section img:hover {
 }
 
 .smallRating {
-  font-size: 11px;
+  font-size: 13px;
   position: absolute;
   right: 0;
   border-radius: 10px;
@@ -415,6 +415,13 @@ section img:hover {
 }
 
 .userSectionTItle:hover {
+  background-color: #283044;
+}
+
+.speech-bubble {
+  cursor: pointer;
+  border: 2px solid #59626f;
+  border-radius: 10px;
   background-color: #283044;
 }
 
