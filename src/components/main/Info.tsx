@@ -25,15 +25,15 @@ const Info = () => {
                 <p className="mb-0">Try out our controller!</p>
               </div>
             </Col>
-            <Col>
-              <AiFillCloseCircle
-                size={20}
-                className="float-right mt-1 pointer"
-                onClick={() => {
-                  setDisplay(false);
-                }}
-              />
-              <div className="position-relative">
+            <Col className="pr-1">
+              <div className="position-relative infoContainer">
+                <AiFillCloseCircle
+                  size={25}
+                  className=" mt-1 pointer infoCross position-absolute"
+                  onClick={() => {
+                    setDisplay(false);
+                  }}
+                />
                 <InfoOver />
                 <div className="position-absolute infoFav d-flex flex-column align-items-end">
                   <p className="mb-0">

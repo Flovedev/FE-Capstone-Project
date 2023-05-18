@@ -23,7 +23,8 @@ const SingleSimilar = (props: IProps) => {
 
   return (
     <Col
-      sm={2}
+      sm={4}
+      md={2}
       className="singleSimilar m-1 p-3"
       onClick={() => {
         handleClick();

@@ -12,12 +12,12 @@ const Genres = () => {
   return (
     <div className="userSectionButton my-4">
       <div
-        className="d-flex align-items-center userSectionTItle mb-2"
+        className="d-flex align-items-center userSectionTItle mb-2 border-bottom border-dark"
         onClick={() => {
           setDisplay(!display);
         }}
       >
-        <h1 className="flex-grow-1 ml-3">Genres:</h1>
+        <h2 className="flex-grow-1 ml-3">Genres</h2>
         {display ? (
           <AiFillCaretDown className="mr-3" />
         ) : (

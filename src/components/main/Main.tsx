@@ -1,6 +1,6 @@
 import Discover from "./Discover";
 import Genres from "./Genres";
-import { Container, Row } from "react-bootstrap";
+import { Container } from "react-bootstrap";
 import { useEffect } from "react";
 import { getDiscover, getGenres, getPlatforms } from "../../redux/actions";
 import { useAppDispatch } from "../../redux/hooks";
@@ -29,10 +29,7 @@ const Main = () => {
     <>
       <Info />
       <Container fluid className="mainSection py-3">
-        <h1>Discover:</h1>
-        <Row className="justify-content-center my-4">
-          <Discover />
-        </Row>
+        <Discover />
         <Genres />
         <Platforms />
       </Container>

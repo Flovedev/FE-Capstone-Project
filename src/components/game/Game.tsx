@@ -127,7 +127,7 @@ const Game = () => {
 
         <Container className="gameInfo">
           <Row className="mt-5 p-4">
-            <Col sm={3}>
+            <Col sm={12} md={3}>
               {fixedRating ? (
                 <h6 className="rating px-2 py-1 mr-2">{fixedRating}/100</h6>
               ) : (
@@ -140,15 +140,22 @@ const Game = () => {
               )}
 
               {updatedUrl ? (
-                <ImageModal data={currentGame.cover} />
+                <div className="d-flex align-items-center justify-content-between">
+                  <ImageModal data={currentGame.cover} />
+                  <div className="d-md-none mr-4">
+                    {currentUserToken ? <Over data={propToSend} /> : ""}
+                  </div>
+                </div>
               ) : (
                 <img src={noImage} alt="Game cover" className="gameImage" />
               )}
             </Col>
-            <Col sm={9}>
+            <Col sm={12} md={9}>
               <div className="d-flex border-bottom border-secondary align-items-center">
                 <h2 className="flex-grow-1">{currentGame.name}</h2>
-                {currentUserToken ? <Over data={propToSend} /> : ""}
+                <div className="d-none d-md-flex">
+                  {currentUserToken ? <Over data={propToSend} /> : ""}
+                </div>
               </div>
               <div className="d-flex border-bottom border-secondary py-1 flex-wrap">
                 {currentGame.genres?.map((e: IGenre) => (
@@ -189,7 +196,7 @@ const Game = () => {
             </Row>
           )}
           {currentGame.screenshots && (
-            <Row className="imagesDisplayer mt-5 p-2 align-items-center">
+            <Row className="d-none d-md-flex imagesDisplayer mt-5 p-2 align-items-center">
               {currentGame.videos ? (
                 <Video data={currentGame.videos} />
               ) : (

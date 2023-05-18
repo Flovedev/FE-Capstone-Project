@@ -13,12 +13,12 @@ const Platforms = () => {
   return (
     <div className="userSectionButton my-4">
       <div
-        className="d-flex align-items-center userSectionTItle"
+        className="d-flex align-items-center userSectionTItle border-bottom border-dark"
         onClick={() => {
           setDisplay(!display);
         }}
       >
-        <h1 className="flex-grow-1 ml-3">All platforms:</h1>
+        <h2 className="flex-grow-1 ml-3">All platforms</h2>
         {display ? (
           <AiFillCaretDown className="mr-3" />
         ) : (

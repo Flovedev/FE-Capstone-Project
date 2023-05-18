@@ -28,7 +28,7 @@ const Profile = () => {
   };
 
   return (
-    <Container className="my-5">
+    <Container className="my-5" style={{ height: "60vh" }}>
       <Row className="justify-content-center pb-5">
         <Form
           onSubmit={(e) => {
@@ -62,7 +62,7 @@ const Profile = () => {
             </Form.Text>
           </Form.Group>
 
-          <Form.Group controlId="formBasicPassword">
+          {/* <Form.Group controlId="formBasicPassword">
             <Form.Label>Update password</Form.Label>
             <Form.Control
               type="password"
@@ -86,7 +86,7 @@ const Profile = () => {
               value={repeatPassword}
               onChange={(e) => setRepeatPassword(e.target.value)}
             />
-          </Form.Group>
+          </Form.Group> */}
 
           <div className="d-flex justify-content-between mb-4">
             <DeleteModal />

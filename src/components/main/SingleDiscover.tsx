@@ -33,14 +33,14 @@ const SingleDiscover = (props: IProps) => {
           handleClick();
         }}
       />
-      {display && (
-        <div className="discoverDescription">
-          <div className="d-flex">
+      {/* {display && (
+        <div className="discoverDescription gameInfo position-absolute">
+          <div className="d-flex p-3">
             <p className="flex-grow-1">{props.data.name}</p>
             <span>{Math.round(props.data.rating)}/100</span>
           </div>
         </div>
-      )}
+      )} */}
     </>
   );
 };
