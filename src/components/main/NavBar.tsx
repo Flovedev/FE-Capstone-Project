@@ -55,116 +55,119 @@ const NavBar = () => {
           <img src={gamesOverLogo} alt="Games Over Logo" className="logo" />
         </Link>
       </Navbar.Brand>
-      <Nav className="mr-auto">
-        <Form
-          className="searchBar d-flex"
-          onSubmit={(e) => {
-            e.preventDefault();
-            handleSearch();
-          }}
-        >
-          <FormControl
-            placeholder="Looking for something?..."
-            value={searchBar}
-            onChange={(e) => setSearchBar(e.target.value)}
-          />
-          <DropdownButton
-            id="dropdown-basic-button"
-            title={category}
-            variant="secondary"
-          >
-            <Dropdown.Item onClick={() => setCategory("/games")}>
-              /games
-            </Dropdown.Item>
-            <Dropdown.Item onClick={() => setCategory("/users")}>
-              /users
-            </Dropdown.Item>
-          </DropdownButton>
-        </Form>
-      </Nav>
-      {currentUser ? (
-        <div className="d-flex navUser align-items-center">
-          <div
-            className="d-flex align-items-center pointer"
-            onClick={() => {
-              navigate("/user");
+      <Navbar.Toggle aria-controls="basic-navbar-nav" />
+      <Navbar.Collapse id="basic-navbar-nav">
+        <Nav className="mr-auto">
+          <Form
+            className="searchBar d-flex"
+            onSubmit={(e) => {
+              e.preventDefault();
+              handleSearch();
             }}
           >
-            <img
-              src={currentUser.avatar}
-              alt="User's avatar"
-              className="userAvatar"
+            <FormControl
+              placeholder="Looking for something?..."
+              value={searchBar}
+              onChange={(e) => setSearchBar(e.target.value)}
             />
-          </div>
-          <NavDropdown title="" id="basic-nav-dropdown" alignRight>
-            <NavDropdown.Item
+            <DropdownButton
+              id="dropdown-basic-button"
+              title={category}
+              variant="secondary"
+            >
+              <Dropdown.Item onClick={() => setCategory("/games")}>
+                /games
+              </Dropdown.Item>
+              <Dropdown.Item onClick={() => setCategory("/users")}>
+                /users
+              </Dropdown.Item>
+            </DropdownButton>
+          </Form>
+        </Nav>
+        {currentUser ? (
+          <div className="d-flex navUser align-items-center">
+            <div
+              className="d-flex align-items-center pointer"
               onClick={() => {
-                navigate("/profile");
+                navigate("/user");
               }}
             >
-              Edit Profile
-            </NavDropdown.Item>
+              <img
+                src={currentUser.avatar}
+                alt="User's avatar"
+                className="userAvatar"
+              />
+            </div>
+            <NavDropdown title="" id="basic-nav-dropdown" alignRight>
+              <NavDropdown.Item
+                onClick={() => {
+                  navigate("/profile");
+                }}
+              >
+                Edit Profile
+              </NavDropdown.Item>
+              <NavDropdown.Divider />
+              <NavDropdown.Item
+                onClick={() => {
+                  handleLogout();
+                }}
+              >
+                Log out
+              </NavDropdown.Item>
+            </NavDropdown>
+          </div>
+        ) : (
+          <NavDropdown title="Login" id="nav-dropdown" alignRight>
+            <NavDropdown.ItemText>
+              <Form
+                onSubmit={(e) => {
+                  e.preventDefault();
+                  handleSummit();
+                }}
+              >
+                <Form.Group controlId="formBasicEmail">
+                  <Form.Label>Email address</Form.Label>
+                  <Form.Control
+                    className="loginNavbar"
+                    type="email"
+                    placeholder="Enter email"
+                    value={email}
+                    onChange={(e) => {
+                      setEmail(e.target.value);
+                    }}
+                  />
+                  <Form.Text className="text-muted">
+                    We'll never share your email with anyone else.
+                  </Form.Text>
+                </Form.Group>
+
+                <Form.Group controlId="formBasicPassword">
+                  <Form.Label>Password</Form.Label>
+                  <Form.Control
+                    type="password"
+                    placeholder="Password"
+                    value={password}
+                    onChange={(e) => {
+                      setPassword(e.target.value);
+                    }}
+                  />
+                </Form.Group>
+                <Button variant="secondary" type="submit">
+                  Login
+                </Button>
+              </Form>
+            </NavDropdown.ItemText>
             <NavDropdown.Divider />
             <NavDropdown.Item
               onClick={() => {
-                handleLogout();
+                navigate("/register");
               }}
             >
-              Log out
+              Register here
             </NavDropdown.Item>
           </NavDropdown>
-        </div>
-      ) : (
-        <NavDropdown title="Login" id="nav-dropdown" alignRight>
-          <NavDropdown.ItemText>
-            <Form
-              onSubmit={(e) => {
-                e.preventDefault();
-                handleSummit();
-              }}
-            >
-              <Form.Group controlId="formBasicEmail">
-                <Form.Label>Email address</Form.Label>
-                <Form.Control
-                  className="loginNavbar"
-                  type="email"
-                  placeholder="Enter email"
-                  value={email}
-                  onChange={(e) => {
-                    setEmail(e.target.value);
-                  }}
-                />
-                <Form.Text className="text-muted">
-                  We'll never share your email with anyone else.
-                </Form.Text>
-              </Form.Group>
-
-              <Form.Group controlId="formBasicPassword">
-                <Form.Label>Password</Form.Label>
-                <Form.Control
-                  type="password"
-                  placeholder="Password"
-                  value={password}
-                  onChange={(e) => {
-                    setPassword(e.target.value);
-                  }}
-                />
-              </Form.Group>
-              <Button variant="secondary" type="submit">
-                Login
-              </Button>
-            </Form>
-          </NavDropdown.ItemText>
-          <NavDropdown.Divider />
-          <NavDropdown.Item
-            onClick={() => {
-              navigate("/register");
-            }}
-          >
-            Register here
-          </NavDropdown.Item>
-        </NavDropdown>
-      )}
+        )}
+      </Navbar.Collapse>
     </Navbar>
   );
 };

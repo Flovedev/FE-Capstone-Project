@@ -70,13 +70,13 @@ const User = () => {
   return (
     currentUser && (
       <Container className="mt-4 flex-grow-1">
-        <Row className="userInfo position-relative">
+        <Row className="userInfo position-relative align-items-center">
           <img
             src={currentUser.background}
             alt="whatever"
             className="userBackground position-absolute"
           />
-          <Col sm={2} className="position-relative">
+          <Col className="position-relative d-flex justify-content-center">
             <input
               ref={fileInputRef}
               type="file"
@@ -108,15 +108,7 @@ const User = () => {
             </div>
           </Col>
           <Col className="pt-3">
-            <h5>Total games:</h5>
-            <ul>
-              <li>Favourites: {favouritesNumber}</li>
-              <li>toPlay: {pendingNumber}</li>
-              <li>Over!: {overNumber}</li>
-            </ul>
-          </Col>
-          <Col className="pt-3">
-            <h5>Most played:</h5>
+            <h5>Most played</h5>
             <ul>
               <li>
                 Genre:{" "}
@@ -130,6 +122,14 @@ const User = () => {
                   ? mostRepeatedPlatform[0]
                   : "Empty! for now..."}
               </li>
+            </ul>
+          </Col>
+          <Col className="pt-3">
+            <h5>Total games</h5>
+            <ul>
+              <li>Favourite: {favouritesNumber}</li>
+              <li>toPlay: {pendingNumber}</li>
+              <li>Over!: {overNumber}</li>
             </ul>
           </Col>
         </Row>

@@ -89,7 +89,7 @@ const SingleSection = (props: IProps) => {
                   </Form>
                 </div>
                 <div className="d-flex align-items-center mr-2">
-                  <p className="mb-0">Sort by:</p>
+                  <p className="mb-0 ml-4">Sort by:</p>
                   <Dropdown>
                     <Dropdown.Toggle
                       variant="secondary"

@@ -80,7 +80,7 @@ a {
 }
 
 .searchBar {
-  width: 400px;
+  max-width: 400px;
 }
 
 #basic-nav-dropdown {
@@ -213,8 +213,19 @@ section img:hover {
 }
 
 .rating {
+  z-index: 2;
   position: absolute;
-  right: 0;
+  left: 170px;
+  border-radius: 10px;
+  border: 1px solid #161a24;
+  background-color: #389a40;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}
+
+.searchRating {
+  z-index: 2;
+  position: absolute;
+  left: 90px;
   border-radius: 10px;
   border: 1px solid #161a24;
   background-color: #389a40;

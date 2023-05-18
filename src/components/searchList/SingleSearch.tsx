@@ -48,9 +48,11 @@ const SingleSearch = (props: IProps) => {
           handleClick();
         }}
       >
-        <Col sm={2} className=" d-flex  justify-content-center">
+        <Col md={2} className="d-none d-md-flex justify-content-center">
           {fixedRating ? (
-            <span className="rating px-2 mt-1 mb-0">{fixedRating}/100</span>
+            <span className="searchRating px-2 mt-1 mb-0">
+              {fixedRating}/100
+            </span>
           ) : (
             ""
           )}
@@ -87,7 +89,7 @@ const SingleSearch = (props: IProps) => {
         </Col>
       </Col>
       {currentUserToken && (
-        <Col sm={2} className="d-flex align-items-center">
+        <Col md={2} className="d-none d-xl-flex align-items-center">
           <Over data={propToSend} />
         </Col>
       )}

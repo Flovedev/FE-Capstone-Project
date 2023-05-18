@@ -56,14 +56,14 @@ const SingleUserGame = (props: IProps) => {
           <div className="d-flex border-bottom border-secondary">
             <h3 className="flex-grow-1 ml-2">{props.data.name}</h3>
           </div>
-          <div className="d-flex border-bottom border-secondary py-1 flex-wrap">
+          <div className="d-none d-md-flex border-bottom border-secondary py-1 flex-wrap">
             {props.data.genres
               ? props.data.genres?.map((e: IGenre) => (
                   <SmallGenre data={e} key={e.id} />
                 ))
               : "No genres provided"}
           </div>
-          <div className="d-flex flex-wrap">
+          <div className="d-none d-md-flex flex-wrap">
             {props.data.platforms
               ? props.data.platforms?.map((e: any) => (
                   <SmallPlatforms data={e} key={e.id} />
@@ -72,7 +72,9 @@ const SingleUserGame = (props: IProps) => {
           </div>
         </div>
       </div>
-      {currentUserToken ? <Over data={props.data} /> : ""}
+      <div className="d-none d-md-block">
+        {currentUserToken ? <Over data={props.data} /> : ""}
+      </div>
     </div>
   );
 };
