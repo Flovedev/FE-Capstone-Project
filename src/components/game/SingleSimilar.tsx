@@ -3,6 +3,7 @@ import { useAppDispatch } from "../../redux/hooks";
 import { GET_SINGLE_GAME, getGame } from "../../redux/actions";
 import { useNavigate } from "react-router-dom";
 import { ISimilar } from "../../redux/interfaces/IGame";
+import NoImage from "../../assets/No_Image_Available.jpg";
 
 interface IProps {
   data: ISimilar;
@@ -31,10 +32,19 @@ const SingleSimilar = (props: IProps) => {
       }}
     >
       <div className="d-flex justify-content-center">
-        <img src={updatedUrl} alt="Game screenshot" className="similarImages" />
+        {updatedUrl ? (
+          <img
+            src={updatedUrl}
+            alt="Game screenshot"
+            className="similarImages"
+          />
+        ) : (
+          <img src={NoImage} alt="Game screenshot" className="similarImages" />
+        )}
+
         <div className="ml-1">
           {props.data.rating && (
-            <span className="rating px-1">
+            <span className="searchRating px-1">
               {parseInt(props.data.rating)}/100
             </span>
           )}

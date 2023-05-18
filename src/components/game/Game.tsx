@@ -30,8 +30,6 @@ const Game = () => {
     (state): IGame => state.game.singleGame[0]
   );
 
-  console.log(currentGame);
-
   const coverUrl = currentGame?.cover?.url;
   const updatedUrl = coverUrl?.replace("/t_thumb", "/t_720p");
 
@@ -78,7 +76,7 @@ const Game = () => {
     name: currentGame.name,
     cover: updatedUrl,
     rating: fixedRating,
-    release_date: currentGame.release_dates[0].human,
+    release_date: currentGame.release_dates?.[0].human,
     platforms: currentGame.platforms,
     genres: currentGame.genres,
   };
