@@ -1,5 +1,8 @@
 import { Col, Container, Row } from "react-bootstrap";
-import InfoImg from "../../assets/info.jpg";
+import UpArrow from "../../assets/up-arrow.png";
+import UpArrow2 from "../../assets/up-arrow2.png";
+import UpArrow3 from "../../assets/up-arrow3.png";
+import DownArrow from "../../assets/down-arrow.png";
 import { useState } from "react";
 import { AiFillCloseCircle } from "react-icons/ai";
 import InfoOver from "./InfoOver";
@@ -11,11 +14,10 @@ const Info = () => {
   return (
     <>
       {display ? (
-        <Container fluid className="info pl-0">
+        <Container fluid className="info pl-0 d-none d-xl-block">
           <Row>
-            <Col>
-              <img src={InfoImg} alt="Info background" className="infoImg" />
-              <div className="infoText p-2 position-absolute">
+            <Col className="d-flex justify-content-center align-items-center">
+              <div className="infoText p-2">
                 <p className="justify-content-center mb-0">
                   Track your games easily with{" "}
                   <span className="infoSpan">GAMES OVER</span>.
@@ -26,25 +28,37 @@ const Info = () => {
             <Col>
               <AiFillCloseCircle
                 size={20}
-                className="float-right m-2 pointer"
+                className="float-right mt-1 pointer"
                 onClick={() => {
                   setDisplay(false);
                 }}
               />
               <div className="position-relative">
-                <p className="position-absolute mb-0 infoFav">
-                  Add your favorites games by clicking in the star!
-                </p>
                 <InfoOver />
-                <p className="position-absolute mb-0 infoPending">
-                  currently playing it or pending to do it?
-                </p>
-                <p className="position-absolute mb-0 infoOvers">
-                  is the game over?
-                </p>
-                <p className="position-absolute mb-0 infoLogin">
-                  Login to start!
-                </p>
+                <div className="position-absolute infoFav d-flex flex-column align-items-end">
+                  <p className="mb-0">
+                    Add your favorites games by clicking in the star!
+                  </p>
+                  <img
+                    src={DownArrow}
+                    alt="Up arrow"
+                    className="arrow mt-2 mr-2"
+                  />
+                </div>
+                <div className="position-absolute infoPending d-flex flex-column align-items-end">
+                  <img src={UpArrow2} alt="Up arrow" className="arrow mb-1" />
+                  <p className="mb-0 ">
+                    currently playing it or pending to do it?
+                  </p>
+                </div>
+                <div className="position-absolute infoOvers d-flex flex-column align-items-start">
+                  <img src={UpArrow3} alt="Up arrow" className="arrow" />
+                  <p className="mb-0 ">is the game over?</p>
+                </div>
+                <div className="position-absolute infoLogin d-flex flex-column align-items-center">
+                  <img src={UpArrow} alt="Up arrow" className="arrow mb-2" />
+                  <p className="mb-0 ">Login to start!</p>
+                </div>
               </div>
             </Col>
           </Row>

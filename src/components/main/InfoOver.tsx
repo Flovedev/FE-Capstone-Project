@@ -3,9 +3,9 @@ import { Button } from "react-bootstrap";
 import { AiFillStar, AiOutlineStar } from "react-icons/ai";
 
 const InfoOver = () => {
-  const [favourite, setFavourite] = useState(false);
+  const [favourite, setFavourite] = useState(true);
   const [pending, setPending] = useState(false);
-  const [over, setOver] = useState(false);
+  const [over, setOver] = useState(true);
 
   return (
     <div className="position-absolute d-flex flex-column align-items-center overButtons overInfo pb-2">
