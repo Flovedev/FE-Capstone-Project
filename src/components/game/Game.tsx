@@ -40,7 +40,7 @@ const Game = () => {
 
   useEffect(() => {
     window.scrollTo(0, 0);
-  }, []);
+  }, [currentGame]);
 
   if (currentGame?.screenshots?.length < 6) {
     maxFirst6 = currentGame?.screenshots;
