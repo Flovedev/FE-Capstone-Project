@@ -34,7 +34,7 @@ const SingleSearch = (props: IProps) => {
     name: props.data.name,
     cover: updatedUrl,
     rating: fixedRating,
-    release_date: props.data.release_dates[0].human,
+    release_date: props.data.release_dates?.[0].human,
     platforms: props.data.platforms,
     genres: props.data.genres,
   };
