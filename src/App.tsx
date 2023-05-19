@@ -12,6 +12,7 @@ import Footer from "./components/main/Footer";
 import SearchList from "./components/searchList/SearchList";
 import Registration from "./components/registration/Registration";
 import PlatformGenre from "./components/user/PlatformGenre";
+import BadRequest from "./components/BadRequest/BadRequest";
 
 function App() {
   return (
@@ -25,6 +26,7 @@ function App() {
         <Route path="/user" element={<User />} />
         <Route path="/register" element={<Registration />} />
         <Route path="/profile" element={<Profile />} />
+        <Route path="*" element={<BadRequest />} />
       </Routes>
       <Footer />
     </BrowserRouter>

@@ -2,6 +2,7 @@ import { ThunkDispatch } from "@reduxjs/toolkit";
 import { AnyAction } from "@reduxjs/toolkit";
 import { IOver, IUser } from "../interfaces/IUser";
 import { IGame } from "../interfaces/IGame";
+import Cookies from "js-cookie";
 
 export const SET_USER_INFO = "SET_USER_INFO";
 export const GET_GENRES = "GET_GENRES";
@@ -51,6 +52,9 @@ export const getMe = () => {
         dispatch({ type: SET_USER_INFO, payload: data });
       } else {
         console.log("Error getting me!");
+        Cookies.remove("accessToken", { path: process.env.REACT_APP_FE_URL });
+        localStorage.removeItem("accessToken");
+        dispatch({ type: SET_USER_INFO, payload: null });
       }
     } catch (error) {
       console.log(error);

@@ -7,6 +7,7 @@ import { useState } from "react";
 import { AiFillCloseCircle } from "react-icons/ai";
 import InfoOver from "./InfoOver";
 import { BsInfoSquare } from "react-icons/bs";
+import infoBG from "../..//assets/info.jpg";
 
 const Info = () => {
   const [display, setDisplay] = useState(true);
@@ -14,7 +15,11 @@ const Info = () => {
   return (
     <>
       {display ? (
-        <Container fluid className="info pl-0 d-none d-xl-block">
+        <Container
+          fluid
+          className="info pl-0 d-none d-xl-block position-relative"
+        >
+          <img className="infoImg" src={infoBG} alt="Info background" />
           <Row>
             <Col className="d-flex justify-content-center align-items-center">
               <div className="infoText p-2">

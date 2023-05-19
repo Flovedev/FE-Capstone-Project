@@ -163,7 +163,7 @@ const NavBar = () => {
                 navigate("/register");
               }}
             >
-              Register here
+              Register new user
             </NavDropdown.Item>
           </NavDropdown>
         )}
