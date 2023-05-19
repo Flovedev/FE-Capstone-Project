@@ -13,18 +13,39 @@ const Profile = () => {
     username: currentUser.username,
     email: currentUser.email,
   });
-  const [password, setPassword] = useState("");
+  const [oldPassword, setOldPassword] = useState("");
   const [newPassword, setNewPassword] = useState("");
   const [repeatPassword, setRepeatPassword] = useState("");
-  const [checkPassword, setCheckPassword] = useState(false);
 
   const handleEdit = () => {
     toast.success("Hola");
-    // if (newPassword !== repeatPassword) {
-    //   setCheckPassword(true);
-    // } else {
-    //   dispatch(putMe(updatedUser));
-    // }
+    if (
+      oldPassword.length > 0 ||
+      newPassword.length > 0 ||
+      repeatPassword.length > 0
+    ) {
+      if (
+        oldPassword.length > 3 ||
+        newPassword.length > 3 ||
+        repeatPassword.length > 3
+      ) {
+        if (newPassword !== repeatPassword) {
+          console.log("new and repeat are different!");
+        } else {
+          if (newPassword === oldPassword) {
+            console.log("new and old are the same!");
+          } else {
+            console.log("user and pass updated");
+            dispatch(putMe({ ...updatedUser, password: newPassword }));
+          }
+        }
+      } else {
+        console.log("Minimo 3");
+      }
+    } else {
+      console.log("user updated");
+      dispatch(putMe(updatedUser));
+    }
   };
 
   return (
@@ -62,31 +83,35 @@ const Profile = () => {
             </Form.Text>
           </Form.Group>
 
-          {/* <Form.Group controlId="formBasicPassword">
-            <Form.Label>Update password</Form.Label>
-            <Form.Control
-              type="password"
-              placeholder="Old password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-            />
-          </Form.Group>
-          <Form.Group controlId="formBasicPassword2">
-            <Form.Control
-              type="password"
-              placeholder="New password"
-              value={newPassword}
-              onChange={(e) => setNewPassword(e.target.value)}
-            />
-          </Form.Group>
-          <Form.Group controlId="formBasicPassword3">
-            <Form.Control
-              type="password"
-              placeholder="Repeat password"
-              value={repeatPassword}
-              onChange={(e) => setRepeatPassword(e.target.value)}
-            />
-          </Form.Group> */}
+          {currentUser.native && (
+            <>
+              <Form.Group controlId="formBasicPassword">
+                <Form.Label>Update password</Form.Label>
+                <Form.Control
+                  type="password"
+                  placeholder="Old password"
+                  value={oldPassword}
+                  onChange={(e) => setOldPassword(e.target.value)}
+                />
+              </Form.Group>
+              <Form.Group controlId="formBasicPassword2">
+                <Form.Control
+                  type="password"
+                  placeholder="New password"
+                  value={newPassword}
+                  onChange={(e) => setNewPassword(e.target.value)}
+                />
+              </Form.Group>
+              <Form.Group controlId="formBasicPassword3">
+                <Form.Control
+                  type="password"
+                  placeholder="Repeat password"
+                  value={repeatPassword}
+                  onChange={(e) => setRepeatPassword(e.target.value)}
+                />
+              </Form.Group>
+            </>
+          )}
 
           <div className="d-flex justify-content-between mb-4">
             <DeleteModal />

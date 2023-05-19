@@ -74,6 +74,7 @@ const NavBar = () => {
               id="dropdown-basic-button"
               title={category}
               variant="secondary"
+              disabled={true}
             >
               <Dropdown.Item onClick={() => setCategory("/games")}>
                 /games
