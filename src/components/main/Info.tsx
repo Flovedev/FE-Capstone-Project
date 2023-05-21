@@ -60,7 +60,7 @@ const Info = () => {
                   <img src={UpArrow3} alt="Up arrow" className="arrow" />
                   <p className="mb-0 ">is the game over?</p>
                 </div>
-                <div className="position-absolute infoLogin d-flex flex-column align-items-center">
+                <div className="position-absolute infoLogin d-flex flex-column align-items-center mr-3">
                   <img src={UpArrow} alt="Up arrow" className="arrow mb-2" />
                   <p className="mb-0 ">Login to start!</p>
                 </div>

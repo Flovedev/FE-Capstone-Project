@@ -8,7 +8,9 @@ export const SET_USER_INFO = "SET_USER_INFO";
 export const GET_GENRES = "GET_GENRES";
 export const GET_PLATFORMS = "GET_PLATFORMS";
 export const SET_SEARCH_LIST = "SET_SEARCH_LIST";
+export const SET_USERS_LIST = "SET_USERS_LIST";
 export const GET_SINGLE_GAME = "GET_SINGLE_GAME";
+export const GET_SINGLE_USER = "GET_SINGLE_USER";
 export const GET_TITLE_NAME = "GET_TITLE_NAME";
 export const GET_DISCOVER = "GET_DISCOVER";
 
@@ -237,6 +239,42 @@ export const searchApi = (where: string, what: string) => {
         dispatch({ type: SET_SEARCH_LIST, payload: sortedSearch });
       } else {
         console.log("Error searching!");
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+};
+
+export const searchUsers = (search: string) => {
+  return async (dispatch: ThunkDispatch<{}, {}, AnyAction>) => {
+    try {
+      const res = await fetch(
+        process.env.REACT_APP_BE_URL + "/users/find/" + search
+      );
+      if (res.ok) {
+        const data = await res.json();
+        dispatch({ type: SET_USERS_LIST, payload: data });
+      } else {
+        console.log("Error searching user!");
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+};
+
+export const inspectUser = (userId: string | undefined) => {
+  return async (dispatch: ThunkDispatch<{}, {}, AnyAction>) => {
+    try {
+      const res = await fetch(
+        process.env.REACT_APP_BE_URL + "/users/single/" + userId
+      );
+      if (res.ok) {
+        const data = await res.json();
+        dispatch({ type: GET_SINGLE_USER, payload: data });
+      } else {
+        console.log("Error getting single inspect!");
       }
     } catch (error) {
       console.log(error);

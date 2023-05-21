@@ -3,6 +3,7 @@ import SingleUserGame from "./SingleUserGame";
 import { IOver } from "../../redux/interfaces/IUser";
 import { useState, useRef } from "react";
 import { AiFillCaretDown, AiFillCaretUp } from "react-icons/ai";
+import { HiSortDescending, HiSortAscending } from "react-icons/hi";
 
 interface IProps {
   data: IOver[];
@@ -14,15 +15,31 @@ const SingleSection = (props: IProps) => {
   const [currentPage, setCurrentPage] = useState(1);
   const [over, setOver] = useState(props.state);
   const [filter, setFilter] = useState("");
-  const [sort, setSort] = useState("Rating");
+  const [sort, setSort] = useState("Rating ascending");
 
   const avoidMutation = [...props.data];
   let finalList: any[] = [];
 
-  if (sort === "Rating") {
+  if (sort === "Rating ascending") {
     finalList = avoidMutation.sort((a, b) => b.rating - a.rating);
-  } else if (sort === "Name") {
+  } else if (sort === "Rating descending") {
+    finalList = avoidMutation.sort((a, b) => a.rating - b.rating);
+  } else if (sort === "Name ascending") {
     finalList = avoidMutation.sort((a, b) => a.name.localeCompare(b.name));
+  } else if (sort === "Name descending") {
+    finalList = avoidMutation.sort((a, b) => b.name.localeCompare(a.name));
+  } else if (sort === "Release ascending") {
+    finalList = avoidMutation.sort((a, b) => {
+      const dateA = new Date(a.release_date);
+      const dateB = new Date(b.release_date);
+      return dateA.getTime() - dateB.getTime();
+    });
+  } else if (sort === "Release descending") {
+    finalList = avoidMutation.sort((a, b) => {
+      const dateA = new Date(a.release_date);
+      const dateB = new Date(b.release_date);
+      return dateB.getTime() - dateA.getTime();
+    });
   }
 
   if (filter.length > 1) {
@@ -99,11 +116,31 @@ const SingleSection = (props: IProps) => {
                       {sort}
                     </Dropdown.Toggle>
                     <Dropdown.Menu>
-                      <Dropdown.Item onClick={() => setSort("Rating")}>
-                        Rating
+                      <Dropdown.Item
+                        onClick={() => setSort("Rating descending")}
+                      >
+                        Rating {<HiSortDescending />}
                       </Dropdown.Item>
-                      <Dropdown.Item onClick={() => setSort("Name")}>
-                        Name
+                      <Dropdown.Item onClick={() => setSort("Name descending")}>
+                        Name {<HiSortDescending />}
+                      </Dropdown.Item>
+                      <Dropdown.Item
+                        onClick={() => setSort("Release descending")}
+                      >
+                        Release {<HiSortDescending />}
+                      </Dropdown.Item>
+                      <Dropdown.Item
+                        onClick={() => setSort("Rating ascending")}
+                      >
+                        Rating {<HiSortAscending />}
+                      </Dropdown.Item>
+                      <Dropdown.Item onClick={() => setSort("Name ascending")}>
+                        Name {<HiSortAscending />}
+                      </Dropdown.Item>
+                      <Dropdown.Item
+                        onClick={() => setSort("Release ascending")}
+                      >
+                        Release {<HiSortAscending />}
                       </Dropdown.Item>
                     </Dropdown.Menu>
                   </Dropdown>

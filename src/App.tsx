@@ -13,6 +13,8 @@ import SearchList from "./components/searchList/SearchList";
 import Registration from "./components/registration/Registration";
 import PlatformGenre from "./components/user/PlatformGenre";
 import BadRequest from "./components/BadRequest/BadRequest";
+import UserList from "./components/searchList/UsersList";
+import OtherUser from "./components/user/OtherUser";
 
 function App() {
   return (
@@ -21,9 +23,11 @@ function App() {
       <Routes>
         <Route path="/" element={<Main />} />
         <Route path="/search" element={<SearchList />} />
+        <Route path="/users" element={<UserList />} />
         <Route path="/game" element={<Game />} />
         <Route path="/platformGenre" element={<PlatformGenre />} />
         <Route path="/user" element={<User />} />
+        <Route path="/inspect" element={<OtherUser />} />
         <Route path="/register" element={<Registration />} />
         <Route path="/profile" element={<Profile />} />
         <Route path="*" element={<BadRequest />} />

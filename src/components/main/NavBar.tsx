@@ -14,7 +14,9 @@ import { useAppDispatch, useAppSelector } from "../../redux/hooks";
 import {
   SET_SEARCH_LIST,
   SET_USER_INFO,
+  SET_USERS_LIST,
   searchApi,
+  searchUsers,
   userLogin,
 } from "../../redux/actions";
 import { Link, useNavigate } from "react-router-dom";
@@ -31,9 +33,15 @@ const NavBar = () => {
   const [password, setPassword] = useState("");
 
   const handleSearch = () => {
-    dispatch({ type: SET_SEARCH_LIST, payload: "" });
-    dispatch(searchApi(category, searchBar));
-    navigate("/search");
+    if (category === "/games") {
+      dispatch({ type: SET_SEARCH_LIST, payload: "" });
+      dispatch(searchApi(category, searchBar));
+      navigate("/search");
+    } else if (category === "/users") {
+      dispatch({ type: SET_USERS_LIST, payload: "" });
+      dispatch(searchUsers(searchBar));
+      navigate("/users");
+    }
   };
 
   const handleSummit = () => {
@@ -74,7 +82,6 @@ const NavBar = () => {
               id="dropdown-basic-button"
               title={category}
               variant="secondary"
-              disabled={true}
             >
               <Dropdown.Item onClick={() => setCategory("/games")}>
                 /games
