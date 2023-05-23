@@ -19,12 +19,12 @@ const SmallPlatforms = (props: IProps) => {
     dispatch({ type: GET_TITLE_NAME, payload: props.data.name });
     dispatch({ type: SET_SEARCH_LIST, payload: "" });
     dispatch(getPlatformGames(props.data.id));
-    navigate("/platform");
+    navigate("/platformGenre");
   };
 
   return (
     <div
-      className="singleGenre m-1 p-1 d-flex align-items-center pointer"
+      className="singlePlatform m-1 p-1 d-flex align-items-center pointer"
       onClick={() => {
         handleGenreClick();
       }}

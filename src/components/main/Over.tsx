@@ -18,7 +18,7 @@ const Over = (props: IProps) => {
   return (
     <div className="d-flex flex-column align-items-center overButtons pb-2">
       <div
-        className="pointer mb-1"
+        className="pointer mb-1 ml-1"
         onClick={(e) => {
           e.preventDefault();
           dispatch(overRequest("favourites", props.data));
@@ -43,11 +43,11 @@ const Over = (props: IProps) => {
             (e: IOver) => e.id === props.data.id
           ) ? (
             <Button variant="warning" className="py-0 pr-1 pl-4 pb-1">
-              toPlay
+              toEnd
             </Button>
           ) : (
             <Button variant="secondary" className="py-0 pr-1 pl-4 pb-1">
-              toPlay
+              toEnd
             </Button>
           )}
         </div>
@@ -62,11 +62,11 @@ const Over = (props: IProps) => {
             (e: IOver) => e.id === props.data.id
           ) ? (
             <Button variant="success" className="py-0 pl-1 pb-1 pr-4">
-              Over!!
+              Over!
             </Button>
           ) : (
             <Button variant="secondary" className="py-0 pl-1 pb-1 pr-4">
-              Over!!
+              Over!
             </Button>
           )}
         </div>

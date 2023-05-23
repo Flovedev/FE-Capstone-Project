@@ -6,8 +6,8 @@ const PlatformGenre = () => {
   const platformGenreName = useAppSelector((state) => state.search.title);
 
   return (
-    <Container>
-      <h4>Best of {platformGenreName}</h4>
+    <Container className="mt-3">
+      <h3>Best of {platformGenreName}</h3>
       <SearchList />
     </Container>
   );

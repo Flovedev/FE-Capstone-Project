@@ -64,7 +64,7 @@ const SingleUser = (props: IProps) => {
     }
   });
 
-  return props.data._id === currentUser._id ? (
+  return props.data?._id === currentUser?._id ? (
     <></>
   ) : (
     <Row
@@ -113,7 +113,7 @@ const SingleUser = (props: IProps) => {
         <h5>Total games</h5>
         <ul>
           <li>Favourite: {favouritesNumber}</li>
-          <li>toPlay: {pendingNumber}</li>
+          <li>toEnd: {pendingNumber}</li>
           <li>Over!: {overNumber}</li>
         </ul>
       </Col>

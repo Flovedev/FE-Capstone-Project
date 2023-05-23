@@ -40,11 +40,12 @@ const SearchList = () => {
   return (
     <Container className="mt-3 flex-grow-1">
       {allSearch.length === 0 && <h3>Not found!</h3>}
-      {allSearch &&
-        avoidMutation
-          .slice(startIndex, endIndex)
-          .map((e: IGame) => <SingleSearch data={e} key={e.id} />)}
-
+      {avoidMutation.length < 10
+        ? avoidMutation.map((e: IGame) => <SingleSearch data={e} key={e.id} />)
+        : allSearch &&
+          avoidMutation
+            .slice(startIndex, endIndex)
+            .map((e: IGame) => <SingleSearch data={e} key={e.id} />)}
       {totalPages > 1 && (
         <div>
           {Array.from({ length: totalPages }, (_, i) => i + 1).map((page) => (

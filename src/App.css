@@ -330,6 +330,10 @@ section img:hover {
   box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
 }
 
+.singleSearch:hover {
+  border: 1px solid #59626f;
+}
+
 .searchImg {
   width: 100px;
   border-radius: 10px;
@@ -442,6 +446,10 @@ section img:hover {
   color: white;
   box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
   overflow: hidden;
+}
+
+.userInfo:hover {
+  border: 1px solid #59626f;
 }
 
 .userName {

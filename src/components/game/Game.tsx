@@ -94,18 +94,18 @@ const Game = () => {
               src={updatedArtworkUrl}
               alt="Background"
             />
-            <div className="backgroundLabel px-1 d-flex align-items-center">
-              {displayLabel === "no" ? (
-                <BsInfoSquare
-                  size={24}
-                  className="p-1"
-                  onClick={() => {
-                    localStorage.removeItem("bgLabel");
-                    setDisplayLabel("yes");
-                  }}
-                />
-              ) : (
-                currentUserToken && (
+            {currentUserToken && (
+              <div className="backgroundLabel px-1 d-flex align-items-center">
+                {displayLabel === "no" ? (
+                  <BsInfoSquare
+                    size={24}
+                    className="p-1"
+                    onClick={() => {
+                      localStorage.removeItem("bgLabel");
+                      setDisplayLabel("yes");
+                    }}
+                  />
+                ) : (
                   <>
                     <span
                       className="mb-0 mr-1"
@@ -125,9 +125,9 @@ const Game = () => {
                       }}
                     />
                   </>
-                )
-              )}
-            </div>
+                )}
+              </div>
+            )}
           </>
         )}
 

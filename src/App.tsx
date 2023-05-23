@@ -7,7 +7,6 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Main from "./components/main/Main";
 import Game from "./components/game/Game";
 import User from "./components/user/User";
-import Profile from "./components/profile/Profile";
 import NavBar from "./components/main/NavBar";
 import Footer from "./components/main/Footer";
 import SearchList from "./components/searchList/SearchList";
@@ -16,6 +15,7 @@ import PlatformGenre from "./components/user/PlatformGenre";
 import BadRequest from "./components/BadRequest/BadRequest";
 import UserList from "./components/searchList/UsersList";
 import OtherUser from "./components/user/OtherUser";
+// import Profile from "./components/profile/Profile";
 
 function App() {
   return (

@@ -101,7 +101,7 @@ const OtherUser = () => {
           <h5>Total games</h5>
           <ul>
             <li>Favourite: {favouritesNumber}</li>
-            <li>toPlay: {pendingNumber}</li>
+            <li>toEnd: {pendingNumber}</li>
             <li>Over!: {overNumber}</li>
           </ul>
         </Col>
@@ -110,10 +110,10 @@ const OtherUser = () => {
       inspectedUser?.games?.pending.length === 0 &&
       inspectedUser?.games?.over.length === 0 ? (
         <Row className="userInfo flex-column p-3 mt-5">
-          <h3>You don't have any over game yet!</h3>
-          <p>
-            Go and play some games and come back here after you added some to
-            Over!
+          <h3>He doesn't have any over game yet!</h3>
+          <p className="mb-0">
+            The right man in the wrong place can make all the difference in the
+            world.
           </p>
         </Row>
       ) : (
@@ -129,7 +129,7 @@ const OtherUser = () => {
           {inspectedUser?.games?.pending && (
             <SingleSection
               data={inspectedUser.games.pending}
-              name={"toPlay"}
+              name={"toEnd"}
               state={false}
             />
           )}

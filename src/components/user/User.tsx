@@ -130,7 +130,7 @@ const User = () => {
           <h5>Total games</h5>
           <ul>
             <li>Favourite: {favouritesNumber}</li>
-            <li>toPlay: {pendingNumber}</li>
+            <li>toEnd: {pendingNumber}</li>
             <li>Over!: {overNumber}</li>
           </ul>
         </Col>
@@ -158,7 +158,7 @@ const User = () => {
           {currentUser?.games?.pending && (
             <SingleSection
               data={currentUser.games.pending}
-              name={"toPlay"}
+              name={"toEnd"}
               state={false}
             />
           )}
