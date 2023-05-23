@@ -20,6 +20,7 @@ import { AiFillCloseCircle } from "react-icons/ai";
 import { BsInfoSquare } from "react-icons/bs";
 import { useState, useEffect } from "react";
 import { changeBG } from "../../redux/actions";
+import { ToastContainer, toast } from "react-toastify";
 
 const Game = () => {
   const dispatch = useAppDispatch();
@@ -81,6 +82,8 @@ const Game = () => {
     genres: currentGame.genres,
   };
 
+  const notify = () => toast("Profile background updated!");
+
   return (
     currentGame && (
       <>
@@ -94,7 +97,8 @@ const Game = () => {
             <div className="backgroundLabel px-1 d-flex align-items-center">
               {displayLabel === "no" ? (
                 <BsInfoSquare
-                  className="m-1"
+                  size={24}
+                  className="p-1"
                   onClick={() => {
                     localStorage.removeItem("bgLabel");
                     setDisplayLabel("yes");
@@ -108,10 +112,12 @@ const Game = () => {
                       onClick={(e) => {
                         e.preventDefault();
                         dispatch(changeBG(updatedArtworkUrl));
+                        notify();
                       }}
                     >
                       Use this image for your profile background!
                     </span>
+                    <ToastContainer theme="dark" />
                     <AiFillCloseCircle
                       onClick={() => {
                         localStorage.setItem("bgLabel", "no");

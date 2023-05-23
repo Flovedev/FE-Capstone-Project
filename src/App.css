@@ -143,9 +143,27 @@ a {
 
 /* Info */
 
+.infoHandler {
+  position: fixed;
+  top: 15vh;
+  right: 0;
+  left: 0;
+  margin: auto;
+  z-index: 3;
+}
+
+.infoClose {
+  position: fixed;
+  top: 80px;
+  right: 0;
+}
+
 .info {
   box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  border: 1px solid #59626f;
+  border-radius: 10px;
   overflow: hidden;
+  background-color: #273549;
 }
 
 .infoImg {
@@ -185,26 +203,26 @@ a {
 }
 
 .overInfo {
-  top: 18vh;
-  left: 30vh;
+  top: 175px;
+  left: 290px;
 }
 
 .infoFav {
-  top: 7vh;
+  top: 70px;
 }
 
 .infoPending {
-  top: 27vh;
-  left: 3vh;
+  top: 270px;
+  left: 25px;
 }
 
 .infoOvers {
-  top: 26vh;
-  left: 43vh;
+  top: 250px;
+  left: 420px;
 }
 
 .infoLogin {
-  top: 2vh;
+  top: 10px;
   right: 1px;
 }
 
@@ -475,6 +493,7 @@ section img:hover {
 }
 
 .speech-bubble {
+  height: 54px;
   cursor: pointer;
   border: 2px solid #59626f;
   border-radius: 10px;

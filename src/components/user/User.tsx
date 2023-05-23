@@ -12,6 +12,7 @@ const User = () => {
   const currentUser: IUser = useAppSelector((state) => state.users.userInfo);
   const [upload, setUpload] = useState(false);
   const fileInputRef = useRef<HTMLInputElement>(null);
+
   const handleClick = () => {
     fileInputRef.current?.click();
   };
@@ -74,7 +75,7 @@ const User = () => {
       <Row className="userInfo position-relative align-items-center">
         <img
           src={currentUser.background}
-          alt="whatever"
+          alt="user background"
           className="userBackground position-absolute"
         />
         <Col className="position-relative d-flex justify-content-center">

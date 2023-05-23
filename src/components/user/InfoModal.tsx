@@ -2,6 +2,7 @@ import { Button, Form, FormControl, Modal } from "react-bootstrap";
 import { useState } from "react";
 import { useAppDispatch } from "../../redux/hooks";
 import { putMe } from "../../redux/actions";
+import { AiOutlineEdit } from "react-icons/ai";
 
 interface IProps {
   data: string | undefined;
@@ -17,16 +18,20 @@ const InfoModal = (props: IProps) => {
 
   return (
     <>
-      <p className="speech-bubble px-2" onClick={handleShow}>
-        {props.data}
-      </p>
-
+      <div
+        className="speech-bubble d-flex align-items-center"
+        onClick={handleShow}
+      >
+        <p className="px-2 mb-0 flex-grow-1">{props.data}</p>
+        <AiOutlineEdit size={20} className="mr-2" />
+      </div>
       <Modal show={show} onHide={handleClose}>
         <Modal.Header closeButton>
           <Modal.Title>Edit your bio?</Modal.Title>
         </Modal.Header>
         <Modal.Body>
           <Form
+            className="d-flex"
             onSubmit={(e) => {
               e.preventDefault();
               dispatch(putMe({ info: info }));
@@ -36,11 +41,11 @@ const InfoModal = (props: IProps) => {
             <FormControl
               value={info}
               onChange={(e) => setInfo(e.target.value)}
-              maxLength={100}
+              maxLength={30}
               aria-label="Default"
               aria-describedby="inputGroup-sizing-default"
             />
-            <Button type="submit" variant="info">
+            <Button variant="secondary" type="submit" className="ml-2">
               Update
             </Button>
           </Form>

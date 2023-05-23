@@ -1,4 +1,5 @@
 import React from "react";
+import "react-toastify/dist/ReactToastify.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "react-toastify/dist/ReactToastify.css";
 import "./App.css";
@@ -29,7 +30,7 @@ function App() {
         <Route path="/user" element={<User />} />
         <Route path="/inspect" element={<OtherUser />} />
         <Route path="/register" element={<Registration />} />
-        <Route path="/profile" element={<Profile />} />
+        {/* <Route path="/profile" element={<Profile />} /> */}
         <Route path="*" element={<BadRequest />} />
       </Routes>
       <Footer />

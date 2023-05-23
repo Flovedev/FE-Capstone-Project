@@ -44,7 +44,7 @@ const NavBar = () => {
     }
   };
 
-  const handleSummit = () => {
+  const handleSubmit = () => {
     dispatch(userLogin(email, password));
     navigate("/");
   };
@@ -108,6 +108,8 @@ const NavBar = () => {
             </div>
             <NavDropdown title="" id="basic-nav-dropdown" alignRight>
               <NavDropdown.Item
+                className="text-muted"
+                disabled={true}
                 onClick={() => {
                   navigate("/profile");
                 }}
@@ -130,7 +132,7 @@ const NavBar = () => {
               <Form
                 onSubmit={(e) => {
                   e.preventDefault();
-                  handleSummit();
+                  handleSubmit();
                 }}
               >
                 <Form.Group controlId="formBasicEmail">
