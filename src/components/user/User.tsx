@@ -102,7 +102,7 @@ const User = () => {
             />
           )}
         </Col>
-        <Col className="py-3 userName">
+        <Col className="userName">
           <h2>{currentUser.username}</h2>
           <h6>{currentUser.email}</h6>
           <div>

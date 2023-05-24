@@ -15,7 +15,7 @@ import PlatformGenre from "./components/user/PlatformGenre";
 import BadRequest from "./components/BadRequest/BadRequest";
 import UserList from "./components/searchList/UsersList";
 import OtherUser from "./components/user/OtherUser";
-// import Profile from "./components/profile/Profile";
+import Profile from "./components/profile/Profile";
 
 function App() {
   return (
@@ -30,7 +30,7 @@ function App() {
         <Route path="/user" element={<User />} />
         <Route path="/inspect" element={<OtherUser />} />
         <Route path="/register" element={<Registration />} />
-        {/* <Route path="/profile" element={<Profile />} /> */}
+        <Route path="/profile" element={<Profile />} />
         <Route path="*" element={<BadRequest />} />
       </Routes>
       <Footer />

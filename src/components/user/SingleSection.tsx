@@ -93,59 +93,68 @@ const SingleSection = (props: IProps) => {
             </Col>
           ) : (
             <Col>
-              <div className="d-flex mt-2">
-                <div className="d-flex flex-grow-1">
-                  <Form className="ml-2">
-                    <FormControl
-                      placeholder="Filter by name..."
-                      value={filter}
-                      onChange={(e) => {
-                        setFilter(e.target.value);
-                      }}
-                    />
-                  </Form>
-                </div>
-                <div className="d-flex align-items-center mr-2">
-                  <p className="mb-0 ml-4">Sort by:</p>
-                  <Dropdown>
-                    <Dropdown.Toggle
-                      variant="secondary"
-                      id="dropdown-basic"
-                      className="ml-1"
-                    >
-                      {sort}
-                    </Dropdown.Toggle>
-                    <Dropdown.Menu>
-                      <Dropdown.Item
-                        onClick={() => setSort("Rating descending")}
-                      >
-                        Rating {<HiSortDescending />}
-                      </Dropdown.Item>
-                      <Dropdown.Item onClick={() => setSort("Name descending")}>
-                        Name {<HiSortDescending />}
-                      </Dropdown.Item>
-                      <Dropdown.Item
-                        onClick={() => setSort("Release descending")}
-                      >
-                        Release {<HiSortDescending />}
-                      </Dropdown.Item>
-                      <Dropdown.Item
-                        onClick={() => setSort("Rating ascending")}
-                      >
-                        Rating {<HiSortAscending />}
-                      </Dropdown.Item>
-                      <Dropdown.Item onClick={() => setSort("Name ascending")}>
-                        Name {<HiSortAscending />}
-                      </Dropdown.Item>
-                      <Dropdown.Item
-                        onClick={() => setSort("Release ascending")}
-                      >
-                        Release {<HiSortAscending />}
-                      </Dropdown.Item>
-                    </Dropdown.Menu>
-                  </Dropdown>
-                </div>
-              </div>
+              {finalList.length > 1 && (
+                <>
+                  <div className="d-flex mt-2">
+                    <div className="d-flex flex-grow-1">
+                      <Form className="ml-2">
+                        <FormControl
+                          placeholder="Filter by name..."
+                          value={filter}
+                          onChange={(e) => {
+                            setFilter(e.target.value);
+                          }}
+                        />
+                      </Form>
+                    </div>
+                    <div className="d-flex align-items-center mr-2">
+                      <p className="mb-0 ml-4">Sort by:</p>
+                      <Dropdown>
+                        <Dropdown.Toggle
+                          variant="secondary"
+                          id="dropdown-basic"
+                          className="ml-1"
+                        >
+                          {sort}
+                        </Dropdown.Toggle>
+                        <Dropdown.Menu>
+                          <Dropdown.Item
+                            onClick={() => setSort("Rating descending")}
+                          >
+                            Rating {<HiSortDescending />}
+                          </Dropdown.Item>
+                          <Dropdown.Item
+                            onClick={() => setSort("Name descending")}
+                          >
+                            Name {<HiSortDescending />}
+                          </Dropdown.Item>
+                          <Dropdown.Item
+                            onClick={() => setSort("Release descending")}
+                          >
+                            Release {<HiSortDescending />}
+                          </Dropdown.Item>
+                          <Dropdown.Item
+                            onClick={() => setSort("Rating ascending")}
+                          >
+                            Rating {<HiSortAscending />}
+                          </Dropdown.Item>
+                          <Dropdown.Item
+                            onClick={() => setSort("Name ascending")}
+                          >
+                            Name {<HiSortAscending />}
+                          </Dropdown.Item>
+                          <Dropdown.Item
+                            onClick={() => setSort("Release ascending")}
+                          >
+                            Release {<HiSortAscending />}
+                          </Dropdown.Item>
+                        </Dropdown.Menu>
+                      </Dropdown>
+                    </div>
+                  </div>
+                </>
+              )}
+
               <div>
                 {finalList?.slice(startIndex, endIndex).map((e: IOver) => (
                   <SingleUserGame data={e} key={e.id} />

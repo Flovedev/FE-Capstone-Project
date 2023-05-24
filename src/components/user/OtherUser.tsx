@@ -3,6 +3,7 @@ import { useAppSelector } from "../../redux/hooks";
 import { IUser } from "../../redux/interfaces/IUser";
 import SingleSection from "./SingleSection";
 import { useEffect } from "react";
+import { RiUserSearchLine } from "react-icons/ri";
 
 const OtherUser = () => {
   const inspectedUser: IUser = useAppSelector(
@@ -26,7 +27,7 @@ const OtherUser = () => {
 
     if (nameCounts[obj.name] > highestCount) {
       highestCount = nameCounts[obj.name];
-      mostRepeatedGenre.length = 0; // Clear the array
+      mostRepeatedGenre.length = 0;
       mostRepeatedGenre.push(obj.name);
     } else if (nameCounts[obj.name] === highestCount) {
       mostRepeatedGenre.push(obj.name);
@@ -46,7 +47,7 @@ const OtherUser = () => {
 
     if (nameCounts2[obj.abbreviation] > highestCount2) {
       highestCount2 = nameCounts2[obj.abbreviation];
-      mostRepeatedPlatform.length = 0; // Clear the array
+      mostRepeatedPlatform.length = 0;
       mostRepeatedPlatform.push(obj.abbreviation);
     } else if (nameCounts2[obj.abbreviation] === highestCount2) {
       mostRepeatedPlatform.push(obj.abbreviation);
@@ -59,91 +60,101 @@ const OtherUser = () => {
   }, []);
 
   return inspectedUser ? (
-    <Container className="mt-4 flex-grow-1">
-      <Row className="userInfo position-relative align-items-center">
-        <img
-          src={inspectedUser.background}
-          alt="whatever"
-          className="userBackground position-absolute"
-        />
-        <Col className="position-relative d-flex justify-content-center">
-          <img
-            src={inspectedUser.avatar}
-            alt="User Avatar"
-            className={`profileAvatar my-3 py-3}`}
-          />
-        </Col>
-        <Col className="py-3 userName">
-          <h2>{inspectedUser.username}</h2>
-          <h6>{inspectedUser.email}</h6>
-          <div>
-            <p className="px-2">{inspectedUser.info}</p>
+    <>
+      <div className="triangleLabel">
+        <div className="corner">
+          <div className="d-flex flex-column align-items-center">
+            <RiUserSearchLine size={25} />
+            <span>Stalking mode</span>
           </div>
-        </Col>
-        <Col className="pt-3">
-          <h5>Most played</h5>
-          <ul>
-            <li>
-              Genre:{" "}
-              {mostRepeatedGenre.length !== 0
-                ? mostRepeatedGenre[0]
-                : "Empty! for now..."}
-            </li>
-            <li>
-              Platform:{" "}
-              {mostRepeatedGenre.length !== 0
-                ? mostRepeatedPlatform[0]
-                : "Empty! for now..."}
-            </li>
-          </ul>
-        </Col>
-        <Col className="pt-3">
-          <h5>Total games</h5>
-          <ul>
-            <li>Favourite: {favouritesNumber}</li>
-            <li>toEnd: {pendingNumber}</li>
-            <li>Over!: {overNumber}</li>
-          </ul>
-        </Col>
-      </Row>
-      {inspectedUser?.games?.favourites.length === 0 &&
-      inspectedUser?.games?.pending.length === 0 &&
-      inspectedUser?.games?.over.length === 0 ? (
-        <Row className="userInfo flex-column p-3 mt-5">
-          <h3>He doesn't have any over game yet!</h3>
-          <p className="mb-0">
-            The right man in the wrong place can make all the difference in the
-            world.
-          </p>
+        </div>
+      </div>
+      <Container className="mt-4 flex-grow-1">
+        <Row className="userInfo position-relative align-items-center">
+          <img
+            src={inspectedUser.background}
+            alt="whatever"
+            className="userBackground position-absolute"
+          />
+          <Col className="position-relative d-flex justify-content-center">
+            <img
+              src={inspectedUser.avatar}
+              alt="User Avatar"
+              className={`profileAvatar my-3 py-3}`}
+            />
+          </Col>
+          <Col className="py-3 userName">
+            <h2>{inspectedUser.username}</h2>
+            <h6>{inspectedUser.email}</h6>
+            <div>
+              <p className="px-2">{inspectedUser.info}</p>
+            </div>
+          </Col>
+          <Col className="pt-3">
+            <h5>Most played</h5>
+            <ul>
+              <li>
+                Genre:{" "}
+                {mostRepeatedGenre.length !== 0
+                  ? mostRepeatedGenre[0]
+                  : "Empty! for now..."}
+              </li>
+              <li>
+                Platform:{" "}
+                {mostRepeatedGenre.length !== 0
+                  ? mostRepeatedPlatform[0]
+                  : "Empty! for now..."}
+              </li>
+            </ul>
+          </Col>
+          <Col className="pt-3">
+            <h5>Total games</h5>
+            <ul>
+              <li>Favourite: {favouritesNumber}</li>
+              <li>toEnd: {pendingNumber}</li>
+              <li>Over!: {overNumber}</li>
+            </ul>
+          </Col>
         </Row>
-      ) : (
-        <>
-          {inspectedUser?.games?.favourites && (
-            <SingleSection
-              data={inspectedUser.games.favourites}
-              name={"Favourites"}
-              state={true}
-            />
-          )}
+        {inspectedUser?.games?.favourites.length === 0 &&
+        inspectedUser?.games?.pending.length === 0 &&
+        inspectedUser?.games?.over.length === 0 ? (
+          <Row className="userInfo flex-column p-3 mt-5">
+            <h3>He doesn't have any over game yet!</h3>
+            <p className="mb-0">
+              The right man in the wrong place can make all the difference in
+              the world.
+            </p>
+          </Row>
+        ) : (
+          <>
+            {inspectedUser?.games?.favourites && (
+              <SingleSection
+                data={inspectedUser.games.favourites}
+                name={"Favourites"}
+                state={true}
+              />
+            )}
 
-          {inspectedUser?.games?.pending && (
-            <SingleSection
-              data={inspectedUser.games.pending}
-              name={"toEnd"}
-              state={false}
-            />
-          )}
+            {inspectedUser?.games?.pending && (
+              <SingleSection
+                data={inspectedUser.games.pending}
+                name={"toEnd"}
+                state={false}
+              />
+            )}
 
-          {inspectedUser?.games?.over && (
-            <SingleSection
-              data={inspectedUser.games.over}
-              name={"Over!!"}
-              state={false}
-            />
-          )}
-        </>
-      )}
-    </Container>
+            {inspectedUser?.games?.over && (
+              <SingleSection
+                data={inspectedUser.games.over}
+                name={"Over!!"}
+                state={false}
+              />
+            )}
+          </>
+        )}
+      </Container>
+    </>
   ) : (
     <div className="d-flex flex-column align-items-center justify-content-center flex-grow-1">
       <h3 className="mt-5">You are not logged in my friend!</h3>

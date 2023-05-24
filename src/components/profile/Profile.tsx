@@ -5,9 +5,11 @@ import { useState } from "react";
 import DeleteModal from "./DeleteModal";
 import { putMe } from "../../redux/actions";
 import { toast } from "react-toastify";
+import { useNavigate } from "react-router-dom";
 
 const Profile = () => {
   const dispatch = useAppDispatch();
+  const navigate = useNavigate();
   const currentUser: IUser = useAppSelector((state) => state.users.userInfo);
   const [updatedUser, setUpdatedUser] = useState({
     username: currentUser.username,
@@ -37,6 +39,7 @@ const Profile = () => {
           } else {
             console.log("user and pass updated");
             dispatch(putMe({ ...updatedUser, password: newPassword }));
+            navigate("/user");
           }
         }
       } else {
@@ -45,6 +48,7 @@ const Profile = () => {
     } else {
       console.log("user updated");
       dispatch(putMe(updatedUser));
+      navigate("/user");
     }
   };
 
@@ -83,7 +87,7 @@ const Profile = () => {
             </Form.Text>
           </Form.Group>
 
-          {currentUser.native && (
+          {/* {currentUser.native && (
             <>
               <Form.Group controlId="formBasicPassword">
                 <Form.Label>Update password</Form.Label>
@@ -111,7 +115,7 @@ const Profile = () => {
                 />
               </Form.Group>
             </>
-          )}
+          )} */}
 
           <div className="d-flex justify-content-between mb-4">
             <DeleteModal />

@@ -108,8 +108,6 @@ const NavBar = () => {
             </div>
             <NavDropdown title="" id="basic-nav-dropdown" alignRight>
               <NavDropdown.Item
-                className="text-muted"
-                disabled={true}
                 onClick={() => {
                   navigate("/profile");
                 }}
