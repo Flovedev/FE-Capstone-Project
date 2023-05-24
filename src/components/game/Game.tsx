@@ -82,7 +82,10 @@ const Game = () => {
     genres: currentGame.genres,
   };
 
-  const notify = () => toast("Profile background updated!");
+  const notify = () =>
+    toast("Profile background updated!", {
+      position: toast.POSITION.TOP_CENTER,
+    });
 
   return (
     currentGame && (
